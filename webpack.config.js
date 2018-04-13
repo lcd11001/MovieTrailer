@@ -8,6 +8,8 @@ module.exports = {
 
   entry: {
     main: './index.web.js',
+    api: './src/api/API.js',
+    utils: './src/utils/utils.js'
   },
 
   output: {

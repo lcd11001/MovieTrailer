@@ -28,6 +28,16 @@ export default class App extends React.Component {
         dataSource: json.Movies_Banners
       })
     });
+
+    API.getCategory(false)
+    .then((json) => {
+      console.log('getCategory ' + JSON.stringify(json, 2, null));
+    });
+
+    API.getCategoryDetail(75, 0, 3)
+    .then((json) => {
+      console.log('getCategoryDetail ' + JSON.stringify(json, 2, null));
+    })
   }
 
   render() {
