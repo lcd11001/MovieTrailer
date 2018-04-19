@@ -27,13 +27,13 @@
   "dependencies": {
     "material-ui": "^0.20.0",
     "react-art": "^16.3.2",
-    "react-native-web": "^0.6.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "shx": "^0.2.2"
   },
   "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "parcel-bundler": "^1.7.1",

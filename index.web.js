@@ -1,6 +1,7 @@
-import { AppRegistry } from 'react-native';
+import React from 'react';
+import { render } from 'react-dom';
 import App from './App';
-AppRegistry.registerComponent('MovieTrailer', () => App);
-AppRegistry.runApplication('MovieTrailer', {
-  rootTag: document.getElementById('react-app')
-});
+
+const wrapper = document.getElementById('react-app');
+
+wrapper ? render(<App />, wrapper) : false;
