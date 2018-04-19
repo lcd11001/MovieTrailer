@@ -1,45 +1,43 @@
 {
-  "name": "MovieTrailer",
-  "version": "0.1.0",
-  "private": true,
+  "name": "movietrailer",
+  "version": "1.0.0",
+  "description": "Movie Trailer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "shx rm -rf _dist/*",
+    "web-parcel": "parcel index.template.html --open",
+    "build-parcel": "parcel build index.template.html --out-dir _dist/ --out-file index --public-url ./ --no-source-maps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lcd11001/MovieTrailer.git"
+  },
+  "keywords": [
+    "material-ui",
+    "react",
+    "demo"
+  ],
+  "author": "Luong Cong Dan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lcd11001/MovieTrailer/issues"
+  },
+  "homepage": "https://github.com/lcd11001/MovieTrailer#readme",
+  "dependencies": {
+    "material-ui": "^0.20.0",
+    "react-art": "^16.3.2",
+    "react-native-web": "^0.6.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "shx": "^0.2.2"
+  },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "jest-expo": "26.0.0",
-    "react-native-scripts": "1.13.1",
-    "react-test-renderer": "16.3.0-alpha.1",
-    "webpack-cli": "^2.0.14",
-    "webpack-dev-server": "^3.1.3"
-  },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
-  "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "web": "./node_modules/.bin/webpack-dev-server",
-    "clean": "shx rm -rf _dist/*",
-    "build": "webpack",
-    "web-parcel": "parcel index.template.html",
-    "build-parcel": "parcel build index.template.html --out-dir _dist/ --out-file index --public-url ./",
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "jest-expo"
-  },
-  "dependencies": {
-    "babel-loader": "^7.1.4",
-    "babel-preset-es2015": "^6.24.1",
-    "clean-webpack-plugin": "^0.1.19",
-    "expo": "^26.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "parcel-bundler": "^1.7.0",
-    "parcel-plugin-react-native-web": "^0.6.1",
-    "react": "^16.3.0-alpha.1",
-    "react-dom": "^16.3.1",
-    "react-native": "0.54.0",
-    "react-native-web": "^0.5.4",
-    "shx": "^0.2.2",
-    "webpack": "^4.5.0"
+    "parcel-bundler": "^1.7.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   }
 }
