@@ -2,24 +2,47 @@
 
 import React, { Component, Fragment } from 'react'
 
-// import getMuiTheme from 'material-ui/styles/getMuiTheme'
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 
 
 import { Header, Footer } from './Components/Layouts'
 import Exercises from './Exercises'
+import { muscles, exercises } from './Store'
 
 export default class App extends Component {
+  state = {
+    exercises
+  }
+
+  getExercisesByMuscles() {
+    return Object.entries(
+       this.state.exercises.reduce((accumulator, currentValue) => {
+          const { muscles } = currentValue
+
+          accumulator[muscles] = accumulator[muscles]
+            ? [...accumulator[muscles], currentValue]
+            : [currentValue]
+
+          return accumulator
+        }, {})
+    )
+  }
+
   render() {
+    // console.log(this.getExercisesByMuscles())
+    const exercises = this.getExercisesByMuscles()
+
     return (
 
         <Fragment>
           <Header />
 
-          <Exercises />
+          <Exercises
+            exercises={exercises}
+          />
 
-          <Footer />
+          <Footer
+            muscles={muscles}
+          />
         </Fragment>
 
     );
