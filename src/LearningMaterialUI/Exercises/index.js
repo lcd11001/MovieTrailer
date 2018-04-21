@@ -13,10 +13,10 @@ const styles = {
   }
 }
 
-export default ({ exercises }) => (
+export default ({ exercises, category }) => (
   <Grid container>
     <Grid item sm>
-      <LeftPane styles={styles} exercises={exercises}/>
+      <LeftPane styles={styles} exercises={exercises} category={category} />
     </Grid>
     <Grid item sm>
       <RightPane styles={styles} />

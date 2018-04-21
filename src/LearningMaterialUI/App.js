@@ -10,7 +10,8 @@ import { muscles, exercises } from './Store'
 
 export default class App extends Component {
   state = {
-    exercises
+    exercises,
+    category: ''
   }
 
   getExercisesByMuscles() {
@@ -27,6 +28,12 @@ export default class App extends Component {
     )
   }
 
+  _handleCategorySelected = (category) => {
+    this.setState({
+      category
+    })
+  }
+
   render() {
     // console.log(this.getExercisesByMuscles())
     const exercises = this.getExercisesByMuscles()
@@ -37,11 +44,14 @@ export default class App extends Component {
           <Header />
 
           <Exercises
+            category={this.state.category}
             exercises={exercises}
           />
 
           <Footer
+            category={this.state.category}
             muscles={muscles}
+            onSelect={this._handleCategorySelected}
           />
         </Fragment>
 

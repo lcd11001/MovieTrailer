@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "shx rm -rf _dist/*",
-    "web-parcel": "parcel index.template.html --open",
-    "build-parcel": "parcel build index.template.html --out-dir _dist/ --out-file index --public-url ./ --no-source-maps"
+    "web": "parcel index.template.html --open",
+    "build": "parcel build index.template.html --out-dir _dist/ --out-file index --public-url ./ --no-source-maps"
   },
   "repository": {
     "type": "git",

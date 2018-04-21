@@ -3,13 +3,16 @@ import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
 import List, { ListItem, ListItemText } from 'material-ui/List'
 
-export default ( { styles, exercises } ) => (
+export default ( { styles, exercises, category } ) => (
   <Paper style={styles.paper}>
     {
       exercises.map((currentValue, index) => {
         // console.log(currentValue)
         let [id, exercises] = currentValue
         // console.log(id, exercises)
+        if (category && category !== id) {
+          return null
+        }
 
         return (
           <Fragment key={id}>
