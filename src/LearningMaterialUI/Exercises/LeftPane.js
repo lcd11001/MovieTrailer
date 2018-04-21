@@ -3,7 +3,7 @@ import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
 import List, { ListItem, ListItemText } from 'material-ui/List'
 
-export default ( { styles, exercises, category } ) => (
+export default ( { styles, exercises, category, onSelect } ) => (
   <Paper style={styles.paper}>
     {
       exercises.map((currentValue, index) => {
@@ -26,7 +26,11 @@ export default ( { styles, exercises, category } ) => (
               {
                 exercises.map((currentValue, index) => {
                   return (
-                    <ListItem button key={currentValue.id}>
+                    <ListItem 
+                      button 
+                      key={currentValue.id}
+                      onClick={() => onSelect(currentValue.id)}
+                    >
                       <ListItemText primary={currentValue.title} />
                     </ListItem>
                   )
