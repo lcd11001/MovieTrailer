@@ -42,6 +42,17 @@ export default class App extends Component {
       }
     })
   }
+  
+  _handleExerciseCreate = (exercise) => {
+    this.setState((prevState, props) => {
+      return {
+        exercises: [
+          ...prevState.exercises,
+          exercise
+        ]
+      }
+    })
+  }
 
   render() {
     // console.log(this.getExercisesByMuscles())
@@ -50,7 +61,10 @@ export default class App extends Component {
     return (
 
         <Fragment>
-          <Header />
+          <Header 
+            muscles={muscles}
+            onExerciseCreate={this._handleExerciseCreate}
+          />
 
           <Exercises
             category={this.state.category}

@@ -9,14 +9,17 @@ const headerStyle = {
 }
 
 // https://material.io/icons/
-export default props => (
+export default ({muscles, onExerciseCreate}) => (
   <AppBar position='static'>
     <Toolbar>
       <Typography variant='headline' color='inherit' align='center' style={headerStyle}>
         Exercies Database
       </Typography>
 
-      <CreateDialog />
+      <CreateDialog 
+        categories={muscles}
+        onCreate={onExerciseCreate}
+      />
     </Toolbar>
   </AppBar>
 )
