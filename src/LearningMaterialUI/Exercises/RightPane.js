@@ -14,19 +14,19 @@ export default ({
     {
       editMode
       ? (
-          <Form 
-            muscles={muscles}
-            onSubmit={onEdit}
-            exercise={exercise}
-          />
+            <Form 
+                muscles={muscles}
+                onSubmit={onEdit}
+                exercise={exercise}
+            />
       ) : (
         <Fragment>
-          <Typography variant='display1'>
-            {exercise.title}
-          </Typography>
-          <Typography variant='subheading' style={{marginTop: 20}}>
-            {exercise.description}
-          </Typography>
+            <Typography variant='display1'>
+                {exercise.title}
+            </Typography>
+            <Typography variant='subheading' style={{marginTop: 20}}>
+                {exercise.description}
+            </Typography>
         </Fragment>
       )
     }
