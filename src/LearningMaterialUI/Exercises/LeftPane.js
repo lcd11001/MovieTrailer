@@ -4,8 +4,9 @@ import Typography from 'material-ui/Typography'
 import List, { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List'
 import IconButton from 'material-ui/IconButton'
 import DeleteIcon from 'material-ui-icons/Delete'
+import EditIcon from 'material-ui-icons/Edit'
 
-export default ( { styles, exercises, category, onSelect, onDelete } ) => (
+export default ( { styles, exercises, category, onSelect, onDelete, onEditMode } ) => (
   <Paper style={styles.paper}>
     {
       exercises.map((currentValue, index) => {
@@ -35,7 +36,10 @@ export default ( { styles, exercises, category, onSelect, onDelete } ) => (
                     >
                       <ListItemText primary={currentValue.title} />
                       <ListItemSecondaryAction>
-                        <IconButton onClick={() => onDelete(currentValue.id)}>
+                      <IconButton onClick={() => onEditMode(currentValue.id)}>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton onClick={() => onDelete(currentValue.id)} color='secondary'>
                           <DeleteIcon />
                         </IconButton>
                       </ListItemSecondaryAction>
