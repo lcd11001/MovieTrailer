@@ -10,7 +10,7 @@ import Button from 'material-ui/Button'
 
 const styles = theme => ({
     FormControl: {
-        width: 300
+        width: 350
     }
 })
 
@@ -34,7 +34,7 @@ export default withStyles(styles)(class extends Component {
     //     })
     // }
     static getDerivedStateFromProps(nextProps, prevState) {
-        return Object.assign(prevState, nextProps.exercise)
+        return nextProps.exercise || null
     }
 
     _handleTextChange = name => event => {
@@ -83,7 +83,7 @@ export default withStyles(styles)(class extends Component {
                             muscles.map((muscle, index) => 
                                 <MenuItem key={index} value={muscle}>
                                     <Typography
-                                        variant='caption'
+                                        variant='body1'
                                         style={{textTransform: 'capitalize'}}
                                     >
                                         {muscle}

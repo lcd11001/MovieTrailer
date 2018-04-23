@@ -80,8 +80,8 @@ export default class App extends Component {
     this.setState((prevState, props) => {
       return {
         exercises: prevState.exercises.filter((ex) => ex.id !== id),
-        editMode: false,
-        ...this.getInitExercise()
+        editMode: prevState.id === id ? false : prevState.editMode,
+        ...(prevState.id === id ? this.getInitExercise() : prevState.exercise)
       }
     })
   }

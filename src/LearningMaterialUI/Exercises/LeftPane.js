@@ -3,8 +3,8 @@ import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
 import List, { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List'
 import IconButton from 'material-ui/IconButton'
-import DeleteIcon from 'material-ui-icons/Delete'
-import EditIcon from 'material-ui-icons/Edit'
+import DeleteIcon from '@material-ui/icons/Delete'
+import EditIcon from '@material-ui/icons/Edit'
 
 export default ( { styles, exercises, category, onSelect, onDelete, onEditMode } ) => (
   <Paper style={styles.paper}>
