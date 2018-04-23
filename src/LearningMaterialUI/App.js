@@ -16,16 +16,23 @@ export default class App extends Component {
   }
 
   getExercisesByMuscles() {
+    const initExercises = muscles.reduce((prevValue, curValue) => {
+      return {
+        ...prevValue,
+        [curValue]: []
+      }
+    }, {})
+
+    // console.log(muscles, initExercises)
+
     return Object.entries(
        this.state.exercises.reduce((accumulator, currentValue) => {
           const { muscles } = currentValue
 
-          accumulator[muscles] = accumulator[muscles]
-            ? [...accumulator[muscles], currentValue]
-            : [currentValue]
+          accumulator[muscles] = [...accumulator[muscles], currentValue]
 
           return accumulator
-        }, {})
+        }, initExercises)
     )
   }
 
@@ -54,6 +61,14 @@ export default class App extends Component {
     })
   }
 
+  _handleExerciseDeleted = (id) => {
+    this.setState((prevState, props) => {
+      return {
+        exercises: prevState.exercises.filter((ex) => ex.id !== id)
+      }
+    })
+  }
+
   render() {
     // console.log(this.getExercisesByMuscles())
     const exercises = this.getExercisesByMuscles()
@@ -71,6 +86,7 @@ export default class App extends Component {
             exercises={exercises}
             exercise={this.state.exercise}
             onSelect={this._handleExerciseSelected}
+            onDelete={this._handleExerciseDeleted}
           />
 
           <Footer

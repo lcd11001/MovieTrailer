@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/lcd11001/MovieTrailer#readme",
   "dependencies": {
-    "material-ui": "^1.0.0-beta.42",
+    "material-ui": "^1.0.0-beta.43",
     "material-ui-icons": "^1.0.0-beta.36",
     "react-art": "^16.3.2",
     "react-redux": "^5.0.7",

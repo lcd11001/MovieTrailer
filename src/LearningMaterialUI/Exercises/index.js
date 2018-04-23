@@ -13,7 +13,7 @@ const styles = {
   }
 }
 
-export default ({ exercises, category, onSelect, exercise }) => (
+export default ({ exercises, category, onSelect, exercise, onDelete }) => (
   <Grid container>
     <Grid item sm>
       <LeftPane 
@@ -21,6 +21,7 @@ export default ({ exercises, category, onSelect, exercise }) => (
         exercises={exercises} 
         category={category} 
         onSelect={onSelect} 
+        onDelete={onDelete}
       />
     </Grid>
     <Grid item sm>

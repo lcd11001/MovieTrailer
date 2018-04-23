@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react'
 import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
-import List, { ListItem, ListItemText } from 'material-ui/List'
+import List, { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List'
+import IconButton from 'material-ui/IconButton'
+import DeleteIcon from 'material-ui-icons/Delete'
 
-export default ( { styles, exercises, category, onSelect } ) => (
+export default ( { styles, exercises, category, onSelect, onDelete } ) => (
   <Paper style={styles.paper}>
     {
       exercises.map((currentValue, index) => {
@@ -32,6 +34,11 @@ export default ( { styles, exercises, category, onSelect } ) => (
                       onClick={() => onSelect(currentValue.id)}
                     >
                       <ListItemText primary={currentValue.title} />
+                      <ListItemSecondaryAction>
+                        <IconButton onClick={() => onDelete(currentValue.id)}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
                     </ListItem>
                   )
                 })

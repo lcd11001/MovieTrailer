@@ -13,6 +13,7 @@ import Select from 'material-ui/Select'
 import Input, { InputLabel } from 'material-ui/Input'
 import { MenuItem } from 'material-ui/Menu'
 import { withStyles } from 'material-ui/styles'
+import Typography from 'material-ui/Typography'
 
 const styles = theme => ({
     FormControl: {
@@ -112,7 +113,14 @@ export default withStyles(styles)( class extends Component {
                                 >
                                     {
                                         categories.map((category, index) => 
-                                            <MenuItem key={index} value={category}>{category}</MenuItem>
+                                            <MenuItem key={index} value={category}>
+                                                <Typography
+                                                    variant='caption'
+                                                    style={{textTransform: 'capitalize'}}
+                                                >
+                                                    {category}
+                                                </Typography>
+                                            </MenuItem>
                                         )
                                     }
                                 </Select>
