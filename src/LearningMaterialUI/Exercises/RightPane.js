@@ -3,33 +3,33 @@ import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
 import Form from './Form'
 
-export default ({ 
-  styles, 
-  exercise,
-  editMode,
-  onEdit,
-  muscles 
+export default ({
+    className,
+    exercise,
+    editMode,
+    onEdit,
+    muscles
 }) => (
-  <Paper style={styles.paper}>
-    {
-      editMode
-      ? (
-            <Form 
-                muscles={muscles}
-                onSubmit={onEdit}
-                exercise={exercise}
-            />
-      ) : (
-        <Fragment>
-            <Typography variant='display1'>
-                {exercise.title}
-            </Typography>
-            <Typography variant='subheading' style={{marginTop: 20}}>
-                {exercise.description}
-            </Typography>
-        </Fragment>
-      )
-    }
-    
-  </Paper>
-)
+        <Paper className={className}>
+            {
+                editMode
+                    ? (
+                        <Form
+                            muscles={muscles}
+                            onSubmit={onEdit}
+                            exercise={exercise}
+                        />
+                    ) : (
+                        <Fragment>
+                            <Typography variant='display1'>
+                                {exercise.title}
+                            </Typography>
+                            <Typography variant='subheading' style={{ marginTop: 20 }}>
+                                {exercise.description}
+                            </Typography>
+                        </Fragment>
+                    )
+            }
+
+        </Paper>
+    )

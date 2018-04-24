@@ -4,18 +4,47 @@ import { FormControl, FormHelperText } from 'material-ui/Form'
 import Select from 'material-ui/Select'
 import Input, { InputLabel } from 'material-ui/Input'
 import { MenuItem } from 'material-ui/Menu'
-import { withStyles } from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
 
+import compose from 'recompose/compose'
+import withWidth from 'material-ui/utils/withWidth'
+import { withStyles } from 'material-ui/styles'
+
+// https://material-ui-next.com/layout/css-in-js/
 const styles = theme => ({
+    // xl - extra large
     FormControl: {
-        width: 350
+        width: 900
+    },
+    // extra small
+    [theme.breakpoints.only('xs')]: {
+        FormControl: {
+            width: 275
+        }
+    },
+    // small
+    [theme.breakpoints.only('sm')]: {
+        FormControl: {
+            width: 300
+        }
+    },
+    // medium
+    [theme.breakpoints.only('md')]: {
+        FormControl: {
+            width: 475
+        }
+    },
+    // large
+    [theme.breakpoints.only('lg')]: {
+        FormControl: {
+            width: 650
+        }
     }
 })
 
 
-export default withStyles(styles)(class extends Component {
+export default compose (withStyles(styles), withWidth())(class extends Component {
     state = this.getInitState()
 
     getInitState() {
@@ -44,7 +73,6 @@ export default withStyles(styles)(class extends Component {
     }
 
     _handleSelectChange = event => {
-        console.log('_handleSelectChange '+ event.target.name + '=' + event.target.value)
         this.setState({
             [event.target.name]: event.target.value
         }) 
@@ -60,7 +88,9 @@ export default withStyles(styles)(class extends Component {
     }
 
     render() {
-        const {classes, muscles, exercise} = this.props
+        const {classes, width, muscles, exercise} = this.props
+        console.log('Form width', width, classes)
+
         return (
             <form>
                 <TextField

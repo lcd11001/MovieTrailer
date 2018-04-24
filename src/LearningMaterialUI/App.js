@@ -2,7 +2,7 @@
 
 import React, { Component, Fragment } from 'react'
 
-
+import CssBaseline from 'material-ui/CssBaseline'
 
 import { Header, Footer } from './Components/Layouts'
 import Exercises from './Exercises'
@@ -55,7 +55,6 @@ export default class App extends Component {
   }
 
   _handleExerciseSelected = (id) => {
-    console.log('_handleExerciseSelected', id, this.state)
     this.setState((prevState, props) => {
       return {
         exercise: prevState.exercises.find((ex) => ex.id === id),
@@ -113,6 +112,7 @@ export default class App extends Component {
     return (
 
         <Fragment>
+          <CssBaseline />
           <Header 
             muscles={muscles}
             onExerciseCreate={this._handleExerciseCreate}

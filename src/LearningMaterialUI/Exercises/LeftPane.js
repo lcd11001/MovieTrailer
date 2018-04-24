@@ -6,51 +6,58 @@ import IconButton from 'material-ui/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 
-export default ({ styles, exercises, category, onSelect, onDelete, onEditMode }) => (
-  <Paper style={styles.paper}>
-    {
-      exercises.map((currentValue, index) => {
-        // console.log(currentValue)
-        let [id, exercises] = currentValue
-        // console.log(id, exercises)
-        if (category && category !== id) {
-            return null
-        }
-
-        return (
-            <Fragment key={id}>
-                <Typography
-                variant='headline'
-                style={{ textTransform: 'capitalize' }}
-                >
-                {id}
-                </Typography>
-                <List component="nav">
-                {
-                    exercises.map((currentValue, index) => {
-                    return (
-                        <ListItem
-                        button
-                        key={currentValue.id}
-                        onClick={() => onSelect(currentValue.id)}
-                        >
-                        <ListItemText primary={currentValue.title} />
-                        <ListItemSecondaryAction>
-                            <IconButton onClick={() => onEditMode(currentValue.id)}>
-                            <EditIcon />
-                            </IconButton>
-                            <IconButton onClick={() => onDelete(currentValue.id)} color='secondary'>
-                            <DeleteIcon />
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                        </ListItem>
-                    )
-                    })
+export default ({ 
+    className, 
+    exercises, 
+    category, 
+    onSelect, 
+    onDelete, 
+    onEditMode 
+}) => (
+    <Paper className={className}>
+        {
+            exercises.map((currentValue, index) => {
+                // console.log(currentValue)
+                let [id, exercises] = currentValue
+                // console.log(id, exercises)
+                if (category && category !== id) {
+                    return null
                 }
-                </List>
-            </Fragment>
-        )
-      })
-    }
-  </Paper>
+
+                return (
+                    <Fragment key={id}>
+                        <Typography
+                            variant='headline'
+                            style={{ textTransform: 'capitalize' }}
+                        >
+                            {id}
+                        </Typography>
+                        <List component="nav">
+                            {
+                                exercises.map((currentValue, index) => {
+                                    return (
+                                        <ListItem
+                                            button
+                                            key={currentValue.id}
+                                            onClick={() => onSelect(currentValue.id)}
+                                        >
+                                            <ListItemText primary={currentValue.title} />
+                                            <ListItemSecondaryAction>
+                                                <IconButton onClick={() => onEditMode(currentValue.id)}>
+                                                    <EditIcon />
+                                                </IconButton>
+                                                <IconButton onClick={() => onDelete(currentValue.id)} color='secondary'>
+                                                    <DeleteIcon />
+                                                </IconButton>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>
+                                    )
+                                })
+                            }
+                        </List>
+                    </Fragment>
+                )
+            })
+        }
+    </Paper>
 )
