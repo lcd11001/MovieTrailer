@@ -9,134 +9,134 @@ import Exercises from './Exercises'
 import { muscles, exercises } from './Store'
 
 export default class App extends Component {
-  state = {
-    exercises,
-    category: '',
-    editMode: false,
-    ...this.getInitExercise()
-  }
-
-  getInitExercise() {
-    return {
-      exercise: {
-        id: '',
-        title : 'Welcome!',
-        description : 'Plase select an exercise from the list on the left',
-        muscles: ''
-      }
+    state = {
+        exercises,
+        category: '',
+        editMode: false,
+        ...this.getInitExercise()
     }
-  }
 
-  getExercisesByMuscles() {
-    const initExercises = muscles.reduce((prevValue, curValue) => {
-      return {
-        ...prevValue,
-        [curValue]: []
-      }
-    }, {})
+    getInitExercise() {
+        return {
+            exercise: {
+                id: '',
+                title: 'Welcome!',
+                description: 'Plase select an exercise from the list on the left',
+                muscles: ''
+            }
+        }
+    }
 
-    // console.log(muscles, initExercises)
+    getExercisesByMuscles() {
+        const initExercises = muscles.reduce((prevValue, curValue) => {
+            return {
+                ...prevValue,
+                [curValue]: []
+            }
+        }, {})
 
-    return Object.entries(
-       this.state.exercises.reduce((accumulator, currentValue) => {
-          const { muscles } = currentValue
+        // console.log(muscles, initExercises)
 
-          accumulator[muscles] = [...accumulator[muscles], currentValue]
+        return Object.entries(
+            this.state.exercises.reduce((accumulator, currentValue) => {
+                const { muscles } = currentValue
 
-          return accumulator
-        }, initExercises)
-    )
-  }
+                accumulator[muscles] = [...accumulator[muscles], currentValue]
 
-  _handleCategorySelected = (category) => {
-    this.setState({
-      category
-    })
-  }
+                return accumulator
+            }, initExercises)
+        )
+    }
 
-  _handleExerciseSelected = (id) => {
-    this.setState((prevState, props) => {
-      return {
-        exercise: prevState.exercises.find((ex) => ex.id === id),
-        editMode: false
-      }
-    })
-  }
-  
-  _handleExerciseCreate = (exercise) => {
-    this.setState((prevState, props) => {
-      return {
-        exercises: [
-          ...prevState.exercises,
-          exercise
-        ],
-        editMode: false
-      }
-    })
-  }
+    _handleCategorySelected = (category) => {
+        this.setState({
+            category
+        })
+    }
 
-  _handleExerciseDeleted = (id) => {
-    this.setState((prevState, props) => {
-      return {
-        exercises: prevState.exercises.filter((ex) => ex.id !== id),
-        editMode: prevState.id === id ? false : prevState.editMode,
-        ...(prevState.id === id ? this.getInitExercise() : prevState.exercise)
-      }
-    })
-  }
-  _handleEditMode = (id) => {
-    this.setState((prevState, props) => {
-      return {
-        exercise: prevState.exercises.find((ex) => ex.id === id),
-        editMode: true
-      }
-    })
-  }
+    _handleExerciseSelected = (id) => {
+        this.setState((prevState, props) => {
+            return {
+                exercise: prevState.exercises.find((ex) => ex.id === id),
+                editMode: false
+            }
+        })
+    }
 
-  _handleExerciseEdited = (exercise) => {
-    this.setState((prevState, props) => {
-      return {
-        exercises: [
-          ...prevState.exercises.filter(ex => ex.id !== exercise.id),
-          exercise
-        ],
-        exercise
-      }
-    })
-  }
+    _handleExerciseCreate = (exercise) => {
+        this.setState((prevState, props) => {
+            return {
+                exercises: [
+                    ...prevState.exercises,
+                    exercise
+                ],
+                editMode: false
+            }
+        })
+    }
 
-  render() {
-    // console.log(this.getExercisesByMuscles())
-    const exercises = this.getExercisesByMuscles()
+    _handleExerciseDeleted = (id) => {
+        this.setState((prevState, props) => {
+            return {
+                exercises: prevState.exercises.filter((ex) => ex.id !== id),
+                editMode: prevState.id === id ? false : prevState.editMode,
+                ...(prevState.id === id ? this.getInitExercise() : prevState.exercise)
+            }
+        })
+    }
+    _handleEditMode = (id) => {
+        this.setState((prevState, props) => {
+            return {
+                exercise: prevState.exercises.find((ex) => ex.id === id),
+                editMode: true
+            }
+        })
+    }
 
-    return (
+    _handleExerciseEdited = (exercise) => {
+        this.setState((prevState, props) => {
+            return {
+                exercises: [
+                    ...prevState.exercises.filter(ex => ex.id !== exercise.id),
+                    exercise
+                ],
+                exercise
+            }
+        })
+    }
 
-        <Fragment>
-          <CssBaseline />
-          <Header 
-            muscles={muscles}
-            onExerciseCreate={this._handleExerciseCreate}
-          />
+    render() {
+        // console.log(this.getExercisesByMuscles())
+        const exercises = this.getExercisesByMuscles()
 
-          <Exercises
-            category={this.state.category}
-            muscles={muscles}
-            exercises={exercises}
-            exercise={this.state.exercise}
-            onSelect={this._handleExerciseSelected}
-            onDelete={this._handleExerciseDeleted}
-            onEditMode={this._handleEditMode}
-            editMode={this.state.editMode}
-            onEdit={this._handleExerciseEdited}
-          />
+        return (
 
-          <Footer
-            category={this.state.category}
-            muscles={muscles}
-            onSelect={this._handleCategorySelected}
-          />
-        </Fragment>
+            <Fragment>
+                <CssBaseline />
+                <Header
+                    muscles={muscles}
+                    onExerciseCreate={this._handleExerciseCreate}
+                />
 
-    );
-  }
+                <Exercises
+                    category={this.state.category}
+                    muscles={muscles}
+                    exercises={exercises}
+                    exercise={this.state.exercise}
+                    onSelect={this._handleExerciseSelected}
+                    onDelete={this._handleExerciseDeleted}
+                    onEditMode={this._handleEditMode}
+                    editMode={this.state.editMode}
+                    onEdit={this._handleExerciseEdited}
+                />
+
+                <Footer
+                    category={this.state.category}
+                    muscles={muscles}
+                    onSelect={this._handleCategorySelected}
+                />
+            </Fragment>
+
+        );
+    }
 }
