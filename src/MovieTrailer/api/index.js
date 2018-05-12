@@ -8,9 +8,8 @@ export const urlCategory = urlApi + '/category/menu?sequence={0}'
 export const urlCategoryDetail = urlApi + '/movie?categoryid={0}&offset={1}&limit={2}'
 
 function getDataAsync(url) {
-    console.log('getDataAsync ' + url)
-
     return (dispatch) => {
+        console.log('getDataAsync ' + url)
         dispatch(fetchBegin())
 
         return fetch(url)

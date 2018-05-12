@@ -7,7 +7,7 @@ import { loadHomeMovies } from '../redux/actions/moviesActions'
 
 class Home extends Component {
     componentDidMount() {
-        // loadHomeMovies()
+        this.props.loadHomeMovies()
     }
 
     render() {
@@ -30,7 +30,7 @@ class Home extends Component {
 
         const tileData = [
             {
-                img: 'http://t.hdviet.com/backdrops/origins/bf4601ed955c4482e58dce7dbbccb227.jpg',
+                img: 'http://gocbao.com/wp-content/uploads/2017/12/bieu-tuong-cam-xuc-va-icon-facbook-8.jpg',
                 title: 'Image',
                 author: 'author',
             },

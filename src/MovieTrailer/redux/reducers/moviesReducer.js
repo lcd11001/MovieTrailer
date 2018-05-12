@@ -35,8 +35,8 @@ const moviesReducer = (state = {
         case HOME_MOVIES_LOAD:
             state = {
                 ...state,
-                Banner: action.payload.Banner,
-                Categories: action.payload.Categories
+                Banner: action.payload.Movies_Banners,
+                Categories: action.payload.MoviesByCates
             }
             break
 
