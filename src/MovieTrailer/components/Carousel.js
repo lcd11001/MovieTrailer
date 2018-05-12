@@ -1,35 +1,46 @@
-import React, { Component } from "react";
-import Slider from "react-slick"
+import React from 'react'
+import { AutoRotatingCarousel, Slide } from 'material-auto-rotating-carousel'
+import { green400, green600, blue400, blue600, red400, red600 } from 'material-ui/colors'
 
-export default class Carousel extends Component {
-  render() {
-    const settings = {
-      dots: true,
-      fade: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
-    const baseUrl = 'https://s3.amazonaws.com/static.neostack.com/img/react-slick'
-    return (
-      <div>
-        <h2>Fade</h2>
-        <Slider {...settings}>
-          <div>
-            <img src={baseUrl + "/abstract01.jpg"} />
-          </div>
-          <div>
-            <img src={baseUrl + "/abstract02.jpg"} />
-          </div>
-          <div>
-            <img src={baseUrl + "/abstract03.jpg"} />
-          </div>
-          <div>
-            <img src={baseUrl + "/abstract04.jpg"} />
-          </div>
-        </Slider>
-      </div>
-    );
-  }
+// https://mui.wertarbyte.com
+
+const Carousel = (props) => {
+  return (
+    <div style={{ position: 'relative', width: '100%', height: 300, marginBottom: 10 }}>
+      <AutoRotatingCarousel
+        label='Get started'
+        open={true}
+        style={{ position: 'absolute' }}
+        hideArrows
+        autoplay={false}
+      >
+        <Slide
+          media={<img src='http://www.icons101.com/icon_png/size_256/id_79394/youtube.png' />}
+          mediaStyle={{height: 200}}
+          mediaBackgroundStyle={{ backgroundColor: red400 }}
+          contentStyle={{ backgroundColor: red600 }}
+          title='This is a very cool feature'
+          subtitle='Just using this will blow your mind.'
+        />
+        <Slide
+          media={<img src='http://www.icons101.com/icon_png/size_256/id_80975/GoogleInbox.png' />}
+          mediaStyle={{height: 200}}
+          mediaBackgroundStyle={{ backgroundColor: blue400 }}
+          contentStyle={{ backgroundColor: blue600 }}
+          title='Ever wanted to be popular?'
+          subtitle='Well just mix two colors and your are good to go!'
+        />
+        <Slide
+          media={<img src='http://www.icons101.com/icon_png/size_256/id_76704/Google_Settings.png' />}
+          mediaStyle={{height: 200}}
+          mediaBackgroundStyle={{ backgroundColor: green400 }}
+          contentStyle={{ backgroundColor: green600 }}
+          title='May the force be with you'
+          subtitle='The Force is a metaphysical and ubiquitous power in the Star Wars fictional universe.'
+        />
+      </AutoRotatingCarousel>
+    </div>
+  )
 }
+
+export default Carousel 
