@@ -1,13 +1,19 @@
 {
-  "name": "movietrailer",
-  "version": "1.0.0",
-  "description": "Movie Trailer",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "shx rm -rf _dist/*",
-    "web": "parcel index.template.html --open",
-    "build": "parcel build index.template.html --out-dir _dist/ --out-file index --public-url ./ --no-source-maps"
+  "name": "movie-trailer",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "@material-ui/icons": "^1.0.0-beta.43",
+    "material-ui": "^1.0.0-beta.47",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^5.1.1",
+    "redux-thunk": "^2.2.0"
   },
   "repository": {
     "type": "git",
@@ -16,7 +22,8 @@
   "keywords": [
     "material-ui",
     "react",
-    "demo"
+    "demo",
+    "react-redux"
   ],
   "author": "Luong Cong Dan",
   "license": "ISC",
@@ -24,27 +31,10 @@
     "url": "https://github.com/lcd11001/MovieTrailer/issues"
   },
   "homepage": "https://github.com/lcd11001/MovieTrailer#readme",
-  "dependencies": {
-    "@material-ui/icons": "^1.0.0-beta.43",
-    "material-ui": "^1.0.0-beta.43",
-    "material-ui-icons": "^1.0.0-beta.36",
-    "react-art": "^16.3.2",
-    "react-redux": "^5.0.7",
-    "react-tap-event-plugin": "^3.0.2",
-    "recompose": "^0.27.0",
-    "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "shx": "^0.2.2"
-  },
-  "devDependencies": {
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-es2015-spread": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "parcel-bundler": "^1.7.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-hot-loader": "^4.1.1"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
