@@ -10,5 +10,5 @@ export const fetchSuccess = () => ({
 
 export const fetchError = (error) => ({
     type: FETCH_END_FAILURE,
-    payload: error
+    payload: { error }
 });

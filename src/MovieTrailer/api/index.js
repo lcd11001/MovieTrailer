@@ -18,12 +18,16 @@ function getDataAsync(url) {
             .then((response) => response.json())
             .then((responseJson) => {
                 // console.log('getDataAsync response', responseJson.r)
-                dispatch(fetchSuccess())
+                if (responseJson.e != 0) {
+                    dispatch(fetchError(responseJson.r))
+                } else {
+                    dispatch(fetchSuccess())
+                }
                 return responseJson.r
             })
             .catch((error) => {
-                console.error('getDataAsync error ', error)
-                dispatch(fetchError(error))
+                console.error('fetch error', error)
+                dispatch(fetchError(error.message))
             })
     }
     
@@ -32,7 +36,7 @@ function getDataAsync(url) {
 // Handle HTTP errors since fetch won't.
 function getDataAsyncErrors(response) {
     if (!response.ok) {
-        console.error('getDataAsync error', response)
+        console.error('getDataAsyncErrors error', response)
         throw Error(response.statusText)
     }
     return response

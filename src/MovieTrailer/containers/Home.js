@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import SingleLineGridList from '../components/SingleLineGridList'
 import CircularLoading from '../components/CircularLoading'
+import PaperSheet from '../components/PaperSheet'
 
 import { loadHomeMovies } from '../redux/actions/moviesActions'
 
@@ -34,7 +35,7 @@ class Home extends Component {
         if (Error) {
             return (
                 <Fragment>
-                    <p>Error {Error}</p>
+                    <PaperSheet title={'Home page error'} description={Error}/>
                 </Fragment>
             )
         }
