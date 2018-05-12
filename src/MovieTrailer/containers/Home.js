@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { withStyles } from 'material-ui/styles';
 
 import SingleLineGridList from '../components/SingleLineGridList'
 import CircularLoading from '../components/CircularLoading'
 import PaperSheet from '../components/PaperSheet'
+import Carousel from '../components/Carousel'
 
 import { loadHomeMovies } from '../redux/actions/moviesActions'
 
@@ -42,6 +44,7 @@ class Home extends Component {
 
         return (
             <Fragment>
+                <Carousel />
                 <SingleLineGridList data={Banner}/>
             </Fragment>
         )

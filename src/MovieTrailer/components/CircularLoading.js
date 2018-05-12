@@ -5,22 +5,21 @@ import { CircularProgress } from 'material-ui/Progress';
 import purple from 'material-ui/colors/purple';
 
 const styles = theme => ({
+    root: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     progress: {
         margin: theme.spacing.unit * 2,
     }
 
 });
 
-const divStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-}
-
 function CircularLoading(props) {
     const { classes } = props;
     return (
-        <div style={divStyle}>
+        <div className={classes.root}>
             {/* <CircularProgress className={classes.progress} /> */}
             <CircularProgress className={classes.progress} size={50} />
             {/* <CircularProgress className={classes.progress} color="secondary" /> */}
