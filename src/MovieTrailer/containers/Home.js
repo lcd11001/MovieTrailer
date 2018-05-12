@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import SingleLineGridList from '../components/SingleLineGridList'
+import CircularLoading from '../components/CircularLoading'
 
 import { loadHomeMovies } from '../redux/actions/moviesActions'
 
@@ -25,7 +26,7 @@ class Home extends Component {
         if (Loading) {
             return (
                 <Fragment>
-                    <p>Loading</p>
+                    <CircularLoading />
                 </Fragment>
             )
         }
