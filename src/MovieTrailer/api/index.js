@@ -7,16 +7,17 @@ export const urlHome = urlApi + '/movie/homepage'
 export const urlCategory = urlApi + '/category/menu?sequence={0}'
 export const urlCategoryDetail = urlApi + '/movie?categoryid={0}&offset={1}&limit={2}'
 
+// https://daveceddia.com/where-fetch-data-redux/
 function getDataAsync(url) {
     return (dispatch) => {
-        console.log('getDataAsync ' + url)
+        // console.log('getDataAsync ' + url)
         dispatch(fetchBegin())
 
         return fetch(url)
             .then(getDataAsyncErrors)
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log('getDataAsync response', responseJson.r)
+                // console.log('getDataAsync response', responseJson.r)
                 dispatch(fetchSuccess())
                 return responseJson.r
             })

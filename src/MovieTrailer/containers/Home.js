@@ -12,11 +12,13 @@ class Home extends Component {
 
     render() {
         const { 
+            fetch: {
+                Loading,
+                Error
+            },
             movies: {
                 Banner,
                 Categories,
-                Loading,
-                Error
             }
         } = this.props
 
@@ -28,17 +30,17 @@ class Home extends Component {
             )
         }
 
-        const tileData = [
-            {
-                img: 'http://gocbao.com/wp-content/uploads/2017/12/bieu-tuong-cam-xuc-va-icon-facbook-8.jpg',
-                title: 'Image',
-                author: 'author',
-            },
-        ]
+        if (Error) {
+            return (
+                <Fragment>
+                    <p>Error {Error}</p>
+                </Fragment>
+            )
+        }
+
         return (
             <Fragment>
-                <p>Finish loading</p>
-                <SingleLineGridList tileData={tileData}/>
+                <SingleLineGridList data={Banner}/>
             </Fragment>
         )
     }
@@ -46,6 +48,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => (
     {
+        fetch: state.fetch,
         movies: state.movies,
     }
 )

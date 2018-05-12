@@ -27,33 +27,32 @@ const styles = theme => ({
 });
 
 /**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
+ * data = [
+ *      {
+ *          CategoryName: "Hành động",
+ *          Cover: "http://t.hdviet.com/backdrops/origins/bf4601ed955c4482e58dce7dbbccb227.jpg",
+ *          KnownAs: "Ám Ảnh Xác Sống (Phần 4)",
+ *          MovieID: "13877",
+ *          MovieName: "Fear The Walking Dead (Season 4)",
+ *          Movielink: "http://movies.hdviet.com/fear-the-walking-dead-season-4_13877.html",
+ *          Slug: "phim-am-anh-xac-song-phan-4-fear-the-walking-dead-season-4.html"
+ *      },
+ *      ...
+ * ]
+ * 
  */
+
 function SingleLineGridList(props) {
-    const { classes, tileData } = props;
+    const { classes, data } = props;
 
     return (
         <div className={classes.root}>
             <GridList className={classes.gridList} cols={2.5}>
-                {tileData.map(tile => (
-                    <GridListTile key={tile.img}>
-                        <img src={tile.img} alt={tile.title} />
+                {data.map(movie => (
+                    <GridListTile key={movie.MovieID}>
+                        <img src={movie.Cover} alt={movie.MovieName} />
                         <GridListTileBar
-                            title={tile.title}
+                            title={movie.MovieName}
                             classes={{
                                 root: classes.titleBar,
                                 title: classes.title,
@@ -72,7 +71,8 @@ function SingleLineGridList(props) {
 }
 
 SingleLineGridList.propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object,
+    data: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(SingleLineGridList);
