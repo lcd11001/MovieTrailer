@@ -3,11 +3,13 @@
 /**
  * data = [
  *      {
- *          CategoryID : "45,74,37,83,34,53,41,44",
- *          KnownAs: "Thủy Hử Nhí (Thuyết Minh)",
- *          MovieID: "13947",
- *          MovieName: "All Men Are Brothers Kids",
- *          Poster100x149: "http://t.hdviet.com/thumbs/100x149/961aaf0cb9824
+ *          CategoryName: "Hành động",
+ *          Cover: "http://t.hdviet.com/backdrops/origins/bf4601ed955c4482e58dce7dbbccb227.jpg",
+ *          KnownAs: "Ám Ảnh Xác Sống (Phần 4)",
+ *          MovieID: "13877",
+ *          MovieName: "Fear The Walking Dead (Season 4)",
+ *          Movielink: "http://movies.hdviet.com/fear-the-walking-dead-season-4_13877.html",
+ *          Slug: "phim-am-anh-xac-song-phan-4-fear-the-walking-dead-season-4.html"
  *      },
  *      ...
  * ]
@@ -43,29 +45,21 @@ const styles = theme => ({
         background:
             'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
-    divImage: {
-        display: 'flex',
-        justifyContent: 'center'
-    },
-    image: {
-        maxHeight: '100%',
-        width: 'auto'
-    }
 });
 
 const _onImageError = (error) => {
     error.target.src = './defaultImage/unavailable.png'
 }
 
-function SingleLineGridList(props) {
+function Carousel(props) {
     const { classes, data } = props;
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} cols={8.5} cellHeight={300}>
+            <GridList className={classes.gridList} cols={2.5} cellHeight={300}>
                 {data.map(movie => (
                     <GridListTile key={movie.MovieID}>
-                        <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError} width='100' height='149'/>
+                        <img src={movie.Cover} alt={movie.MovieName} onError={_onImageError}/>
                         <GridListTileBar
                             title={movie.MovieName}
                             classes={{
@@ -85,9 +79,9 @@ function SingleLineGridList(props) {
     );
 }
 
-SingleLineGridList.propTypes = {
+Carousel.propTypes = {
     classes: PropTypes.object.isRequired,
     data: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(SingleLineGridList);
+export default withStyles(styles)(Carousel);

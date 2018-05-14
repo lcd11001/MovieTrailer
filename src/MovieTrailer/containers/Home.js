@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 
 import SingleLineGridList from '../components/SingleLineGridList'
 import CircularLoading from '../components/CircularLoading'
 import PaperSheet from '../components/PaperSheet'
-// import Carousel from '../components/Carousel'
+import Carousel from '../components/Carousel'
 
 import { loadHomeMovies } from '../redux/actions/moviesActions'
 
@@ -52,8 +53,21 @@ class Home extends Component {
 
         return (
             <Fragment>
-                {/* <Carousel data={Banner}/> */}
-                <SingleLineGridList data={Banner}/>
+                <Carousel data={Banner}/>
+                
+                {
+                    Categories.map(({
+                        CategoryName,
+                        Movies
+                    }) => (
+                        <Fragment>
+                            <Typography variant='headline' gutterBottom key={CategoryName}>
+                                {CategoryName}
+                            </Typography>
+                            <SingleLineGridList data={Movies}/>
+                        </Fragment>
+                    ))
+                }
             </Fragment>
         )
     }
