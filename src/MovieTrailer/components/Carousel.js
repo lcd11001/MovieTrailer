@@ -16,14 +16,16 @@
  * 
  */
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import InfoIcon from '@material-ui/icons/Info';
 
 const styles = theme => ({
     root: {
@@ -40,15 +42,29 @@ const styles = theme => ({
     },
     title: {
         color: theme.palette.primary.light,
+        whiteSpace: 'normal'
     },
     titleBar: {
         background:
             'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+        height: 96
     },
+    image: {
+        maxHeight: '100%',
+        width: 'auto'
+    },
+    actionIcon: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignContent: 'center'
+    }
 });
 
 const _onImageError = (error) => {
     error.target.src = './defaultImage/unavailable.png'
+    error.target.width = 225
+    error.target.height = 225
 }
 
 function Carousel(props) {
@@ -56,20 +72,30 @@ function Carousel(props) {
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} cols={2.5} cellHeight={300}>
+            <GridList className={classes.gridList} cols={2.5} cellHeight={423}>
                 {data.map(movie => (
                     <GridListTile key={movie.MovieID}>
-                        <img src={movie.Cover} alt={movie.MovieName} onError={_onImageError}/>
+                        <img className={classes.image} src={movie.Cover} alt={movie.MovieName} onError={_onImageError} width='1245' height='423'/>
                         <GridListTileBar
-                            title={movie.MovieName}
+                            title={
+                                <Typography variant='headline' gutterBottom noWrap={false} paragraph={true}>
+                                    {movie.MovieName}
+                                </Typography>
+                            }
                             classes={{
                                 root: classes.titleBar,
                                 title: classes.title,
+                                actionIcon: classes.actionIcon
                             }}
                             actionIcon={
-                                <IconButton>
-                                    <StarBorderIcon className={classes.title} />
-                                </IconButton>
+                                <Fragment>
+                                    <IconButton>
+                                        <StarBorderIcon className={classes.title} />
+                                    </IconButton>
+                                    <IconButton>
+                                        <InfoIcon className={classes.title} />
+                                    </IconButton>
+                                </Fragment>
                             }
                         />
                     </GridListTile>

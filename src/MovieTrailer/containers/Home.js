@@ -54,14 +54,14 @@ class Home extends Component {
         return (
             <Fragment>
                 <Carousel data={Banner}/>
-                
+
                 {
                     Categories.map(({
                         CategoryName,
                         Movies
                     }) => (
-                        <Fragment>
-                            <Typography variant='headline' gutterBottom key={CategoryName}>
+                        <Fragment key={CategoryName}>
+                            <Typography variant='headline' gutterBottom>
                                 {CategoryName}
                             </Typography>
                             <SingleLineGridList data={Movies}/>

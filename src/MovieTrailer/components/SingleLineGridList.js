@@ -14,14 +14,16 @@
  * 
  */
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import InfoIcon from '@material-ui/icons/Info';
 
 const styles = theme => ({
     root: {
@@ -38,18 +40,28 @@ const styles = theme => ({
     },
     title: {
         color: theme.palette.primary.light,
+        whiteSpace: 'normal'
     },
     titleBar: {
         background:
             'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
     divImage: {
-        display: 'flex',
-        justifyContent: 'center'
+        height: '100%'
     },
     image: {
-        maxHeight: '100%',
-        width: 'auto'
+        height: '100%',
+        width: '100%',
+        objectFit: 'contain'
+    },
+    imageIcon: {
+        zIndex: 1,
+        paddingTop: 0,	
+	    paddingRight: 0,
+	    position: 'absolute',
+	    right: 10,
+	    top: 10,
+	    display: 'block'
     }
 });
 
@@ -62,20 +74,31 @@ function SingleLineGridList(props) {
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} cols={8.5} cellHeight={300}>
+            <GridList className={classes.gridList} cols={8.5} cellHeight={298}>
                 {data.map(movie => (
+                    
                     <GridListTile key={movie.MovieID}>
-                        <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError} width='100' height='149'/>
+                        <div className={classes.divImage}>
+                            <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError}/>
+                            <IconButton className={classes.imageIcon}>
+                                <InfoIcon className={classes.title} />
+                            </IconButton>
+                        </div>
                         <GridListTileBar
-                            title={movie.MovieName}
+                            subtitle={  
+                                <Typography gutterBottom noWrap={false} paragraph={true}>
+                                    {movie.MovieName}
+                                </Typography>
+                            }
                             classes={{
                                 root: classes.titleBar,
-                                title: classes.title,
+                                subtitle: classes.title,
+                                actionIcon: classes.actionIcon
                             }}
                             actionIcon={
                                 <IconButton>
                                     <StarBorderIcon className={classes.title} />
-                                </IconButton>
+                                </IconButton>    
                             }
                         />
                     </GridListTile>
