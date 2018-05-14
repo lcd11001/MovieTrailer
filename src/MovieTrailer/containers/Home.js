@@ -1,13 +1,20 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import SingleLineGridList from '../components/SingleLineGridList'
 import CircularLoading from '../components/CircularLoading'
 import PaperSheet from '../components/PaperSheet'
-import Carousel from '../components/Carousel'
+// import Carousel from '../components/Carousel'
 
 import { loadHomeMovies } from '../redux/actions/moviesActions'
+
+const styles = theme => ({
+    loading: {
+        display: 'flex',
+        justifyContent: 'center',
+    },
+})
 
 class Home extends Component {
     componentDidMount() {
@@ -23,14 +30,15 @@ class Home extends Component {
             movies: {
                 Banner,
                 Categories,
-            }
+            },
+            classes
         } = this.props
 
         if (Loading) {
             return (
-                <Fragment>
+                <div className={classes.loading}>
                     <CircularLoading />
-                </Fragment>
+                </div>
             )
         }
 
@@ -44,7 +52,7 @@ class Home extends Component {
 
         return (
             <Fragment>
-                <Carousel />
+                {/* <Carousel data={Banner}/> */}
                 <SingleLineGridList data={Banner}/>
             </Fragment>
         )
@@ -66,4 +74,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default withStyles(styles)( connect(mapStateToProps, mapDispatchToProps)(Home) )
