@@ -47,15 +47,19 @@ const styles = theme => ({
     },
 });
 
+const _onImageError = (error) => {
+    error.target.src = './defaultImage/unavailable.png'
+}
+
 function SingleLineGridList(props) {
     const { classes, data } = props;
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} cols={2.5}>
+            <GridList className={classes.gridList} cols={2.5} cellHeight={300}>
                 {data.map(movie => (
                     <GridListTile key={movie.MovieID}>
-                        <img src={movie.Cover} alt={movie.MovieName} />
+                        <img src={movie.Cover} alt={movie.MovieName} onError={_onImageError}/>
                         <GridListTileBar
                             title={movie.MovieName}
                             classes={{
