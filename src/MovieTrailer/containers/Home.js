@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { NavLink as Link, Route } from 'react-router-dom'
+
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
@@ -50,8 +52,13 @@ class Home extends Component {
                 Banner,
                 Categories,
             },
+            match: {
+                url
+            },
             classes
         } = this.props
+
+        // console.log('Home', this.props)
 
         if (Loading) {
             return (
@@ -87,7 +94,7 @@ class Home extends Component {
                                     {CategoryName}
                                 </Typography>
                             </div>
-                            <SingleLineGridList data={Movies}/>
+                            <SingleLineGridList {...this.props} data={Movies}/>
                         </Fragment>
                     ))
                 }

@@ -18,7 +18,7 @@ function getDataAsync(url) {
             .then((response) => response.json())
             .then((responseJson) => {
                 // console.log('getDataAsync response', responseJson.r)
-                if (responseJson.e != 0) {
+                if (responseJson.e !== 0) {
                     dispatch(fetchError(responseJson.r))
                 } else {
                     dispatch(fetchSuccess())

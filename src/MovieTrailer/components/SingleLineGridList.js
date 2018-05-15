@@ -16,12 +16,15 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink as Link } from 'react-router-dom'
+
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import InfoIcon from '@material-ui/icons/Info';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -82,12 +85,20 @@ const _onImageError = (error) => {
     error.target.src = './defaultImage/unavailable.png'
 }
 
-const _onInfoClick = (movieID) => {
-    console.log('_onInfoClick', movieID)
-}
+// const _onInfoClick = (movieID) => {
+//     console.log('_onInfoClick', movieID)
+// }
 
 function SingleLineGridList(props) {
-    const { classes, data } = props;
+    console.log('SingleLineGridList', props)
+
+    const { 
+        classes, 
+        data,
+        match: {
+            url
+        }
+    } = props
 
     return (
         <div className={classes.root}>
@@ -102,9 +113,9 @@ function SingleLineGridList(props) {
                                     <FavoriteBorderIcon color='secondary'/>
                                 </IconButton>
                                 
-                                <IconButton onClick={() => _onInfoClick(movie.MovieID)}>
-                                    <InfoIcon color='primary'/>
-                                </IconButton>
+                                    <IconButton component={props => <Link {...props}/>} to={url !== '/' ? `${url}/movie/${movie.MovieID}`: `/movie/${movie.MovieID}`}>
+                                        <InfoIcon color='primary'/>
+                                    </IconButton>
                             </div>
                         </div>
                         <GridListTileBar

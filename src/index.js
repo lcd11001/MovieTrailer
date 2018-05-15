@@ -5,15 +5,18 @@ import { Provider } from 'react-redux'
 // import App from './App'
 // import App from './LearningMaterialUI/App'
 
-
-import store from './MovieTrailer/redux/store'
+// https://github.com/ReactTraining/react-router/tree/master/packages/react-router-redux
+import { ConnectedRouter } from 'react-router-redux'
+import { store, history } from './MovieTrailer/redux/store'
 import App from './MovieTrailer/App'
 
 // ReactDOM.render(<App />, document.getElementById('root'))
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ConnectedRouter history={history}>
+            <App />
+        </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 )
