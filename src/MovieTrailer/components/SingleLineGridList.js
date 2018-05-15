@@ -41,8 +41,14 @@ const styles = theme => ({
         transform: 'translateZ(0)',
     },
     title: {
+        color: theme.palette.primary.main,
+        whiteSpace: 'nowrap',
+        textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
+        fontSmoothing: 'antialiased'
+    },
+    subtitle: {
         color: theme.palette.primary.light,
-        whiteSpace: 'normal',
+        whiteSpace: 'nowrap',
         textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
         fontSmoothing: 'antialiased'
     },
@@ -76,6 +82,10 @@ const _onImageError = (error) => {
     error.target.src = './defaultImage/unavailable.png'
 }
 
+const _onInfoClick = (movieID) => {
+    console.log('_onInfoClick', movieID)
+}
+
 function SingleLineGridList(props) {
     const { classes, data } = props;
 
@@ -92,14 +102,19 @@ function SingleLineGridList(props) {
                                     <FavoriteBorderIcon color='secondary'/>
                                 </IconButton>
                                 
-                                <IconButton>
+                                <IconButton onClick={() => _onInfoClick(movie.MovieID)}>
                                     <InfoIcon color='primary'/>
                                 </IconButton>
                             </div>
                         </div>
                         <GridListTileBar
-                            subtitle={  
+                            title={
                                 <Typography className={classes.title}>
+                                    {movie.KnownAs}
+                                </Typography>
+                            }
+                            subtitle={  
+                                <Typography className={classes.subtitle}>
                                     {movie.MovieName}
                                 </Typography>
                             }

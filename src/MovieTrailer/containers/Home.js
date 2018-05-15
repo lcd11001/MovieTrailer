@@ -8,12 +8,30 @@ import CircularLoading from '../components/CircularLoading'
 import PaperSheet from '../components/PaperSheet'
 import Carousel from '../components/Carousel'
 
+import IconButton from '@material-ui/core/IconButton';
+import MoreIcon from '@material-ui/icons/More';
+
 import { loadHomeMovies } from '../redux/actions/moviesActions'
 
 const styles = theme => ({
     loading: {
         display: 'flex',
         justifyContent: 'center',
+    },
+    divHeader: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignContent: 'center',
+        backgroundColor: theme.palette.primary.light,
+        width: '100%',
+        alignItems: 'center'
+    },
+    header: {
+        color: theme.palette.text.primary,
+        whiteSpace: 'normal',
+        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
+        fontSmoothing: 'antialiased'
     },
 })
 
@@ -61,9 +79,14 @@ class Home extends Component {
                         Movies
                     }) => (
                         <Fragment key={CategoryName}>
-                            <Typography variant='headline' gutterBottom>
-                                {CategoryName}
-                            </Typography>
+                            <div className={classes.divHeader}>
+                                <IconButton>
+                                    <MoreIcon color='primary'/>
+                                </IconButton>
+                                <Typography className={classes.header} variant='headline'>
+                                    {CategoryName}
+                                </Typography>
+                            </div>
                             <SingleLineGridList data={Movies}/>
                         </Fragment>
                     ))

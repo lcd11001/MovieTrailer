@@ -43,8 +43,14 @@ const styles = theme => ({
         transform: 'translateZ(0)',
     },
     title: {
+        color: theme.palette.primary.main,
+        whiteSpace: 'nowrap',
+        textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
+        fontSmoothing: 'antialiased'
+    },
+    subtitle: {
         color: theme.palette.primary.light,
-        whiteSpace: 'normal',
+        whiteSpace: 'nowrap',
         textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
         fontSmoothing: 'antialiased'
     },
@@ -101,6 +107,11 @@ function Carousel(props) {
                         <GridListTileBar
                             title={
                                 <Typography className={classes.title} variant='headline'>
+                                    {movie.KnownAs}
+                                </Typography>
+                            }
+                            subtitle={
+                                <Typography className={classes.subtitle} variant='headline'>
                                     {movie.MovieName}
                                 </Typography>
                             }
