@@ -3,11 +3,11 @@
 /**
  * data = [
  *      {
- *          CategoryID : "45,74,37,83,34,53,41,44",
- *          KnownAs: "Thủy Hử Nhí (Thuyết Minh)",
- *          MovieID: "13947",
- *          MovieName: "All Men Are Brothers Kids",
- *          Poster100x149: "http://t.hdviet.com/thumbs/100x149/961aaf0cb9824
+ *          CategoryID : '45,74,37,83,34,53,41,44',
+ *          KnownAs: 'Thủy Hử Nhí (Thuyết Minh)',
+ *          MovieID: '13947',
+ *          MovieName: 'All Men Are Brothers Kids',
+ *          Poster100x149: 'http://t.hdviet.com/thumbs/100x149/961aaf0cb9824
  *      },
  *      ...
  * ]
@@ -24,6 +24,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import InfoIcon from '@material-ui/icons/Info';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const styles = theme => ({
     root: {
@@ -40,28 +42,33 @@ const styles = theme => ({
     },
     title: {
         color: theme.palette.primary.light,
-        whiteSpace: 'normal'
+        whiteSpace: 'normal',
+        textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
+        fontSmoothing: 'antialiased'
     },
     titleBar: {
-        background:
-            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
     divImage: {
-        height: '100%'
+        height: '100%',
+        width: '100%'
     },
     image: {
         height: '100%',
         width: '100%',
-        objectFit: 'contain'
+        objectFit: 'cover'
     },
-    imageIcon: {
-        zIndex: 1,
-        paddingTop: 0,	
-	    paddingRight: 0,
-	    position: 'absolute',
-	    right: 10,
-	    top: 10,
-	    display: 'block'
+    divActionIcon: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignContent: 'center',
+        // backgroundColor: '#F00',
+        width: '100%',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        zIndex: 1
     }
 });
 
@@ -80,26 +87,25 @@ function SingleLineGridList(props) {
                     <GridListTile key={movie.MovieID}>
                         <div className={classes.divImage}>
                             <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError}/>
-                            <IconButton className={classes.imageIcon}>
-                                <InfoIcon className={classes.title} />
-                            </IconButton>
+                            <div className={classes.divActionIcon}>
+                                <IconButton>
+                                    <FavoriteBorderIcon color='secondary'/>
+                                </IconButton>
+                                
+                                <IconButton>
+                                    <InfoIcon color='primary'/>
+                                </IconButton>
+                            </div>
                         </div>
                         <GridListTileBar
                             subtitle={  
-                                <Typography gutterBottom noWrap={false} paragraph={true}>
+                                <Typography className={classes.title}>
                                     {movie.MovieName}
                                 </Typography>
                             }
                             classes={{
-                                root: classes.titleBar,
-                                subtitle: classes.title,
-                                actionIcon: classes.actionIcon
+                                root: classes.titleBar
                             }}
-                            actionIcon={
-                                <IconButton>
-                                    <StarBorderIcon className={classes.title} />
-                                </IconButton>    
-                            }
                         />
                     </GridListTile>
                 ))}

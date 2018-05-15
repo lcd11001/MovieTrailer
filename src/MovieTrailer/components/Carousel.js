@@ -3,13 +3,13 @@
 /**
  * data = [
  *      {
- *          CategoryName: "Hành động",
- *          Cover: "http://t.hdviet.com/backdrops/origins/bf4601ed955c4482e58dce7dbbccb227.jpg",
- *          KnownAs: "Ám Ảnh Xác Sống (Phần 4)",
- *          MovieID: "13877",
- *          MovieName: "Fear The Walking Dead (Season 4)",
- *          Movielink: "http://movies.hdviet.com/fear-the-walking-dead-season-4_13877.html",
- *          Slug: "phim-am-anh-xac-song-phan-4-fear-the-walking-dead-season-4.html"
+ *          CategoryName: 'Hành động',
+ *          Cover: 'http://t.hdviet.com/backdrops/origins/bf4601ed955c4482e58dce7dbbccb227.jpg',
+ *          KnownAs: 'Ám Ảnh Xác Sống (Phần 4)',
+ *          MovieID: '13877',
+ *          MovieName: 'Fear The Walking Dead (Season 4)',
+ *          Movielink: 'http://movies.hdviet.com/fear-the-walking-dead-season-4_13877.html',
+ *          Slug: 'phim-am-anh-xac-song-phan-4-fear-the-walking-dead-season-4.html'
  *      },
  *      ...
  * ]
@@ -26,6 +26,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import InfoIcon from '@material-ui/icons/Info';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const styles = theme => ({
     root: {
@@ -42,29 +44,38 @@ const styles = theme => ({
     },
     title: {
         color: theme.palette.primary.light,
-        whiteSpace: 'normal'
+        whiteSpace: 'normal',
+        textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
+        fontSmoothing: 'antialiased'
     },
     titleBar: {
-        background:
-            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-        height: 96
+        background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    },
+    divImage: {
+        height: '100%',
+        width: '100%'
     },
     image: {
-        maxHeight: '100%',
-        width: 'auto'
+        height: '100%',
+        width: '100%',
+        objectFit: 'cover'
     },
-    actionIcon: {
+    divActionIcon: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignContent: 'center'
+        justifyContent: 'flex-end',
+        alignContent: 'center',
+        // backgroundColor: '#F00',
+        width: '100%',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        zIndex: 1
     }
 });
 
 const _onImageError = (error) => {
     error.target.src = './defaultImage/unavailable.png'
-    error.target.width = 225
-    error.target.height = 225
 }
 
 function Carousel(props) {
@@ -75,28 +86,27 @@ function Carousel(props) {
             <GridList className={classes.gridList} cols={2.5} cellHeight={423}>
                 {data.map(movie => (
                     <GridListTile key={movie.MovieID}>
-                        <img className={classes.image} src={movie.Cover} alt={movie.MovieName} onError={_onImageError} width='1245' height='423'/>
+                        <div className={classes.divImage}>
+                            <img className={classes.image} src={movie.Cover} alt={movie.MovieName} onError={_onImageError} />
+                            <div className={classes.divActionIcon}>
+                                <IconButton>
+                                    <FavoriteBorderIcon color='secondary'/>
+                                </IconButton>
+                                
+                                <IconButton>
+                                    <InfoIcon color='primary'/>
+                                </IconButton>
+                            </div>
+                        </div>
                         <GridListTileBar
                             title={
-                                <Typography variant='headline' gutterBottom noWrap={false} paragraph={true}>
+                                <Typography className={classes.title} variant='headline'>
                                     {movie.MovieName}
                                 </Typography>
                             }
                             classes={{
-                                root: classes.titleBar,
-                                title: classes.title,
-                                actionIcon: classes.actionIcon
+                                root: classes.titleBar
                             }}
-                            actionIcon={
-                                <Fragment>
-                                    <IconButton>
-                                        <StarBorderIcon className={classes.title} />
-                                    </IconButton>
-                                    <IconButton>
-                                        <InfoIcon className={classes.title} />
-                                    </IconButton>
-                                </Fragment>
-                            }
                         />
                     </GridListTile>
                 ))}
