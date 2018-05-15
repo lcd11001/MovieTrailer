@@ -2,7 +2,7 @@
 
 import React, { Component, Fragment } from 'react'
 
-import CssBaseline from 'material-ui/CssBaseline'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 import { Header, Footer } from './Components/Layouts'
 import Exercises from './Exercises'

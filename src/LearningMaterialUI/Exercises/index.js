@@ -1,9 +1,9 @@
 import React from 'react'
-import Grid from 'material-ui/Grid'
+import Grid from '@material-ui/core/Grid'
 import LeftPane from './LeftPane'
 import RightPane from './RightPane'
 
-import { withStyles } from 'material-ui/styles'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
     paper: {

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import TextField from 'material-ui/TextField'
-import { FormControl, FormHelperText } from 'material-ui/Form'
-import Select from 'material-ui/Select'
-import Input, { InputLabel } from 'material-ui/Input'
-import { MenuItem } from 'material-ui/Menu'
-import Typography from 'material-ui/Typography'
-import Button from 'material-ui/Button'
+import TextField from '@material-ui/core/TextField'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import Input from '@material-ui/core/Input'
+import InputLabel from '@material-ui/core/InputLabel'
+import { MenuItem } from '@material-ui/core/Menu'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 import compose from 'recompose/compose'
-import withWidth from 'material-ui/utils/withWidth'
-import { withStyles } from 'material-ui/styles'
+import withWidth from '@material-ui/core/withWidth'
+import { withStyles } from '@material-ui/core/styles'
 
 // https://material-ui-next.com/layout/css-in-js/
 const styles = theme => ({

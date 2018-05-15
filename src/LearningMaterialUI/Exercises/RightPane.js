@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import Paper from 'material-ui/Paper'
-import Typography from 'material-ui/Typography'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 import Form from './Form'
 
 export default ({

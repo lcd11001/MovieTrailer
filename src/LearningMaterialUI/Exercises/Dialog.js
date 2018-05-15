@@ -3,8 +3,8 @@ import Dialog, {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from 'material-ui/Dialog'
-import Button from 'material-ui/Button'
+} from '@material-ui/core/Dialog'
+import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import Form from './Form'
 
