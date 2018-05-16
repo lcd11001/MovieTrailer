@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
 import SingleLineGridList from '../components/SingleLineGridList'
+import MultiLinesGridList from '../components/MultiLinesGridList'
 import CircularLoading from '../components/CircularLoading'
 import PaperSheet from '../components/PaperSheet'
 import Carousel from '../components/Carousel'
@@ -111,7 +112,8 @@ class Home extends Component {
                                     {CategoryName}
                                 </Typography>
                             </div>
-                            <SingleLineGridList {...{match: this.props.match}} data={Movies}/>
+                            {/* <SingleLineGridList {...{match: this.props.match}} data={Movies}/> */}
+                            <MultiLinesGridList {...{match: this.props.match}} data={Movies} cols={5} cellHeight={300} maxCellCols={2}/>
                         </Fragment>
                     ))
                 }
