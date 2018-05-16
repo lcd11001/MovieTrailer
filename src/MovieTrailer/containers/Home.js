@@ -42,37 +42,21 @@ class Home extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            needRefresh: true
+            needRefresh: props.movies.Banner.length == 0
         }
-    }
-    static getDerivedStateFromProps(nextProps, prevState) {
-        console.log('getDerivedStateFromProps', 'nextProps', nextProps, 'prevState', prevState)
-        // if (nextProps.movies.Banner.length > 0) {
-        //     return ({
-        //         needRefresh: false
-        //     })
-        // }
-        return null
+        // console.log('Home constructor', this.state)
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log('shouldComponentUpdate', 'nextProps', nextProps, 'nextState', nextState)
-        if (nextState.needRefresh) {
-            return true
-        }
-        return false
+        // console.log('shouldComponentUpdate', 'nextProps', nextProps, 'nextState', nextState)
+        return nextState.needRefresh
     }
 
     componentDidMount() {
-        console.log('componentDidMount')
-        this.props.loadHomeMovies()
-    }
-
-    componentWillUnmount() {
-        console.log('componentWillUnmount')
-        this.setState({
-            needRefresh: false
-        })
+        // console.log('componentDidMount')
+        if (this.state.needRefresh) {
+            this.props.loadHomeMovies()
+        }
     }
 
     render() {
