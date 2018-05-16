@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import compose from 'recompose/compose'
 import { connect } from 'react-redux'
 import { NavLink as Link, Route } from 'react-router-dom'
 
@@ -38,8 +39,40 @@ const styles = theme => ({
 })
 
 class Home extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            needRefresh: true
+        }
+    }
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('getDerivedStateFromProps', 'nextProps', nextProps, 'prevState', prevState)
+        // if (nextProps.movies.Banner.length > 0) {
+        //     return ({
+        //         needRefresh: false
+        //     })
+        // }
+        return null
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('shouldComponentUpdate', 'nextProps', nextProps, 'nextState', nextState)
+        if (nextState.needRefresh) {
+            return true
+        }
+        return false
+    }
+
     componentDidMount() {
+        console.log('componentDidMount')
         this.props.loadHomeMovies()
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount')
+        this.setState({
+            needRefresh: false
+        })
     }
 
     render() {
@@ -78,7 +111,7 @@ class Home extends Component {
 
         return (
             <Fragment>
-                <Carousel data={Banner}/>
+                <Carousel {...{match: this.props.match}} data={Banner}/>
 
                 {
                     Categories.map(({
@@ -94,7 +127,7 @@ class Home extends Component {
                                     {CategoryName}
                                 </Typography>
                             </div>
-                            <SingleLineGridList {...this.props} data={Movies}/>
+                            <SingleLineGridList {...{match: this.props.match}} data={Movies}/>
                         </Fragment>
                     ))
                 }
@@ -118,4 +151,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default withStyles(styles)( connect(mapStateToProps, mapDispatchToProps)(Home) )
+export default compose (withStyles(styles), connect(mapStateToProps, mapDispatchToProps) ) (Home)

@@ -29,6 +29,9 @@ import InfoIcon from '@material-ui/icons/Info';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
+import { store } from '../redux/store'
+import { push } from 'react-router-redux'
+
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -84,8 +87,23 @@ const _onImageError = (error) => {
     error.target.src = './defaultImage/unavailable.png'
 }
 
+const _onInfoClicked = (baseUrl, movieID) => {
+    let url = baseUrl !== '/' 
+        ? baseUrl + '/movie/' + movieID 
+        : '/movie/' + movieID
+
+    store.dispatch(push(url))
+}
+
 function Carousel(props) {
-    const { classes, data } = props;
+    console.log('Carousel', props)
+    const { 
+        classes, 
+        data, 
+        match: { 
+            url 
+        } 
+    } = props;
 
     return (
         <div className={classes.root}>
@@ -99,7 +117,7 @@ function Carousel(props) {
                                     <FavoriteBorderIcon color='secondary'/>
                                 </IconButton>
                                 
-                                <IconButton>
+                                <IconButton onClick={() => _onInfoClicked(url, movie.MovieID)}>
                                     <InfoIcon color='primary'/>
                                 </IconButton>
                             </div>

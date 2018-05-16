@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import { store, history } from '../redux/store'
+import { NavLink as Link } from 'react-router-dom'
+import { Button } from '@material-ui/core';
 
 class MovieDetail extends Component {
     render() {
@@ -16,7 +19,8 @@ class MovieDetail extends Component {
         return (
             <div>
                 <h1>Movie detail {movieID}</h1>
-                <h2>Back to {parent}</h2>
+                <Link to={parent !== '/' ? `/${parent}` : parent}>Back to {parent}</Link>
+                <Button onClick={() => {history.goBack()}}>Go Back</Button>
             </div>
         )
     }

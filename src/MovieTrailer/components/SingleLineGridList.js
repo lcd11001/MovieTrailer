@@ -90,7 +90,7 @@ const _onImageError = (error) => {
 // }
 
 function SingleLineGridList(props) {
-    console.log('SingleLineGridList', props)
+    // console.log('SingleLineGridList', props)
 
     const { 
         classes, 
@@ -113,7 +113,7 @@ function SingleLineGridList(props) {
                                     <FavoriteBorderIcon color='secondary'/>
                                 </IconButton>
                                 
-                                    <IconButton component={props => <Link {...props}/>} to={url !== '/' ? `${url}/movie/${movie.MovieID}`: `/movie/${movie.MovieID}`}>
+                                    <IconButton component={props => <Link {...props}/>} to={url !== '/' ? `${url}/movie/${movie.MovieID}` : `/movie/${movie.MovieID}`}>
                                         <InfoIcon color='primary'/>
                                     </IconButton>
                             </div>
