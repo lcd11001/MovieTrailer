@@ -113,7 +113,7 @@ class Home extends Component {
                                 </Typography>
                             </div>
                             {/* <SingleLineGridList {...{match: this.props.match}} data={Movies}/> */}
-                            <MultiLinesGridList {...{match: this.props.match}} data={Movies} cols={5} cellHeight={300} maxCellCols={2}/>
+                            <MultiLinesGridList {...{match: this.props.match}} data={Movies} cols={6} cellHeight={300} maxCellCols={2}/>
                         </Fragment>
                     ))
                 }

@@ -93,57 +93,18 @@ const _randomInRange = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const _getAvailableCells = (arr, index, maxCells) => {
-    var nextIndex = index
-    while(arr[nextIndex] === 0 && nextIndex - index < maxCells){
-        nextIndex ++
-    }
-
-    return nextIndex - index
+const _getAvailableCells = (cellCols, maxCols) => {
+    return Math.min(maxCols, cellCols)
 }
 
-const _markUnvailableCells = (arr, len, maxlen, index, cols, cellRows, cellCols) => {
-    // let newArr = [].concat(arr)
-    
-    for (var i=0; i<cellRows; i++) {
-        for (var j=0; j<cellCols; j++) {
-            let x = j + (index % len)
-            let y = i + parseInt(index / len)
-            let markIndex = x + y * cols
-            // console.log('x', x, 'y', y, 'markIndex', markIndex)
-            // if (markIndex >= len) {
-            //     var appendArr = new Array(cols)
-            //     appendArr.fill(0, 0, cols)
-            //     console.log('   => old array', newArr)
-            //     newArr = newArr.concat(appendArr)
-            //     console.log('   => new array', newArr)
-            //     len += cols
-            // }
-            // newArr[markIndex] = cellCols
-            if (markIndex >= len) {
-                len += cols
-                if (len > maxlen) {
-                    console.error('array not enough length ' + len + ' vs max length ' + maxlen)
-                }
-            }
-            arr[markIndex] = cellCols
-        }
-    }
-    // return {newarr: newArr, newlen: len}
-    return len
-}
-
-const _getNextIndex = (arr, index, cellCols) => {
+const _getNextIndex = (index, cellCols) => {
     var nextIndex = index + cellCols
-    while (arr[nextIndex] !== 0) {
-        nextIndex += arr[nextIndex]
-    }
     return nextIndex
 }
 
 const _getRemainCellCols = (remainCellCols, cols, cellCols) => {
     remainCellCols -= cellCols
-    if (remainCellCols == 0) {
+    if (remainCellCols === 0) {
         remainCellCols = cols
     }
     return remainCellCols
@@ -163,12 +124,10 @@ const MultiLinesGridList = (props) => {
             },
             cols,
             cellHeight,
-            maxCellCols = Math.min((props.maxCellCols || 1), props.cols)
+            maxCellCols = Math.min((props.maxCellCols || 1), props.cols),
+            maxCellRows = props.maxCellRows || 1
         } = props
 
-        let maxlen = data.length * maxCellCols
-        let arr = new Array(maxlen).fill(0)
-        let len = cols
         let remainCellCols = cols
         let index = 0
         let cellRows = 1
@@ -177,21 +136,18 @@ const MultiLinesGridList = (props) => {
             <div className={classes.root}>
                 <GridList className={classes.gridList} cols={cols} cellHeight={cellHeight}>
                     {data.map(movie => {
-                        let availableCellsPerRow = _getAvailableCells(arr, index, Math.min(maxCellCols, remainCellCols))
+                        let availableCellsPerRow = _getAvailableCells(maxCellCols, remainCellCols)
                         console.log('availableCellsPerRow', availableCellsPerRow)
 
                         if (remainCellCols === cols) {
-                            cellRows = _randomInRange(1, availableCellsPerRow)
+                            cellRows = _randomInRange(1, maxCellRows)
+                            console.log('==cellRows==', cellRows)
                         }
-                        console.log('cellRows', cellRows)
 
                         let cellCols = _randomInRange(1, availableCellsPerRow)
                         console.log('cellCols', cellCols)
 
-                        len = _markUnvailableCells(arr, len, maxlen, index, cols, cellRows, cellCols)
-                        console.log('_markUnvailableCells arr', arr, 'len', len)
-
-                        index = _getNextIndex(arr, index, cellCols)
+                        index = _getNextIndex(index, cellCols)
                         console.log('_getNextIndex', index)
 
                         remainCellCols = _getRemainCellCols(remainCellCols, cols, cellCols)
@@ -241,7 +197,8 @@ MultiLinesGridList.propTypes = {
     data: PropTypes.array.isRequired,
     cols: PropTypes.number.isRequired,
     cellHeight: PropTypes.number.isRequired,
-    maxCellCols: PropTypes.number
+    maxCellCols: PropTypes.number,
+    maxCellRows: PropTypes.number
 };
 
 export default withStyles(styles)(MultiLinesGridList);
