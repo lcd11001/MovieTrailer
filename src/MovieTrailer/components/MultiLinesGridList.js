@@ -89,7 +89,7 @@ const _onImageError = (error) => {
 //     console.log('_onInfoClick', movieID)
 // }
 
-const _randomCellCols = (min, max) => {
+const _randomInRange = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -102,13 +102,13 @@ const _getAvailableCells = (arr, index, maxCells) => {
     return nextIndex - index
 }
 
-const _markUnvailableCells = (arr, len, maxlen, index, cols, cellCols) => {
+const _markUnvailableCells = (arr, len, maxlen, index, cols, cellRows, cellCols) => {
     // let newArr = [].concat(arr)
     
-    for (var i=0; i<cellCols; i++) {
+    for (var i=0; i<cellRows; i++) {
         for (var j=0; j<cellCols; j++) {
-            let x = i + (index % len)
-            let y = j + parseInt(index / len)
+            let x = j + (index % len)
+            let y = i + parseInt(index / len)
             let markIndex = x + y * cols
             // console.log('x', x, 'y', y, 'markIndex', markIndex)
             // if (markIndex >= len) {
@@ -166,11 +166,12 @@ const MultiLinesGridList = (props) => {
             maxCellCols = Math.min((props.maxCellCols || 1), props.cols)
         } = props
 
-        let maxlen = data.length * maxCellCols * 2
+        let maxlen = data.length * maxCellCols
         let arr = new Array(maxlen).fill(0)
         let len = cols
         let remainCellCols = cols
         let index = 0
+        let cellRows = 1
 
         return (
             <div className={classes.root}>
@@ -179,10 +180,15 @@ const MultiLinesGridList = (props) => {
                         let availableCellsPerRow = _getAvailableCells(arr, index, Math.min(maxCellCols, remainCellCols))
                         console.log('availableCellsPerRow', availableCellsPerRow)
 
-                        let cellCols = _randomCellCols(1, availableCellsPerRow)
+                        if (remainCellCols === cols) {
+                            cellRows = _randomInRange(1, availableCellsPerRow)
+                        }
+                        console.log('cellRows', cellRows)
+
+                        let cellCols = _randomInRange(1, availableCellsPerRow)
                         console.log('cellCols', cellCols)
 
-                        len = _markUnvailableCells(arr, len, maxlen, index, cols, cellCols)
+                        len = _markUnvailableCells(arr, len, maxlen, index, cols, cellRows, cellCols)
                         console.log('_markUnvailableCells arr', arr, 'len', len)
 
                         index = _getNextIndex(arr, index, cellCols)
@@ -192,7 +198,7 @@ const MultiLinesGridList = (props) => {
                         console.log('_getRemainCellCols', remainCellCols)
 
                         return (
-                            <GridListTile key={movie.MovieID} cols={cellCols} rows={cellCols}>
+                            <GridListTile key={movie.MovieID} cols={cellCols} rows={cellRows}>
                                 <div className={classes.divImage}>
                                     <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError}/>
                                     <div className={classes.divActionIcon}>
