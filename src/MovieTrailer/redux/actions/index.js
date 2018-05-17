@@ -1,5 +1,6 @@
 import {
-    loadHomeMovies
+    loadHomeMovies,
+    loadMovieDetail
 } from './moviesActions'
 
 import {
@@ -10,5 +11,7 @@ import {
 
 export {
     loadHomeMovies,
+    loadMovieDetail,
+
     searchMovies
 }

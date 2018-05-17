@@ -6,3 +6,5 @@ export const HOME_MOVIES_LOAD = 'HOME_MOVIES_LOAD'
 
 
 export const MOVIES_SEARCH = 'MOVIES_SEARCH'
+
+export const MOVIE_DETAIL = 'MOVIE_DETAIL'
