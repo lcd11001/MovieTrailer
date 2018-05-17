@@ -1,6 +1,6 @@
 import {
     HOME_MOVIES_LOAD,
-} from './actionTypes';
+} from './actionTypes'
 
 import * as API from '../../api'
 

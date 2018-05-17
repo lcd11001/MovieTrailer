@@ -14,26 +14,26 @@
  * 
  */
 
-import React, { Fragment, Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, Component } from 'react'
+import PropTypes from 'prop-types'
 
 import { store } from '../redux/store'
 import { push } from 'react-router-redux'
 
 import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+import GridList from '@material-ui/core/GridList'
+import GridListTile from '@material-ui/core/GridListTile'
+import GridListTileBar from '@material-ui/core/GridListTileBar'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
 
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import InfoIcon from '@material-ui/icons/Info';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import StarBorderIcon from '@material-ui/icons/StarBorder'
+import InfoIcon from '@material-ui/icons/Info'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import FavoriteIcon from '@material-ui/icons/Favorite'
 
 const styles = theme => ({
     root: {
@@ -84,7 +84,7 @@ const styles = theme => ({
         top: 0,
         zIndex: 1
     }
-});
+})
 
 const _onImageError = (error) => {
     error.target.src = './defaultImage/unavailable.png'
@@ -99,7 +99,7 @@ const _onInfoClicked = (baseUrl, movieID) => {
 }
 
 const _randomInRange = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 const _getAvailableCells = (cellCols, maxCols) => {
@@ -134,7 +134,7 @@ const _calcCellHeigh = (cellHeight, width) => {
         // case 'xl': // xlarge
         //     return parseInt(cellHeight)
         default:
-            break;
+            break
     }
 
     return cellHeight
@@ -155,7 +155,7 @@ const _calcCols = (cols, width) => {
         // case 'xl': // xlarge
         //     return Math.max(cols, 6)
         default:
-            break;
+            break
     }
 
     return Math.max(cols, 6)
@@ -239,7 +239,7 @@ const MultiLinesGridList = (props) => {
                 }
             </GridList>
         </div>
-    );
+    )
     
 }
 
@@ -250,6 +250,6 @@ MultiLinesGridList.propTypes = {
     cellHeight: PropTypes.number.isRequired,
     maxCellCols: PropTypes.number,
     maxCellRows: PropTypes.number
-};
+}
 
-export default compose ( withStyles(styles), withWidth() )(MultiLinesGridList);
+export default compose ( withStyles(styles), withWidth() )(MultiLinesGridList)

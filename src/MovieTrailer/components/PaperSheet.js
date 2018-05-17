@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
     root: theme.mixins.gutters({
@@ -10,10 +10,10 @@ const styles = theme => ({
         paddingBottom: 16,
         marginTop: theme.spacing.unit * 3,
     }),
-});
+})
 
 function PaperSheet(props) {
-    const { classes, title, description } = props;
+    const { classes, title, description } = props
     return (
         <div>
             <Paper className={classes.root} elevation={4}>
@@ -25,13 +25,13 @@ function PaperSheet(props) {
                 </Typography>
             </Paper>
         </div>
-    );
+    )
 }
 
 PaperSheet.propTypes = {
     classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired
-};
+}
 
-export default withStyles(styles)(PaperSheet);
+export default withStyles(styles)(PaperSheet)

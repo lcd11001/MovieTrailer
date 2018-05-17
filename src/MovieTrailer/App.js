@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import { BrowserRouter as Router } from 'react-router-dom'
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom'
 import Home from './containers/Home'
 import MovieDetail from './containers/MovieDetail'
 

@@ -1,13 +1,15 @@
 import {
   MOVIES_SEARCH
-} from '../actions/actionTypes';
+} from '../actions/actionTypes'
 
-export default (state={}, action) => {
+const searchReducer = (state={}, action) => {
   switch (action.type) {
     case MOVIES_SEARCH:
-      return action.payload;
+      return action.payload
 
     default:
-      return state;
+      return state
   }
-};
+}
+
+export default searchReducer

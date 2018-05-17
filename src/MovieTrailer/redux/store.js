@@ -10,17 +10,15 @@ import promise from 'redux-promise-middleware'
 import createHistory from 'history/createBrowserHistory'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 
-import fetchReducer from './reducers/fetchReducer'
-import moviesReducer from './reducers/moviesReducer'
-import searchReducer from './reducers/searchReducer'
+import * as reducers from './reducers'
 
 export const history = createHistory()
 
 export const store = createStore(
     combineReducers({
-        fetch: fetchReducer,
-        movies: moviesReducer,
-        search: searchReducer,
+        fetch: reducers.fetchReducer,
+        movies: reducers.moviesReducer,
+        search: reducers.searchReducer,
         router: routerReducer
     }),
     {},
