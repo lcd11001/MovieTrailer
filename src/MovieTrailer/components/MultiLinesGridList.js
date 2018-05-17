@@ -16,7 +16,9 @@
 
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink as Link } from 'react-router-dom'
+
+import { store } from '../redux/store'
+import { push } from 'react-router-redux'
 
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -85,9 +87,13 @@ const _onImageError = (error) => {
     error.target.src = './defaultImage/unavailable.png'
 }
 
-// const _onInfoClick = (movieID) => {
-//     console.log('_onInfoClick', movieID)
-// }
+const _onInfoClicked = (baseUrl, movieID) => {
+    let url = baseUrl !== '/' 
+        ? baseUrl + '/movie/' + movieID 
+        : '/movie/' + movieID
+
+    store.dispatch(push(url))
+}
 
 const _randomInRange = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -111,84 +117,83 @@ const _getRemainCellCols = (remainCellCols, cols, cellCols) => {
 }
 
 const MultiLinesGridList = (props) => {
-    
 
+    const { 
+        classes, 
+        data,
+        match: {
+            url
+        },
+        cols,
+        cellHeight,
+        maxCellCols = Math.min((props.maxCellCols || 1), props.cols),
+        maxCellRows = props.maxCellRows || 1
+    } = props
 
-        console.log('MultiLinesGridList', props)
+    let remainCellCols = cols
+    let index = 0
+    let cellRows = maxCellRows
+    let cellCols = maxCellCols
 
-        const { 
-            classes, 
-            data,
-            match: {
-                url
-            },
-            cols,
-            cellHeight,
-            maxCellCols = Math.min((props.maxCellCols || 1), props.cols),
-            maxCellRows = props.maxCellRows || 1
-        } = props
-
-        let remainCellCols = cols
-        let index = 0
-        let cellRows = 1
-
-        return (
-            <div className={classes.root}>
-                <GridList className={classes.gridList} cols={cols} cellHeight={cellHeight}>
-                    {data.map(movie => {
+    return (
+        <div className={classes.root}>
+            <GridList className={classes.gridList} cols={cols} cellHeight={cellHeight}>
+                {data.map(movie => {
+                    if (maxCellCols !== 1) {
                         let availableCellsPerRow = _getAvailableCells(maxCellCols, remainCellCols)
-                        console.log('availableCellsPerRow', availableCellsPerRow)
+                        // console.log('availableCellsPerRow', availableCellsPerRow)
 
                         if (remainCellCols === cols) {
                             cellRows = _randomInRange(1, maxCellRows)
-                            console.log('==cellRows==', cellRows)
+                            // console.log('==cellRows==', cellRows)
                         }
 
-                        let cellCols = _randomInRange(1, availableCellsPerRow)
-                        console.log('cellCols', cellCols)
+                        cellCols = _randomInRange(1, availableCellsPerRow)
+                        // console.log('cellCols', cellCols)
 
                         index = _getNextIndex(index, cellCols)
-                        console.log('_getNextIndex', index)
+                        // console.log('_getNextIndex', index)
 
                         remainCellCols = _getRemainCellCols(remainCellCols, cols, cellCols)
-                        console.log('_getRemainCellCols', remainCellCols)
-
-                        return (
-                            <GridListTile key={movie.MovieID} cols={cellCols} rows={cellRows}>
-                                <div className={classes.divImage}>
-                                    <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError}/>
-                                    <div className={classes.divActionIcon}>
-                                        <IconButton>
-                                            <FavoriteBorderIcon color='secondary'/>
-                                        </IconButton>
-                                        
-                                            <IconButton component={props => <Link {...props}/>} to={url !== '/' ? `${url}/movie/${movie.MovieID}` : `/movie/${movie.MovieID}`}>
-                                                <InfoIcon color='primary'/>
-                                            </IconButton>
-                                    </div>
-                                </div>
-                                <GridListTileBar
-                                    title={
-                                        <Typography className={classes.title}>
-                                            {movie.KnownAs}
-                                        </Typography>
-                                    }
-                                    subtitle={  
-                                        <Typography className={classes.subtitle}>
-                                            {movie.MovieName}
-                                        </Typography>
-                                    }
-                                    classes={{
-                                        root: classes.titleBar
-                                    }}
-                                />
-                            </GridListTile>
-                            )
-                        })
+                        // console.log('_getRemainCellCols', remainCellCols)
                     }
-                </GridList>
-            </div>
-        );
+                    
+                    return (
+                        <GridListTile key={movie.MovieID} cols={cellCols} rows={cellRows}>
+                            <div className={classes.divImage}>
+                                <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError}/>
+                                <div className={classes.divActionIcon}>
+                                    <IconButton>
+                                        <FavoriteBorderIcon color='secondary'/>
+                                    </IconButton>
+                                    
+                                    <IconButton onClick={() => _onInfoClicked(url, movie.MovieID)}>
+                                        <InfoIcon color='primary'/>
+                                    </IconButton>
+                                </div>
+                            </div>
+                            <GridListTileBar
+                                title={
+                                    <Typography className={classes.title}>
+                                        {movie.KnownAs}
+                                    </Typography>
+                                }
+                                subtitle={  
+                                    <Typography className={classes.subtitle}>
+                                        {movie.MovieName}
+                                    </Typography>
+                                }
+                                classes={{
+                                    root: classes.titleBar
+                                }}
+                            />
+                        </GridListTile>
+                        )
+                    })
+                }
+            </GridList>
+        </div>
+    );
     
 }
 

@@ -112,8 +112,8 @@ class Home extends Component {
                                     {CategoryName}
                                 </Typography>
                             </div>
-                            {/* <SingleLineGridList {...{match: this.props.match}} data={Movies}/> */}
-                            <MultiLinesGridList {...{match: this.props.match}} data={Movies} cols={6} cellHeight={300} maxCellCols={2}/>
+                            {/* <SingleLineGridList {...{match: this.props.match}} data={Movies} cols={8.5} cellHeight={300}/> */}
+                            <MultiLinesGridList {...{match: this.props.match}} data={Movies} cols={5} cellHeight={300}/>
                         </Fragment>
                     ))
                 }

@@ -16,7 +16,9 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink as Link } from 'react-router-dom'
+
+import { store } from '../redux/store'
+import { push } from 'react-router-redux'
 
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -85,9 +87,13 @@ const _onImageError = (error) => {
     error.target.src = './defaultImage/unavailable.png'
 }
 
-// const _onInfoClick = (movieID) => {
-//     console.log('_onInfoClick', movieID)
-// }
+const _onInfoClicked = (baseUrl, movieID) => {
+    let url = baseUrl !== '/' 
+        ? baseUrl + '/movie/' + movieID 
+        : '/movie/' + movieID
+
+    store.dispatch(push(url))
+}
 
 function SingleLineGridList(props) {
     // console.log('SingleLineGridList', props)
@@ -97,12 +103,14 @@ function SingleLineGridList(props) {
         data,
         match: {
             url
-        }
+        },
+        cols,
+        cellHeight
     } = props
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} cols={8.5} cellHeight={298}>
+            <GridList className={classes.gridList} cols={cols} cellHeight={cellHeight}>
                 {data.map(movie => (
                     
                     <GridListTile key={movie.MovieID}>
@@ -113,9 +121,9 @@ function SingleLineGridList(props) {
                                     <FavoriteBorderIcon color='secondary'/>
                                 </IconButton>
                                 
-                                    <IconButton component={props => <Link {...props}/>} to={url !== '/' ? `${url}/movie/${movie.MovieID}` : `/movie/${movie.MovieID}`}>
-                                        <InfoIcon color='primary'/>
-                                    </IconButton>
+                                <IconButton onClick={() => _onInfoClicked(url, movie.MovieID)}>
+                                    <InfoIcon color='primary'/>
+                                </IconButton>
                             </div>
                         </div>
                         <GridListTileBar
@@ -142,7 +150,9 @@ function SingleLineGridList(props) {
 
 SingleLineGridList.propTypes = {
     classes: PropTypes.object.isRequired,
-    data: PropTypes.array.isRequired
+    data: PropTypes.array.isRequired,
+    cols: PropTypes.number.isRequired,
+    cellHeight: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(SingleLineGridList);

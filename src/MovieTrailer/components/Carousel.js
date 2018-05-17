@@ -96,7 +96,7 @@ const _onInfoClicked = (baseUrl, movieID) => {
 }
 
 function Carousel(props) {
-    console.log('Carousel', props)
+    // console.log('Carousel', props)
     const { 
         classes, 
         data, 
