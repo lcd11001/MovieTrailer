@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import compose from 'recompose/compose'
 import { connect } from 'react-redux'
-import { NavLink as Link, Route } from 'react-router-dom'
 
+import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
@@ -73,7 +73,8 @@ class Home extends Component {
             match: {
                 url
             },
-            classes
+            classes,
+            width
         } = this.props
 
         // console.log('Home', this.props)
@@ -96,7 +97,7 @@ class Home extends Component {
 
         return (
             <Fragment>
-                <Carousel {...{match: this.props.match}} data={Banner}/>
+                <Carousel {...{match: this.props.match}} data={Banner} cellHeight={500}/>
 
                 {
                     Categories.map(({
@@ -113,7 +114,7 @@ class Home extends Component {
                                 </Typography>
                             </div>
                             {/* <SingleLineGridList {...{match: this.props.match}} data={Movies} cols={8.5} cellHeight={300}/> */}
-                            <MultiLinesGridList {...{match: this.props.match}} data={Movies} cols={5} cellHeight={300}/>
+                            <MultiLinesGridList {...{match: this.props.match}} data={Movies} cols={7} cellHeight={300}/>
                         </Fragment>
                     ))
                 }
@@ -137,4 +138,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default compose (withStyles(styles), connect(mapStateToProps, mapDispatchToProps) ) (Home)
+export default compose ( withStyles(styles), withWidth(), connect(mapStateToProps, mapDispatchToProps) ) (Home)

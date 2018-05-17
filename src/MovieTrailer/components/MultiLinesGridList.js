@@ -20,7 +20,10 @@ import PropTypes from 'prop-types';
 import { store } from '../redux/store'
 import { push } from 'react-router-redux'
 
+import compose from 'recompose/compose'
+import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles';
+
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -116,6 +119,48 @@ const _getRemainCellCols = (remainCellCols, cols, cellCols) => {
     return remainCellCols
 }
 
+const _calcCellHeigh = (cellHeight, width) => {
+    switch (width){
+        case 'xs': // extra small
+            return parseInt(cellHeight * 0.4)
+
+        case 'sm': // small
+            return parseInt(cellHeight * 0.55)
+        
+        case 'md': // medium
+            return parseInt(cellHeight * 0.7)
+        case 'lg': // large
+            return parseInt(cellHeight * 0.85)
+        // case 'xl': // xlarge
+        //     return parseInt(cellHeight)
+        default:
+            break;
+    }
+
+    return cellHeight
+}
+
+const _calcCols = (cols, width) => {
+    switch (width){
+        case 'xs': // extra small
+            return Math.max(cols - 4, 2)
+
+        case 'sm': // small
+            return Math.max(cols - 3, 3)
+        
+        case 'md': // medium
+            return Math.max(cols - 2, 4)
+        case 'lg': // large
+            return Math.max(cols - 1, 5)
+        // case 'xl': // xlarge
+        //     return Math.max(cols, 6)
+        default:
+            break;
+    }
+
+    return Math.max(cols, 6)
+}
+
 const MultiLinesGridList = (props) => {
 
     const { 
@@ -127,7 +172,8 @@ const MultiLinesGridList = (props) => {
         cols,
         cellHeight,
         maxCellCols = Math.min((props.maxCellCols || 1), props.cols),
-        maxCellRows = props.maxCellRows || 1
+        maxCellRows = props.maxCellRows || 1,
+        width
     } = props
 
     let remainCellCols = cols
@@ -137,7 +183,7 @@ const MultiLinesGridList = (props) => {
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} cols={cols} cellHeight={cellHeight}>
+            <GridList className={classes.gridList} cols={_calcCols(cols, width)} cellHeight={_calcCellHeigh(cellHeight, width)}>
                 {data.map(movie => {
                     if (maxCellCols !== 1) {
                         let availableCellsPerRow = _getAvailableCells(maxCellCols, remainCellCols)
@@ -206,4 +252,4 @@ MultiLinesGridList.propTypes = {
     maxCellRows: PropTypes.number
 };
 
-export default withStyles(styles)(MultiLinesGridList);
+export default compose ( withStyles(styles), withWidth() )(MultiLinesGridList);

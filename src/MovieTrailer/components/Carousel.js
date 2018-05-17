@@ -16,9 +16,14 @@
  * 
  */
 
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
+
+import compose from 'recompose/compose'
+import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles';
+import styler from 'stylerjs'
+
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -80,7 +85,7 @@ const styles = theme => ({
         left: 0,
         top: 0,
         zIndex: 1
-    }
+    },
 });
 
 const _onImageError = (error) => {
@@ -95,11 +100,34 @@ const _onInfoClicked = (baseUrl, movieID) => {
     store.dispatch(push(url))
 }
 
+const _calcCellHeigh = (cellHeight, width) => {
+    switch (width){
+        case 'xs': // extra small
+            return parseInt(cellHeight * 0.2)
+
+        case 'sm': // small
+            return parseInt(cellHeight * 0.4)
+        
+        case 'md': // medium
+            return parseInt(cellHeight * 0.6)
+        case 'lg': // large
+            return parseInt(cellHeight * 0.8)
+        // case 'xl': // xlarge
+        //     return parseInt(cellHeight)
+        default:
+            break;
+    }
+
+    return cellHeight
+}
+
 function Carousel(props) {
     // console.log('Carousel', props)
     const { 
         classes, 
-        data, 
+        data,
+        cellHeight,
+        width,
         match: { 
             url 
         } 
@@ -107,7 +135,7 @@ function Carousel(props) {
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} cols={2.5} cellHeight={423}>
+            <GridList className={classes.gridList} cols={2.5} cellHeight={_calcCellHeigh(cellHeight, width)}>
                 {data.map(movie => (
                     <GridListTile key={movie.MovieID}>
                         <div className={classes.divImage}>
@@ -146,7 +174,8 @@ function Carousel(props) {
 
 Carousel.propTypes = {
     classes: PropTypes.object.isRequired,
-    data: PropTypes.array.isRequired
+    data: PropTypes.array.isRequired,
+    cellHeight: PropTypes.number.isRequired
 };
 
-export default withStyles(styles)(Carousel);
+export default compose ( withStyles(styles), withWidth() )(Carousel);

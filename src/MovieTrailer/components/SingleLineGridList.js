@@ -20,7 +20,10 @@ import PropTypes from 'prop-types';
 import { store } from '../redux/store'
 import { push } from 'react-router-redux'
 
+import compose from 'recompose/compose'
+import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles';
+
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -95,6 +98,48 @@ const _onInfoClicked = (baseUrl, movieID) => {
     store.dispatch(push(url))
 }
 
+const _calcCellHeigh = (cellHeight, width) => {
+    switch (width){
+        case 'xs': // extra small
+            return parseInt(cellHeight * 0.4)
+
+        case 'sm': // small
+            return parseInt(cellHeight * 0.55)
+        
+        case 'md': // medium
+            return parseInt(cellHeight * 0.7)
+        case 'lg': // large
+            return parseInt(cellHeight * 0.85)
+        // case 'xl': // xlarge
+        //     return parseInt(cellHeight)
+        default:
+            break;
+    }
+
+    return cellHeight
+}
+
+const _calcCols = (cols, width) => {
+    switch (width){
+        case 'xs': // extra small
+            return Math.max(cols - 4, 2.5)
+
+        case 'sm': // small
+            return Math.max(cols - 3, 3.5)
+        
+        case 'md': // medium
+            return Math.max(cols - 2, 4.5)
+        case 'lg': // large
+            return Math.max(cols - 1, 5.5)
+        // case 'xl': // xlarge
+        //     return Math.max(cols, 6.5)
+        default:
+            break;
+    }
+
+    return Math.max(cols, 6.5)
+}
+
 function SingleLineGridList(props) {
     // console.log('SingleLineGridList', props)
 
@@ -105,12 +150,13 @@ function SingleLineGridList(props) {
             url
         },
         cols,
-        cellHeight
+        cellHeight,
+        width
     } = props
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} cols={cols} cellHeight={cellHeight}>
+            <GridList className={classes.gridList} cols={_calcCols(cols, width)} cellHeight={_calcCellHeigh(cellHeight, width)}>
                 {data.map(movie => (
                     
                     <GridListTile key={movie.MovieID}>
@@ -155,4 +201,4 @@ SingleLineGridList.propTypes = {
     cellHeight: PropTypes.number.isRequired,
 };
 
-export default withStyles(styles)(SingleLineGridList);
+export default compose ( withStyles(styles), withWidth() )(SingleLineGridList);
