@@ -141,11 +141,8 @@ const _onImageError = (error) => {
     error.target.src = '/defaultImage/unavailable.png'
 }
 
-const _onInfoClicked = (baseUrl, movieID) => {
-    let url = baseUrl !== '/' 
-        ? baseUrl + '/movie/' + movieID 
-        : '/movie/' + movieID
-
+const _onInfoClicked = (movieID) => {
+    let url = '/movie/' + movieID
     store.dispatch(push(url))
 }
 
@@ -197,9 +194,6 @@ function SingleLineGridList(props) {
     const { 
         classes, 
         data,
-        match: {
-            url
-        },
         cols,
         cellHeight,
         width
@@ -218,7 +212,7 @@ function SingleLineGridList(props) {
                                     <FavoriteBorderIcon color='secondary'/>
                                 </IconButton>
                                 
-                                <IconButton onClick={() => _onInfoClicked(url, movie.MovieID)}>
+                                <IconButton onClick={() => _onInfoClicked(movie.MovieID)}>
                                     <InfoIcon color='primary'/>
                                 </IconButton>
                             </div>

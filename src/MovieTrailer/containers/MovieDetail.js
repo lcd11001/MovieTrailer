@@ -64,7 +64,8 @@ class MovieDetailCard extends React.Component {
         super(props)
 
         this.state = {
-            expanded: true
+            expanded: false,
+            movieID: props.match.params.movieID
         }
     }
 
@@ -101,8 +102,22 @@ class MovieDetailCard extends React.Component {
         return <a href={`/director/${director.trim().replace(/ /g, '%20')}`}>{director.trim()}</a>
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        return {
+            movieID: nextProps.match.params.movieID
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextState.movieID !== this.state.movieID) {
+            this.props.loadMovieDetail(nextState.movieID)
+        }
+
+        return true
+    }
+
     componentDidMount() {
-        this.props.loadMovieDetail(this.props.match.params.movieID)
+        this.props.loadMovieDetail(this.state.movieID)
     }
 
     handleExpandClick = () => {
@@ -110,18 +125,11 @@ class MovieDetailCard extends React.Component {
     }
 
     render() {
-        console.log('MovieDetail', this.props)
+        // console.log('MovieDetail', this.props)
         const {
             fetch: {
                 Loading,
                 Error
-            },
-            match: {
-                url,
-                params: {
-                    parent = this.props.match.params.parent || '/',
-                    movieID
-                }
             },
             classes,
             width,
@@ -260,7 +268,7 @@ class MovieDetailCard extends React.Component {
                 <Typography paragraph variant='body2'>
                     Phim liên quan:
                 </Typography> 
-                <MultiLinesGridList {...{match: {url: '/' }}} data={detail.Relative} cols={7} cellHeight={300} />
+                <MultiLinesGridList {...{match: this.props.match}} data={detail.Relative} cols={7} cellHeight={300} />
             </Fragment>
         )
     }

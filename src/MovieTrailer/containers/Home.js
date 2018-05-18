@@ -118,7 +118,7 @@ class Home extends Component {
 
         return (
             <Fragment>
-                <Carousel {...{match: this.props.match}} data={Banner} cellHeight={500}/>
+                <Carousel data={Banner} cellHeight={500}/>
 
                 {
                     Categories.map(({
@@ -134,8 +134,8 @@ class Home extends Component {
                                     {CategoryName}
                                 </Typography>
                             </div>
-                            {/* <SingleLineGridList {...{match: this.props.match}} data={Movies} cols={8.5} cellHeight={300}/> */}
-                            <MultiLinesGridList {...{match: this.props.match}} data={Movies} cols={7} cellHeight={300}/>
+                            {/* <SingleLineGridList data={Movies} cols={8.5} cellHeight={300}/> */}
+                            <MultiLinesGridList data={Movies} cols={7} cellHeight={300}/>
                         </Fragment>
                     ))
                 }

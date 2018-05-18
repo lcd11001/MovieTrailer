@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Home from './containers/Home'
 import MovieDetail from './containers/MovieDetail'
+import { NotFound } from './components/errors'
 
 export default class App extends Component {
     _renderHome = (props) => (
@@ -17,10 +18,9 @@ export default class App extends Component {
         return (
             <Switch>
                 <Route exact path='/' render={this._renderHome} />
-                <Route exact path='/home' render={this._renderHome} />
-                
-                <Route path={`/:parent/movie/:movieID`} render={this._renderMovieDetail} />
-                <Route path={`/movie/:movieID`} render={this._renderMovieDetail} />
+                <Route exact path={`/movie/:movieID`} render={this._renderMovieDetail} />
+
+                <Route component={NotFound} />
             </Switch>
         )
     }

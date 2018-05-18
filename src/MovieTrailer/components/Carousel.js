@@ -142,11 +142,8 @@ const _onImageError = (error) => {
     error.target.src = '/defaultImage/unavailable.png'
 }
 
-const _onInfoClicked = (baseUrl, movieID) => {
-    let url = baseUrl !== '/' 
-        ? baseUrl + '/movie/' + movieID 
-        : '/movie/' + movieID
-
+const _onInfoClicked = (movieID) => {
+    let url = '/movie/' + movieID
     store.dispatch(push(url))
 }
 
@@ -178,9 +175,6 @@ function Carousel(props) {
         data,
         cellHeight,
         width,
-        match: { 
-            url 
-        } 
     } = props
 
     return (
@@ -195,7 +189,7 @@ function Carousel(props) {
                                     <FavoriteBorderIcon color='secondary'/>
                                 </IconButton>
                                 
-                                <IconButton onClick={() => _onInfoClicked(url, movie.MovieID)}>
+                                <IconButton onClick={() => _onInfoClicked(movie.MovieID)}>
                                     <InfoIcon color='primary'/>
                                 </IconButton>
                             </div>

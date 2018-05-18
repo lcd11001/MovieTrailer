@@ -18,7 +18,7 @@ import React, { Fragment, Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { store } from '../redux/store'
-import { push } from 'react-router-redux'
+import { push, replace } from 'react-router-redux'
 
 import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
@@ -141,11 +141,8 @@ const _onImageError = (error) => {
     error.target.src = '/defaultImage/unavailable.png'
 }
 
-const _onInfoClicked = (baseUrl, movieID) => {
-    let url = baseUrl !== '/' 
-        ? baseUrl + '/movie/' + movieID 
-        : '/movie/' + movieID
-
+const _onInfoClicked = (movieID) => {
+    let url = '/movie/' + movieID
     store.dispatch(push(url))
 }
 
@@ -213,13 +210,10 @@ const _calcCols = (cols, width) => {
 }
 
 const MultiLinesGridList = (props) => {
-    console.log('MultiLinesGridList', props)
+    // console.log('MultiLinesGridList', props)
     const { 
         classes, 
         data,
-        match: {
-            url
-        },
         cols,
         cellHeight,
         maxCellCols = Math.min((props.maxCellCols || 1), props.cols),
@@ -264,7 +258,7 @@ const MultiLinesGridList = (props) => {
                                         <FavoriteBorderIcon color='secondary'/>
                                     </IconButton>
                                     
-                                    <IconButton onClick={() => _onInfoClicked(url, movie.MovieID)}>
+                                    <IconButton onClick={() => _onInfoClicked(movie.MovieID)}>
                                         <InfoIcon color='primary'/>
                                     </IconButton>
                                 </div>
