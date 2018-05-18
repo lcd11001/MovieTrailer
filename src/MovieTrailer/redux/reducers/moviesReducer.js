@@ -6,7 +6,7 @@ import {
 const moviesReducer = (state = {
     Banner: [],
     Categories: [],
-    MovieDetail: {}
+    MovieDetail: null
 }, action) => {
     switch (action.type) {
         case HOME_MOVIES_LOAD:

@@ -139,7 +139,7 @@ const styles = theme => ({
 })
 
 const _onImageError = (error) => {
-    error.target.src = './defaultImage/unavailable.png'
+    error.target.src = '/defaultImage/unavailable.png'
 }
 
 const _onInfoClicked = (baseUrl, movieID) => {

@@ -138,7 +138,7 @@ const styles = theme => ({
 })
 
 const _onImageError = (error) => {
-    error.target.src = './defaultImage/unavailable.png'
+    error.target.src = '/defaultImage/unavailable.png'
 }
 
 const _onInfoClicked = (baseUrl, movieID) => {
@@ -213,7 +213,7 @@ const _calcCols = (cols, width) => {
 }
 
 const MultiLinesGridList = (props) => {
-
+    console.log('MultiLinesGridList', props)
     const { 
         classes, 
         data,

@@ -77,6 +77,10 @@ class Home extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.clearMovieDetail()
+    }
+
     render() {
         const { 
             fetch: {
@@ -151,6 +155,9 @@ const mapDispatchToProps = (dispatch) => (
     {
         loadHomeMovies: () => {
             dispatch(actions.loadHomeMovies())
+        },
+        clearMovieDetail: () => {
+            dispatch(actions.clearMovieDetail())
         }
     }
 )

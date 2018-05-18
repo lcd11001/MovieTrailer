@@ -41,3 +41,10 @@ export const loadMovieDetail = (movieID) => (
     }
 )
 
+export const clearMovieDetail = () => (
+    {   
+        type: MOVIE_DETAIL,
+        payload: null
+    }
+)
+
