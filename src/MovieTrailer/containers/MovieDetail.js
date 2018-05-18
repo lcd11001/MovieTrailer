@@ -33,6 +33,9 @@ const styles = theme => ({
     card: {
         maxWidth: '100%'
     },
+    cardHeader: {
+        fontSize: '2.0rem'
+    },
     media: {
         height: 0,
         paddingTop: '30%'
@@ -200,7 +203,9 @@ class MovieDetailCard extends React.Component {
                                 <MoreVertIcon />
                             </IconButton>
                         }
-                        title={detail.KnownAs}
+                        title={
+                            <Typography className={classes.cardHeader}>{detail.KnownAs}</Typography>
+                        }
                         subheader={detail.MovieName}
                     />
                     
