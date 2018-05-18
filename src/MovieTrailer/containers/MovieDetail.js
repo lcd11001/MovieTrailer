@@ -124,6 +124,38 @@ class MovieDetailCard extends React.Component {
         this.setState({ expanded: !this.state.expanded })
     }
 
+    _calcFlexDirection = (width) => {
+        switch (width)
+        {
+            case 'xs':
+                return 'column'
+
+            default:
+                break
+        }
+
+        return 'row'
+    }
+
+    _calcFlex = (width) => {
+        switch (width)
+        {
+            case 'xs':
+                return {
+                    leftOrTop: 1,
+                    rightOrBottom: 1
+                }
+
+            default:
+                break
+        }
+
+        return {
+            leftOrTop: 1,
+            rightOrBottom: 3
+        }
+    }
+
     render() {
         // console.log('MovieDetail', this.props)
         const {
@@ -151,6 +183,8 @@ class MovieDetailCard extends React.Component {
                 </Fragment>
             )
         }
+
+        console.log(width)
 
         return (
             <Fragment>
@@ -203,8 +237,8 @@ class MovieDetailCard extends React.Component {
 
                     <Collapse in={this.state.expanded} timeout='auto' unmountOnExit>
                         <CardContent>
-                            <div style={{display: 'flex', flexDirection: 'row'}}>
-                                <div style={{flex: 1}}>
+                            <div style={{display: 'flex', flexDirection: `${this._calcFlexDirection(width)}`}}>
+                                <div style={{flex: `${this._calcFlex(width).leftOrTop}`}}>
                                     <Typography paragraph variant='body2'>
                                         Năm sản xuất:
                                     </Typography>                            
@@ -232,7 +266,7 @@ class MovieDetailCard extends React.Component {
                                         }
                                     </Typography>
                                 </div>
-                                <div style={{flex: 3}}>
+                                <div style={{flex: `${this._calcFlex(width).rightOrBottom}`}}>
                                     <Typography paragraph variant='body2'>
                                         Thể loại:
                                     </Typography>                            

@@ -18,7 +18,7 @@ import React, { Fragment, Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { store } from '../redux/store'
-import { push, replace } from 'react-router-redux'
+import { push } from 'react-router-redux'
 
 import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
@@ -170,22 +170,22 @@ const _getRemainCellCols = (remainCellCols, cols, cellCols) => {
 const _calcCellHeigh = (cellHeight, width) => {
     switch (width){
         case 'xs': // extra small
-            return parseInt(cellHeight * 0.4)
+            return parseInt(cellHeight * 0.4, 10)
 
         case 'sm': // small
-            return parseInt(cellHeight * 0.55)
+            return parseInt(cellHeight * 0.55, 10)
         
         case 'md': // medium
-            return parseInt(cellHeight * 0.7)
+            return parseInt(cellHeight * 0.7, 10)
         case 'lg': // large
-            return parseInt(cellHeight * 0.85)
+            return parseInt(cellHeight * 0.85, 10)
         // case 'xl': // xlarge
-        //     return parseInt(cellHeight)
+        //     return parseInt(cellHeight, 10)
         default:
             break
     }
 
-    return cellHeight
+    return parseInt(cellHeight, 10)
 }
 
 const _calcCols = (cols, width) => {

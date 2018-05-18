@@ -22,6 +22,7 @@ const moviesReducer = (state = {
                 ...state,
                 MovieDetail: action.payload
             }
+            break
 
         default:
             break

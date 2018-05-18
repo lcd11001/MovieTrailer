@@ -150,22 +150,22 @@ const _onInfoClicked = (movieID) => {
 const _calcCellHeigh = (cellHeight, width) => {
     switch (width){
         case 'xs': // extra small
-            return parseInt(cellHeight * 0.2)
+            return parseInt(cellHeight * 0.2, 10)
 
         case 'sm': // small
-            return parseInt(cellHeight * 0.4)
+            return parseInt(cellHeight * 0.4, 10)
         
         case 'md': // medium
-            return parseInt(cellHeight * 0.6)
+            return parseInt(cellHeight * 0.6, 10)
         case 'lg': // large
-            return parseInt(cellHeight * 0.8)
+            return parseInt(cellHeight * 0.8, 10)
         // case 'xl': // xlarge
-        //     return parseInt(cellHeight)
+        //     return parseInt(cellHeight, 10)
         default:
             break
     }
 
-    return cellHeight
+    return parseInt(cellHeight, 10)
 }
 
 function Carousel(props) {
