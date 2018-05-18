@@ -52,16 +52,67 @@ const styles = theme => ({
         color: theme.palette.primary.main,
         whiteSpace: 'nowrap',
         textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
-        fontSmoothing: 'antialiased'
+        fontSmoothing: 'antialiased',
+        fontSize: '1.4rem',
+        // extra small
+        [theme.breakpoints.only('xs')]: {
+            fontSize: '0.6rem'
+        },
+        // small
+        [theme.breakpoints.only('sm')]: {
+            fontSize: '0.8rem'
+        },
+        // medium
+        [theme.breakpoints.only('md')]: {
+            fontSize: '1rem'
+        },
+        // large
+        [theme.breakpoints.only('lg')]: {
+            fontSize: '1.2rem'
+        }
     },
     subtitle: {
         color: theme.palette.primary.light,
         whiteSpace: 'nowrap',
         textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
-        fontSmoothing: 'antialiased'
+        fontSmoothing: 'antialiased',
+        fontSize: '1.3rem',
+        // extra small
+        [theme.breakpoints.only('xs')]: {
+            fontSize: '0.5rem'
+        },
+        // small
+        [theme.breakpoints.only('sm')]: {
+            fontSize: '0.7rem'
+        },
+        // medium
+        [theme.breakpoints.only('md')]: {
+            fontSize: '0.9rem'
+        },
+        // large
+        [theme.breakpoints.only('lg')]: {
+            fontSize: '1.1rem'
+        }
     },
     titleBar: {
         background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+        height: 80,
+        // extra small
+        [theme.breakpoints.only('xs')]: {
+            height: 40,
+        },
+        // small
+        [theme.breakpoints.only('sm')]: {
+            height: 50,
+        },
+        // medium
+        [theme.breakpoints.only('md')]: {
+            height: 60,
+        },
+        // large
+        [theme.breakpoints.only('lg')]: {
+            height: 70,
+        }
     },
     divImage: {
         height: '100%',
@@ -122,17 +173,17 @@ const _calcCellHeigh = (cellHeight, width) => {
 const _calcCols = (cols, width) => {
     switch (width){
         case 'xs': // extra small
-            return Math.max(cols - 4, 2.5)
+            return Math.max(cols - 5, 3.5)
 
         case 'sm': // small
-            return Math.max(cols - 3, 3.5)
+            return Math.max(cols - 4, 4.5)
         
         case 'md': // medium
-            return Math.max(cols - 2, 4.5)
+            return Math.max(cols - 3, 5.5)
         case 'lg': // large
-            return Math.max(cols - 1, 5.5)
+            return Math.max(cols - 2, 6.5)
         // case 'xl': // xlarge
-        //     return Math.max(cols, 6.5)
+        //     return Math.max(cols, 7.5)
         default:
             break
     }
