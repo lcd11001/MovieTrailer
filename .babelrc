@@ -1,12 +1,13 @@
 {
   "presets": [
-    "babel-preset-env",
-    "react",
+      "react",
+      "env"
   ],
+
   "plugins": [
-    "transform-class-properties",
-    "transform-es2015-spread",
-    "transform-object-rest-spread",
-    "react-hot-loader/babel"
+      "transform-es2015-destructuring",
+      "transform-es2015-spread",
+      "transform-object-rest-spread",
+      ["transform-class-properties", { "spec": true }]
   ]
 }
