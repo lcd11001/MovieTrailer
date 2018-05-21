@@ -91,11 +91,7 @@ class Home extends Component {
                 Banner,
                 Categories,
             },
-            match: {
-                url
-            },
-            classes,
-            width
+            classes
         } = this.props
 
         // console.log('Home', this.props)

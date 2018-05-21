@@ -14,7 +14,7 @@
  * 
  */
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { store } from '../redux/store'
@@ -30,7 +30,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 
-import StarBorderIcon from '@material-ui/icons/StarBorder'
 import InfoIcon from '@material-ui/icons/Info'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
