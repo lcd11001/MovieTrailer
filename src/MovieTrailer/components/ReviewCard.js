@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import classnames from 'classnames'
+
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -11,22 +12,32 @@ import Collapse from '@material-ui/core/Collapse'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
+
 import red from '@material-ui/core/colors/red'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
+import IconLabelTabs from './IconLabelTabs'
+
 const styles = theme => ({
     card: {
         maxWidth: '100%',
     },
     cardHeader: {
-        fontSize: '2.0rem'
+        fontSize: '2.0rem',
+        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
+        fontSmoothing: 'antialiased',
+    },
+    cardSubHeader: {
+        fontSize: '1.7rem',
+        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
+        fontSmoothing: 'antialiased',
     },
     media: {
         height: 0,
-        paddingTop: '40%'
+        paddingTop: '30%'
     },
     actions: {
         display: 'flex',
@@ -43,7 +54,25 @@ const styles = theme => ({
     },
     avatar: {
         backgroundColor: red[500],
+        width: 100,
+        height: 100
     },
+    avatarText: {
+        fontSize: '2.0rem',
+        color: 'white',
+        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
+        fontSmoothing: 'antialiased',
+    },
+    paragraphHeader: {
+        fontSize: '1.5rem',
+        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
+        fontSmoothing: 'antialiased',
+    },
+    paragraph: {
+        fontSize: '1.3rem',
+        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
+        fontSmoothing: 'antialiased',
+    }
 })
 
 class ReviewCard extends React.Component {
@@ -131,7 +160,7 @@ class ReviewCard extends React.Component {
                     <CardHeader
                         avatar={
                             <Avatar aria-label='IMDB rating' className={classes.avatar}>
-                                {detail.ImdbRating}
+                                <Typography className={classes.avatarText}>{detail.ImdbRating}</Typography>
                             </Avatar>
                         }
                         action={
@@ -142,7 +171,9 @@ class ReviewCard extends React.Component {
                         title={
                             <Typography className={classes.cardHeader}>{detail.KnownAs}</Typography>
                         }
-                        subheader={detail.MovieName}
+                        subheader={
+                            <Typography className={classes.cardSubHeader}>{detail.MovieName}</Typography>
+                        }
                     />
 
                     <CardMedia
@@ -152,9 +183,20 @@ class ReviewCard extends React.Component {
                     />
 
                     <CardContent>
-                        <Typography component='p'>
-                            {detail.PlotVI}
-                        </Typography>
+                        <IconLabelTabs 
+                            data={[
+                                {
+                                    icon: '/icons/vn_icon_64.png',
+                                    label: 'Tóm tắt',
+                                    content: `${detail.PlotVI}`
+                                },
+                                {
+                                    icon: '/icons/us_icon_64.png',
+                                    label: 'Plot',
+                                    content: `${detail.PlotEN}`
+                                }
+                            ]}
+                        />
                     </CardContent>
 
                     <CardActions className={classes.actions} disableActionSpacing>
@@ -180,56 +222,56 @@ class ReviewCard extends React.Component {
                         <CardContent>
                             <div style={{ display: 'flex', flexDirection: `${this._calcFlexDirection(width)}` }}>
                                 <div style={{ flex: `${this._calcFlexSize(width).leftOrTop}` }}>
-                                    <Typography paragraph variant='body2'>
+                                    <Typography paragraph className={classes.paragraphHeader}>
                                         Năm sản xuất:
                                     </Typography>
-                                    <Typography paragraph>
+                                    <Typography paragraph className={classes.paragraph}>
                                         {
                                             detail.ReleaseDate
                                         }
                                     </Typography>
 
-                                    <Typography paragraph variant='body2'>
+                                    <Typography paragraph className={classes.paragraphHeader}>
                                         Quốc gia:
                                     </Typography>
-                                    <Typography paragraph>
+                                    <Typography paragraph className={classes.paragraph}>
                                         {
                                             detail.Country
                                         }
                                     </Typography>
 
-                                    <Typography paragraph variant='body2'>
+                                    <Typography paragraph className={classes.paragraphHeader}>
                                         Chấm điểm:
                                     </Typography>
-                                    <Typography paragraph>
+                                    <Typography paragraph className={classes.paragraph}>
                                         {
                                             detail.ImdbRating
                                         }
                                     </Typography>
                                 </div>
                                 <div style={{ flex: `${this._calcFlexSize(width).rightOrBottom}` }}>
-                                    <Typography paragraph variant='body2'>
+                                    <Typography paragraph className={classes.paragraphHeader}>
                                         Thể loại:
                                     </Typography>
-                                    <Typography paragraph>
+                                    <Typography paragraph className={classes.paragraph}>
                                         {
                                             this._getCategoryComponents(detail.Category)
                                         }
                                     </Typography>
 
-                                    <Typography paragraph variant='body2'>
+                                    <Typography paragraph className={classes.paragraphHeader}>
                                         Đạo diễn:
                                     </Typography>
-                                    <Typography paragraph>
+                                    <Typography paragraph className={classes.paragraph}>
                                         {
                                             this._getDirectorComponents(detail.Director)
                                         }
                                     </Typography>
 
-                                    <Typography paragraph variant='body2'>
+                                    <Typography paragraph className={classes.paragraphHeader}>
                                         Diễn viên:
                                     </Typography>
-                                    <Typography paragraph>
+                                    <Typography paragraph className={classes.paragraph}>
                                         {this._getCasterComponents(detail.Cast)}
                                     </Typography>
                                 </div>
