@@ -1,22 +1,20 @@
+
+import textStyles from './textStyles'
+
 const styles = theme => ({
     content: {
-        fontSize: '1.7rem',
-        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
-        fontSmoothing: 'antialiased',
+        ...textStyles(theme, {textColor: theme.palette.text.primary, textSize: 1.7, textDecreaseSize: 0.4, textWrap: 'normal'}),
         margin: 30
     },
     firstLetter: {
-        color: theme.palette.primary.main,
+        ...textStyles(theme, {textColor: theme.palette.primary.main, textSize: 5.0, textDecreaseSize: 1.0}),
         float: 'left',
-        fontSize: '5rem',
         paddingTop: 20,
         paddingRight: 8,
         paddingLeft: 3
     },
     tabLabel: {
-        fontSize: '1.3rem',
-        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
-        fontSmoothing: 'antialiased',
+        ...textStyles(theme, {textColor: theme.palette.text.secondary, textSize: 1.3, textDecreaseSize: 0.2}),
     },
     tab: {
         height: 100

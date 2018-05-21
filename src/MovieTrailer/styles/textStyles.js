@@ -3,7 +3,7 @@ const styles = (theme, options) => {
 
     const textStyles = {
         color: options.textColor || 'white',
-        whiteSpace: 'nowrap',
+        whiteSpace: `${options.textWrap}` || 'nowrap',
         textShadow: `${options.textShadowColor || theme.palette.primary.dark} 0px 0px 1px, 
                     ${options.textShadowColor || theme.palette.primary.dark} 0px 0px 1px, 
                     ${options.textShadowColor || theme.palette.primary.dark} 0px 0px 1px, 
@@ -13,54 +13,28 @@ const styles = (theme, options) => {
         fontSmoothing: 'antialiased'
     }
 
-    const titleSize = options.titleSize || 3.0
-    const titleDecreaseSize = options.titleDecreaseSize || 0.5
-
-    const subTitleSize = options.subTitleSize || 2.0
-    const subTitleDecreaseSize = options.subTitleDecreaseSize || 0.4
+    const textSize = options.textSize || 3.0
+    const textDecreaseSize = options.textDecreaseSize || 0.5
 
     return {
-        title: {
-            ...textStyles,
+        ...textStyles,
 
-            fontSize: `${titleSize}rem`,
-            // extra small
-            [theme.breakpoints.only('xs')]: {
-                fontSize: `${titleSize - 4 * titleDecreaseSize}rem`
-            },
-            // small
-            [theme.breakpoints.only('sm')]: {
-                fontSize: `${titleSize - 3 * titleDecreaseSize}rem`
-            },
-            // medium
-            [theme.breakpoints.only('md')]: {
-                fontSize: `${titleSize - 2 * titleDecreaseSize}rem`
-            },
-            // large
-            [theme.breakpoints.only('lg')]: {
-                fontSize: `${titleSize - titleDecreaseSize}rem`
-            }
+        fontSize: `${textSize}rem`,
+        // extra small
+        [theme.breakpoints.only('xs')]: {
+            fontSize: `${textSize - 4 * textDecreaseSize}rem`
         },
-        subtitle: {
-            ...textStyles,
-
-            fontSize: `${subTitleSize}rem`,
-            // extra small
-            [theme.breakpoints.only('xs')]: {
-                fontSize: `${subTitleSize - 4 * subTitleDecreaseSize}rem`
-            },
-            // small
-            [theme.breakpoints.only('sm')]: {
-                fontSize: `${subTitleSize - 3 * subTitleDecreaseSize}rem`
-            },
-            // medium
-            [theme.breakpoints.only('md')]: {
-                fontSize: `${subTitleSize - 2 * subTitleDecreaseSize}rem`
-            },
-            // large
-            [theme.breakpoints.only('lg')]: {
-                fontSize: `${subTitleSize - subTitleDecreaseSize}rem`
-            }
+        // small
+        [theme.breakpoints.only('sm')]: {
+            fontSize: `${textSize - 3 * textDecreaseSize}rem`
+        },
+        // medium
+        [theme.breakpoints.only('md')]: {
+            fontSize: `${textSize - 2 * textDecreaseSize}rem`
+        },
+        // large
+        [theme.breakpoints.only('lg')]: {
+            fontSize: `${textSize - textDecreaseSize}rem`
         }
     }
 }

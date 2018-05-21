@@ -4,7 +4,13 @@ import orange from '@material-ui/core/colors/orange'
 import textStyles from './textStyles'
 
 const styles = theme => ({
-    ...textStyles(theme, {textColor: 'black', textShadowColor: '#2F4F4F'}),
+    title: {
+        ...textStyles(theme, {textColor: 'black', textShadowColor: '#2F4F4F', textSize: 3.0, textDecreaseSize: 0.5}),
+    },
+
+    subtitle: {
+        ...textStyles(theme, {textColor: 'black', textShadowColor: '#2F4F4F', textSize: 2.0, textDecreaseSize: 0.4}),
+    },
 
     card: {
         maxWidth: '100%',
@@ -32,56 +38,33 @@ const styles = theme => ({
         height: 100,
         // extra small
         [theme.breakpoints.only('xs')]: {
-            width: 20,
-            height: 20,
-        },
-        // small
-        [theme.breakpoints.only('sm')]: {
             width: 40,
             height: 40,
         },
+        // small
+        [theme.breakpoints.only('sm')]: {
+            width: 55,
+            height: 55,
+        },
         // medium
         [theme.breakpoints.only('md')]: {
-            width: 60,
-            height: 60,
+            width: 70,
+            height: 70,
         },
         // large
         [theme.breakpoints.only('lg')]: {
-            width: 80,
-            height: 80,
+            width: 85,
+            height: 85,
         }
     },
     avatarText: {
-        fontSize: '3.0rem',
-        color: 'white',
-        textShadow: `${orange[500]} 0px 0px 1px, ${orange[500]} 0px 0px 1px, ${orange[500]} 0px 0px 1px, ${orange[500]} 0px 0px 1px, ${orange[500]} 0px 0px 1px, ${orange[500]} 0px 0px 1px`,
-        fontSmoothing: 'antialiased',
-        // extra small
-        [theme.breakpoints.only('xs')]: {
-            fontSize: '2.2rem'
-        },
-        // small
-        [theme.breakpoints.only('sm')]: {
-            fontSize: '2.4rem'
-        },
-        // medium
-        [theme.breakpoints.only('md')]: {
-            fontSize: '2.6rem'
-        },
-        // large
-        [theme.breakpoints.only('lg')]: {
-            fontSize: '2.8rem'
-        }
+        ...textStyles(theme, {textShadowColor: orange[500], textSize: 3.0, textDecreaseSize: 0.5})
     },
     paragraphHeader: {
-        fontSize: '1.5rem',
-        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
-        fontSmoothing: 'antialiased',
+        ...textStyles(theme, {textColor: 'black', textShadowColor: theme.palette.text.secondary, textSize: 1.5, textDecreaseSize: 0.2})
     },
     paragraph: {
-        fontSize: '1.3rem',
-        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
-        fontSmoothing: 'antialiased',
+        ...textStyles(theme, {textColor: 'black', textShadowColor: theme.palette.text.secondary, textSize: 1.3, textDecreaseSize: 0.2})
     }
 })
 

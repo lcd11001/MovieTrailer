@@ -1,7 +1,14 @@
 import textStyles from './textStyles'
 
 const styles = theme => ({
-    ...textStyles(theme, {titleSize: 2.0, titleDecreaseSize: 0.4, subTitleSize: 1.2, subTitleDecreaseSize: 0.2}), 
+    title: {
+        ...textStyles(theme, {textColor: 'white', textSize: 2.0, textDecreaseSize: 0.3}),
+    },
+
+    subtitle: {
+        ...textStyles(theme, {textColor: 'white', textSize: 1.2, textDecreaseSize: 0.2}),
+    },
+
     root: {
         display: 'flex',
         flexWrap: 'wrap',

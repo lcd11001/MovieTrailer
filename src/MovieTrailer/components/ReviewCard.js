@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import compose from 'recompose/compose'
+import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
 import classnames from 'classnames'
 
@@ -101,6 +103,9 @@ class ReviewCard extends React.Component {
             width 
         } = this.props
 
+        const _flexDirection = this._calcFlexDirection(width)
+        const _flexSize = this._calcFlexSize(width)
+        
         return (
             <div>
                 <Card className={classes.card}>
@@ -167,8 +172,8 @@ class ReviewCard extends React.Component {
 
                     <Collapse in={this.state.expanded} timeout='auto' unmountOnExit>
                         <CardContent>
-                            <div style={{ display: 'flex', flexDirection: `${this._calcFlexDirection(width)}` }}>
-                                <div style={{ flex: `${this._calcFlexSize(width).leftOrTop}` }}>
+                            <div style={{ display: 'flex', flexDirection: `${_flexDirection}` }}>
+                                <div style={{ flex: `${_flexSize.leftOrTop}` }}>
                                     <Typography paragraph className={classes.paragraphHeader}>
                                         Năm sản xuất:
                                     </Typography>
@@ -237,4 +242,4 @@ ReviewCard.propTypes = {
     classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(ReviewCard)
+export default compose(withStyles(styles), withWidth())(ReviewCard)
