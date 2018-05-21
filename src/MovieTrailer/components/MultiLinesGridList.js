@@ -174,7 +174,8 @@ const MultiLinesGridList = (props) => {
                                     </Typography>
                                 }
                                 classes={{
-                                    root: classes.titleBar
+                                    root: classes.titleBar,
+                                    titleWrap: classes.titleWrap
                                 }}
                             />
                         </GridListTile>

@@ -7,25 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
-    card: {
-        maxWidth: '100%',
-    },
-    content: {
-        fontSize: '1.7rem',
-        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
-        fontSmoothing: 'antialiased',
-        margin: 30
-    },
-    firstLetter: {
-        color: theme.palette.primary.main,
-        float: 'left',
-        fontSize: '5rem',
-        paddingTop: 20,
-        paddingRight: 8,
-        paddingLeft: 3
-    }
-})
+import { tabsStyles as styles } from '../styles'
 
 function TabContainer(props) {
     return (
@@ -74,7 +56,15 @@ class IconLabelTabs extends React.Component {
                     >
                         {
                             data.map((value, index) => (
-                                <Tab key={index} icon={<img src={value.icon} alt={value.icon} />} label={value.label} />
+                                <Tab key={index} 
+                                    icon={
+                                        <img src={value.icon} alt={value.icon} />
+                                    } 
+                                    label={
+                                        <Typography className={classes.tabLabel}>{value.label}</Typography>
+                                    } 
+                                    className={classes.tab}
+                                />
                             ))
                         }
                         

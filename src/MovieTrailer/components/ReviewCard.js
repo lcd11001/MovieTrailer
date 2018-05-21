@@ -116,10 +116,10 @@ class ReviewCard extends React.Component {
                             </IconButton>
                         }
                         title={
-                            <Typography className={classes.cardHeader}>{detail.KnownAs}</Typography>
+                            <Typography className={classes.title}>{detail.KnownAs}</Typography>
                         }
                         subheader={
-                            <Typography className={classes.cardSubHeader}>{detail.MovieName}</Typography>
+                            <Typography className={classes.subtitle}>{detail.MovieName}</Typography>
                         }
                     />
 

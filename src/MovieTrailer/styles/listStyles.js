@@ -1,4 +1,7 @@
+import textStyles from './textStyles'
+
 const styles = theme => ({
+    ...textStyles(theme, {titleSize: 2.0, titleDecreaseSize: 0.4, subTitleSize: 1.2, subTitleDecreaseSize: 0.2}), 
     root: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -15,52 +18,6 @@ const styles = theme => ({
         flexWrap: 'nowrap',
         // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
-    },
-    title: {
-        color: theme.palette.primary.main,
-        whiteSpace: 'nowrap',
-        textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
-        fontSmoothing: 'antialiased',
-        fontSize: '1.4rem',
-        // extra small
-        [theme.breakpoints.only('xs')]: {
-            fontSize: '0.6rem'
-        },
-        // small
-        [theme.breakpoints.only('sm')]: {
-            fontSize: '0.8rem'
-        },
-        // medium
-        [theme.breakpoints.only('md')]: {
-            fontSize: '1rem'
-        },
-        // large
-        [theme.breakpoints.only('lg')]: {
-            fontSize: '1.2rem'
-        }
-    },
-    subtitle: {
-        color: theme.palette.primary.light,
-        whiteSpace: 'nowrap',
-        textShadow: `${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px, ${theme.palette.primary.dark} 0px 0px 1px`,
-        fontSmoothing: 'antialiased',
-        fontSize: '1.2rem',
-        // extra small
-        [theme.breakpoints.only('xs')]: {
-            fontSize: '0.4rem'
-        },
-        // small
-        [theme.breakpoints.only('sm')]: {
-            fontSize: '0.6rem'
-        },
-        // medium
-        [theme.breakpoints.only('md')]: {
-            fontSize: '0.8rem'
-        },
-        // large
-        [theme.breakpoints.only('lg')]: {
-            fontSize: '1.0rem'
-        }
     },
     titleBar: {
         background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
@@ -80,6 +37,30 @@ const styles = theme => ({
         // large
         [theme.breakpoints.only('lg')]: {
             height: 70,
+        }
+    },
+    titleWrap: {
+        marginLeft: 18,
+        marginRight: 18,
+        // extra small
+        [theme.breakpoints.only('xs')]: {
+            marginLeft: 5,
+            marginRight: 5,
+        },
+        // small
+        [theme.breakpoints.only('sm')]: {
+            marginLeft: 8,
+            marginRight: 8,
+        },
+        // medium
+        [theme.breakpoints.only('md')]: {
+            marginLeft: 11,
+            marginRight: 11,
+        },
+        // large
+        [theme.breakpoints.only('lg')]: {
+            marginLeft: 14,
+            marginRight: 14,
         }
     },
     divImage: {
