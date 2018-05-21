@@ -17,7 +17,7 @@ import MoreIcon from '@material-ui/icons/More'
 
 import * as actions from '../redux/actions'
 
-import styles from '../styles'
+import { homeStyles as styles } from '../styles'
 
 class Home extends Component {
     constructor (props) {
