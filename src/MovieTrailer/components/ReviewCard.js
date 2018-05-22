@@ -61,6 +61,7 @@ class ReviewCard extends React.Component {
     }
 
     _getDirectorComponents = (director) => {
+        director = director || 'unknown'
         return <a href={`/director/${director.trim().replace(/ /g, '%20')}`}>{director.trim()}</a>
     }
 
@@ -140,12 +141,12 @@ class ReviewCard extends React.Component {
                                 {
                                     icon: '/icons/vn_icon_64.png',
                                     label: 'Tóm tắt',
-                                    content: `${detail.PlotVI}`
+                                    content: `${detail.PlotVI}` || 'Đang cập nhật ...'
                                 },
                                 {
                                     icon: '/icons/us_icon_64.png',
                                     label: 'Plot',
-                                    content: `${detail.PlotEN}`
+                                    content: `${detail.PlotEN}` || 'Updating ...'
                                 }
                             ]}
                         />
