@@ -2,6 +2,8 @@ import red from '@material-ui/core/colors/red'
 import orange from '@material-ui/core/colors/orange'
 
 import textStyles from './textStyles'
+import commonStyle from './commonStyle'
+
 
 const styles = theme => ({
     title: {
@@ -16,8 +18,12 @@ const styles = theme => ({
         maxWidth: '100%',
     },
     media: {
-        height: 0,
-        paddingTop: '20%'
+        // height: 0,
+        // paddingTop: '20%',
+        ...commonStyle(theme, {key: 'height', value: 300, variant: 50, unit: 'px'}),
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     actions: {
         display: 'flex',
@@ -34,28 +40,7 @@ const styles = theme => ({
     },
     avatar: {
         backgroundColor: red[500],
-        width: 100,
-        height: 100,
-        // extra small
-        [theme.breakpoints.only('xs')]: {
-            width: 40,
-            height: 40,
-        },
-        // small
-        [theme.breakpoints.only('sm')]: {
-            width: 55,
-            height: 55,
-        },
-        // medium
-        [theme.breakpoints.only('md')]: {
-            width: 70,
-            height: 70,
-        },
-        // large
-        [theme.breakpoints.only('lg')]: {
-            width: 85,
-            height: 85,
-        }
+        ...commonStyle(theme, {key: ['width', 'height'], value: 100, variant: 15, unit: 'px'}),
     },
     avatarText: {
         ...textStyles(theme, {textShadowColor: orange[500], textSize: 3.0, textDecreaseSize: 0.5})
@@ -65,6 +50,13 @@ const styles = theme => ({
     },
     paragraph: {
         ...textStyles(theme, {textColor: 'black', textShadowColor: theme.palette.text.secondary, textSize: 1.3, textDecreaseSize: 0.2})
+    },
+    playIcon: {
+        ...commonStyle(theme, {key: 'fontSize', value: 6, variant: 1, unit: 'rem'}),
+        color: 'red'
+    },
+    playButton: {
+        ...commonStyle(theme, {key: ['width', 'height'], value: 240, variant: 48, unit: 'px'}),
     }
 })
 

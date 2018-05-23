@@ -1,4 +1,5 @@
 import textStyles from './textStyles'
+import commonStyle from './commonStyle'
 
 const styles = theme => ({
     title: {
@@ -28,47 +29,10 @@ const styles = theme => ({
     },
     titleBar: {
         background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-        height: 80,
-        // extra small
-        [theme.breakpoints.only('xs')]: {
-            height: 40,
-        },
-        // small
-        [theme.breakpoints.only('sm')]: {
-            height: 50,
-        },
-        // medium
-        [theme.breakpoints.only('md')]: {
-            height: 60,
-        },
-        // large
-        [theme.breakpoints.only('lg')]: {
-            height: 70,
-        }
+        ...commonStyle(theme, {key: 'height', value: 80, variant: 10})
     },
     titleWrap: {
-        marginLeft: 18,
-        marginRight: 18,
-        // extra small
-        [theme.breakpoints.only('xs')]: {
-            marginLeft: 5,
-            marginRight: 5,
-        },
-        // small
-        [theme.breakpoints.only('sm')]: {
-            marginLeft: 8,
-            marginRight: 8,
-        },
-        // medium
-        [theme.breakpoints.only('md')]: {
-            marginLeft: 11,
-            marginRight: 11,
-        },
-        // large
-        [theme.breakpoints.only('lg')]: {
-            marginLeft: 14,
-            marginRight: 14,
-        }
+        ...commonStyle(theme, {key: ['marginLeft', 'marginRight'], value: 18, variant: 4}),
     },
     divImage: {
         height: '100%',

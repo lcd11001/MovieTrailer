@@ -19,6 +19,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import PlayIcon from '@material-ui/icons/PlayCircleOutline'
 
 import IconLabelTabs from './IconLabelTabs'
 
@@ -129,11 +130,15 @@ class ReviewCard extends React.Component {
                         }
                     />
 
-                    <CardMedia
-                        className={classes.media}
-                        image={detail.NewBackdrop}
-                        title={detail.KnownAs}
-                    />
+                        <CardMedia
+                            className={classes.media}
+                            image={detail.NewBackdrop}
+                            title={detail.KnownAs}
+                        >
+                            <IconButton className={classes.playButton}>
+                                <PlayIcon className={classes.playIcon}/>
+                            </IconButton>
+                        </CardMedia>
 
                     <CardContent>
                         <IconLabelTabs 

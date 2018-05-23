@@ -21,41 +21,15 @@ import * as actions from '../redux/actions'
 
 import { homeStyles as styles } from '../styles'
 
-class MovieDetailCard extends React.Component {
+class PlayMovie extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
             expanded: false,
-            movieID: props.match.params.movieID
+            trailer: props.match.params.trailer
         }
     }
-
-
-
-    static getDerivedStateFromProps(nextProps, prevState) {
-        return {
-            movieID: nextProps.match.params.movieID
-        }
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextState.movieID !== this.state.movieID) {
-            this.props.loadMovieDetail(nextState.movieID)
-        }
-
-        return true
-    }
-
-    componentDidMount() {
-        this.props.loadMovieDetail(this.state.movieID)
-    }
-
-    handleExpandClick = () => {
-        this.setState({ expanded: !this.state.expanded })
-    }
-
-
 
     render() {
         // console.log('MovieDetail', this.props)
@@ -80,29 +54,20 @@ class MovieDetailCard extends React.Component {
         if (Error) {
             return (
                 <Fragment>
-                    <PaperSheet title={'MovieDetail page error'} description={Error} />
+                    <PaperSheet title={'PlayMovie page error'} description={Error} />
                 </Fragment>
             )
         }
 
         return (
             <Fragment>
-                <ReviewCard detail={detail} />
-                <div className={classes.divHeader}>
-                    <IconButton>
-                        <QueuePlayNextIcon color='primary' />
-                    </IconButton>
-                    <Typography className={classes.header}>
-                        Phim liên quan:
-                    </Typography>
-                </div>
-                <MultiLinesGridList data={detail.Relative} cols={7} cellHeight={300} />
+                
             </Fragment>
         )
     }
 }
 
-MovieDetailCard.propTypes = {
+PlayMovie.propTypes = {
     classes: PropTypes.object.isRequired
 }
 
@@ -123,4 +88,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default compose(withStyles(styles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(MovieDetailCard)
+export default compose(withStyles(styles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(PlayMovie)

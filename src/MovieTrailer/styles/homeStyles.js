@@ -1,3 +1,5 @@
+import commonStyle from './commonStyle'
+
 const styles = theme => ({
     loading: {
         display: 'flex',
@@ -17,23 +19,7 @@ const styles = theme => ({
         whiteSpace: 'normal',
         textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
         fontSmoothing: 'antialiased',
-        fontSize: '2.0rem',
-        // extra small
-        [theme.breakpoints.only('xs')]: {
-            fontSize: '0.8rem'
-        },
-        // small
-        [theme.breakpoints.only('sm')]: {
-            fontSize: '1.1rem'
-        },
-        // medium
-        [theme.breakpoints.only('md')]: {
-            fontSize: '1.4rem'
-        },
-        // large
-        [theme.breakpoints.only('lg')]: {
-            fontSize: '1.7rem'
-        }
+        ...commonStyle(theme, {key: 'fontSize', value: 2.0, variant: 0.3, unit: 'rem'}),
     },
 })
 
