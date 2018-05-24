@@ -98,11 +98,16 @@ class ReviewCard extends React.Component {
         }
     }
 
+    _onClick = (movieID) => {
+        console.log('_onClick', movieID)
+    }
+
     render() {
         const { 
             classes, 
             detail,
-            width 
+            width,
+            onPlay = this.props.onPlay || this._onClick
         } = this.props
 
         const _flexDirection = this._calcFlexDirection(width)
@@ -135,7 +140,7 @@ class ReviewCard extends React.Component {
                             image={detail.NewBackdrop}
                             title={detail.KnownAs}
                         >
-                            <IconButton className={classes.playButton}>
+                            <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID)}>
                                 <PlayIcon className={classes.playIcon}/>
                             </IconButton>
                         </CardMedia>

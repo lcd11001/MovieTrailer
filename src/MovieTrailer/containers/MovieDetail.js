@@ -16,6 +16,8 @@ import ReviewCard from '../components/ReviewCard'
 import IconButton from '@material-ui/core/IconButton'
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext'
 
+import { store } from '../redux/store'
+import { push } from 'react-router-redux'
 
 import * as actions from '../redux/actions'
 
@@ -55,7 +57,10 @@ class MovieDetailCard extends React.Component {
         this.setState({ expanded: !this.state.expanded })
     }
 
-
+    _onPlayMovie = (movieID) => {
+        let url = '/play/' + movieID
+        store.dispatch(push(url))
+    }
 
     render() {
         // console.log('MovieDetail', this.props)
@@ -87,7 +92,7 @@ class MovieDetailCard extends React.Component {
 
         return (
             <Fragment>
-                <ReviewCard detail={detail} />
+                <ReviewCard detail={detail} onPlay={this._onPlayMovie}/>
                 <div className={classes.divHeader}>
                     <IconButton>
                         <QueuePlayNextIcon color='primary' />

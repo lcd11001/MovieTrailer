@@ -27,12 +27,13 @@ class PlayMovie extends React.Component {
 
         this.state = {
             expanded: false,
-            trailer: props.match.params.trailer
+            trailer: props.match.params.trailer,
+            movieID: props.match.params.movieID
         }
     }
 
     render() {
-        // console.log('MovieDetail', this.props)
+        console.log('PlayMovie', this.props)
         const {
             fetch: {
                 Loading,
@@ -40,10 +41,9 @@ class PlayMovie extends React.Component {
             },
             classes,
             width,
-            detail
         } = this.props
 
-        if (Loading || detail === null) {
+        if (Loading) {
             return (
                 <div className={classes.loading}>
                     <CircularLoading />
@@ -61,7 +61,7 @@ class PlayMovie extends React.Component {
 
         return (
             <Fragment>
-                
+                <p>Playing...{this.state.movieID}</p>
             </Fragment>
         )
     }
