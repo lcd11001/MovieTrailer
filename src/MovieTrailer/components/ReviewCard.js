@@ -98,8 +98,8 @@ class ReviewCard extends React.Component {
         }
     }
 
-    _onClick = (movieID) => {
-        console.log('_onClick', movieID)
+    _onClick = (movieID, trailer) => {
+        console.log('_onClick', movieID, trailer)
     }
 
     render() {
@@ -140,8 +140,8 @@ class ReviewCard extends React.Component {
                             image={detail.NewBackdrop}
                             title={detail.KnownAs}
                         >
-                            <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID)}>
-                                <PlayIcon className={classes.playIcon}/>
+                            <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID, detail.Trailer)}>
+                                <PlayIcon className={classnames(classes.playIcon, classes.playIconHover)}/>
                             </IconButton>
                         </CardMedia>
 

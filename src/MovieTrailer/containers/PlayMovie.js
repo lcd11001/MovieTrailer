@@ -27,7 +27,7 @@ class PlayMovie extends React.Component {
 
         this.state = {
             expanded: false,
-            trailer: props.match.params.trailer,
+            trailer: props.match.params.url ? decodeURI( atob(props.match.params.url.replace(/-/g, '\/')) ) : '',
             movieID: props.match.params.movieID
         }
     }
@@ -61,7 +61,17 @@ class PlayMovie extends React.Component {
 
         return (
             <Fragment>
-                <p>Playing...{this.state.movieID}</p>
+                {
+                    this.state.trailer && (
+                        <p>Playing trailler ...{this.state.trailer}</p>
+                    )
+                }
+                {
+                    this.state.movieID && (
+                        <p>Playing movieID ...{this.state.movieID}</p>
+                    )
+                }
+                
             </Fragment>
         )
     }
