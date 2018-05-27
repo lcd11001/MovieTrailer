@@ -8,11 +8,11 @@ import commonStyle from './commonStyle'
 
 const styles = theme => ({
     title: {
-        ...textStyles(theme, {textColor: 'black', textShadowColor: '#2F4F4F', textSize: 3.0, textDecreaseSize: 0.5}),
+        ...textStyles(theme, {textColor: 'black', textShadowColor: '#AAA', textSize: 3.0, textDecreaseSize: 0.5}),
     },
 
     subtitle: {
-        ...textStyles(theme, {textColor: 'black', textShadowColor: '#2F4F4F', textSize: 2.0, textDecreaseSize: 0.4}),
+        ...textStyles(theme, {textColor: 'black', textShadowColor: '#AAA', textSize: 2.0, textDecreaseSize: 0.4}),
     },
 
     card: {

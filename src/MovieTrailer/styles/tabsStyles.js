@@ -4,7 +4,7 @@ import commonStyle from './commonStyle'
 
 const styles = theme => ({
     content: {
-        ...textStyles(theme, {textColor: 'black', textSize: 1.7, textDecreaseSize: 0.25, textWrap: 'normal'}),
+        ...textStyles(theme, {textColor: 'black', textShadowColor: '#AAA', textSize: 1.7, textDecreaseSize: 0.25, textWrap: 'normal'}),
         margin: 30
     },
     firstLetter: {

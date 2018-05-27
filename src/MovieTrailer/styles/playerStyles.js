@@ -7,7 +7,7 @@ const styles = theme => ({
     },
 
     subtitle: {
-        ...textStyles(theme, {textColor: 'black', textShadowColor: '#2F4F4F', textSize: 2.0, textDecreaseSize: 0.4}),
+        ...textStyles(theme, {textColor: 'black', textShadowColor: '#AAA', textSize: 2.0, textDecreaseSize: 0.4}),
     },
     centerDiv: {
         display: 'flex',
