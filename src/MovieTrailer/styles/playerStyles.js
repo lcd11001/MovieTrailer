@@ -3,11 +3,10 @@ import commonStyle from './commonStyle'
 
 const styles = theme => ({
     title: {
-        ...textStyles(theme, {textColor: 'black', textShadowColor: '#AAA', textSize: 3.0, textDecreaseSize: 0.5}),
+        ...textStyles(theme, {textColor: theme.palette.primary.main, useTextShadow: false, textSize: 3.0, textDecreaseSize: 0.5}),
     },
-
     subtitle: {
-        ...textStyles(theme, {textColor: 'black', textShadowColor: '#AAA', textSize: 2.0, textDecreaseSize: 0.4}),
+        ...textStyles(theme, {textColor: 'black', useTextShadow: false, textSize: 2.0, textDecreaseSize: 0.4}),
     },
     centerDiv: {
         display: 'flex',
@@ -15,12 +14,16 @@ const styles = theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         // background: 'red',
+        paddingTop: '56.25%', // 16:9
+        height: 0,
+        position: 'relative'
     },
     playerWrapper: {
-        // ...commonStyle(theme, {key: ['width', 'height'], value: [1600, 900], variant: [300, 168]}),
-        // 16 : 9
-        width: '80%',
-        height: '45%'
+        position: 'absolute',
+        top: '5%',
+        left: '5%',
+        width: '90%',
+        height: '90%'
     },
 
     reactPlayer: {

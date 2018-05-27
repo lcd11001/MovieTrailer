@@ -171,12 +171,9 @@ class PlayMovie extends React.Component {
             classes
         } = this.props
 
-        const w = parseInt (window.innerWidth * 0.8, 10)
-        const h = parseInt ( w * 9 / 16, 10 )
-
         return (
             <div className={classes.centerDiv}>
-                <div className={classes.playerWrapper} style={{width: w, height: h}} >
+                <div className={classes.playerWrapper}>
                     <ReactPlayer
                     ref={this._ref}
                     className={classes.reactPlayer}
@@ -236,10 +233,10 @@ class PlayMovie extends React.Component {
         return (
             <Fragment>
                 {
-                    detail && <h1 className={classes.title}>{detail.KnownAs}</h1>
+                    detail && <Typography className={classes.title}>{detail.KnownAs}</Typography>
                 }
                 {
-                    detail && <h3 className={classes.subtitle}>{detail.MovieName}</h3>
+                    detail && <Typography className={classes.subtitle}>{detail.MovieName}</Typography>
                 }
                 {
                     this.state.trailer && this._renderPlayer(this.state.trailer)

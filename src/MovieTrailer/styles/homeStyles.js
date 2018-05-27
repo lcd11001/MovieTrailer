@@ -1,4 +1,5 @@
 import commonStyle from './commonStyle'
+import textStyles from './textStyles'
 
 const styles = theme => ({
     loading: {
@@ -10,17 +11,16 @@ const styles = theme => ({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignContent: 'center',
-        backgroundColor: theme.palette.primary.light,
+        backgroundColor: theme.palette.primary.main,
         width: '100%',
         alignItems: 'center'
     },
     header: {
-        color: theme.palette.text.primary,
-        whiteSpace: 'normal',
-        textShadow: `${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px, ${theme.palette.text.secondary} 0px 0px 1px`,
-        fontSmoothing: 'antialiased',
-        ...commonStyle(theme, {key: 'fontSize', value: 2.0, variant: 0.3, unit: 'rem'}),
+        ...textStyles(theme, {textColor: theme.palette.primary.contrastText, textShadowColor: theme.palette.primary.light, textSize: 2.0, textDecreaseSize: 0.3}),
     },
+    moreIcon: {
+        color: theme.palette.primary.contrastText
+    }
 })
 
 export default styles

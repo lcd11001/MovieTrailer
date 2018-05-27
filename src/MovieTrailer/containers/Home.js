@@ -87,7 +87,7 @@ class Home extends Component {
                         <Fragment key={CategoryName}>
                             <div className={classes.divHeader}>
                                 <IconButton>
-                                    <MoreIcon color='primary'/>
+                                    <MoreIcon className={classes.moreIcon}/>
                                 </IconButton>
                                 <Typography className={classes.header}>
                                     {CategoryName}

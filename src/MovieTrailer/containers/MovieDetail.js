@@ -98,7 +98,7 @@ class MovieDetailCard extends React.Component {
                 <ReviewCard detail={detail} onPlay={this._onPlayMovie}/>
                 <div className={classes.divHeader}>
                     <IconButton>
-                        <QueuePlayNextIcon color='primary' />
+                        <QueuePlayNextIcon className={classes.moreIcon} />
                     </IconButton>
                     <Typography className={classes.header}>
                         Phim liên quan:

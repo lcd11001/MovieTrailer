@@ -140,9 +140,11 @@ class ReviewCard extends React.Component {
                             image={detail.NewBackdrop}
                             title={detail.KnownAs}
                         >
-                            <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID, detail.Trailer)}>
-                                <PlayIcon className={classnames(classes.playIcon, classes.playIconHover)}/>
-                            </IconButton>
+                            <div className={classes.divPlayButton}>
+                                <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID, detail.Trailer)}>
+                                    <PlayIcon className={classnames(classes.playIcon, classes.playIconHover)}/>
+                                </IconButton>
+                            </div>
                         </CardMedia>
 
                     <CardContent>
