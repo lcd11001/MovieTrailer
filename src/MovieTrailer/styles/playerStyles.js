@@ -20,10 +20,10 @@ const styles = theme => ({
     },
     playerWrapper: {
         position: 'absolute',
-        top: '5%',
-        left: '5%',
-        width: '90%',
-        height: '90%'
+        top: '0%',
+        left: '7%',
+        width: '86%',
+        height: '86%'
     },
 
     reactPlayer: {
