@@ -4,6 +4,7 @@ import carouselStyles from './carouselStyles'
 import cardStyles from './cardStyles'
 import tabsStyles from './tabsStyles'
 import textStyles from './textStyles'
+import playerStyles from './playerStyles'
 
 export {
     homeStyles,
@@ -11,5 +12,6 @@ export {
     carouselStyles,
     cardStyles,
     tabsStyles,
-    textStyles
+    textStyles,
+    playerStyles
 }
