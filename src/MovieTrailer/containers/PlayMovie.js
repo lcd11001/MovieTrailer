@@ -198,6 +198,7 @@ class PlayMovie extends React.Component {
                     onError={e => console.log('onError', e)}
                     onProgress={this._nProgress}
                     onDuration={this._onDuration}
+                    controls={true}
                     />
                 </div>
             </div>
