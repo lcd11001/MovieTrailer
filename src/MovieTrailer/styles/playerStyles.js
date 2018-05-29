@@ -14,15 +14,15 @@ const styles = theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         // background: 'red',
-        paddingTop: '56.25%', // 16:9
+        paddingTop: '46.125%', // 16:9 => 56.25% => w: 80% & top: 1% => 56.25 * 0.82 => 46.125%
         height: 0,
         position: 'relative'
     },
     playerWrapper: {
         position: 'absolute',
         top: '1%',
-        left: '1%',
-        width: '98%',
+        left: '10%',
+        width: '80%',
         height: '98%'
     },
 
