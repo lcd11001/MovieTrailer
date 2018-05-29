@@ -7,6 +7,7 @@ import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
 
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 import CircularLoading from '../components/CircularLoading'
 import PaperSheet from '../components/PaperSheet'
@@ -32,7 +33,7 @@ class PlayMovie extends React.Component {
 
         this.state = {
             expanded: false,
-            trailer: props.match.params.url ? decodeURI( atob(props.match.params.url.replace(/-/g, '\/')) ) : '',
+            trailer: props.match.params.url ? decodeURI(atob(props.match.params.url.replace(/-/g, '\/'))) : '',
             movieID: props.match.params.movieID,
 
             // video player state
@@ -60,71 +61,71 @@ class PlayMovie extends React.Component {
     }
 
     _playPause = () => {
-        this.setState({ 
-            playing: !this.state.playing 
+        this.setState({
+            playing: !this.state.playing
         })
     }
 
     _stop = () => {
-        this.setState({ 
-            url: null, 
-            playing: false 
+        this.setState({
+            url: null,
+            playing: false
         })
     }
 
     _toggleLoop = () => {
-        this.setState({ 
-            loop: !this.state.loop 
+        this.setState({
+            loop: !this.state.loop
         })
     }
 
     _toggleMuted = () => {
-        this.setState({ 
-            muted: !this.state.muted 
+        this.setState({
+            muted: !this.state.muted
         })
     }
 
     _setVolume = e => {
-        this.setState({ 
-            volume: parseFloat(e.target.value) 
+        this.setState({
+            volume: parseFloat(e.target.value)
         })
     }
 
     _setPlaybackRate = e => {
-        this.setState({ 
-            playbackRate: parseFloat(e.target.value) 
+        this.setState({
+            playbackRate: parseFloat(e.target.value)
         })
     }
 
     _onPlay = () => {
         console.log('onPlay')
-        this.setState({ 
-            playing: true 
+        this.setState({
+            playing: true
         })
     }
-      
+
     _onPause = () => {
         console.log('onPause')
-        this.setState({ 
-            playing: false 
+        this.setState({
+            playing: false
         })
     }
-      
+
     _onSeekMouseDown = e => {
-        this.setState({ 
-            seeking: true 
+        this.setState({
+            seeking: true
         })
     }
-      
+
     _onSeekChange = e => {
-        this.setState({ 
-            played: parseFloat(e.target.value) 
+        this.setState({
+            played: parseFloat(e.target.value)
         })
     }
 
     _onSeekMouseUp = e => {
-        this.setState({ 
-            seeking: false 
+        this.setState({
+            seeking: false
         })
         this.player.seekTo(parseFloat(e.target.value))
     }
@@ -136,35 +137,35 @@ class PlayMovie extends React.Component {
             this.setState(state)
         }
     }
-      
+
     _onEnded = () => {
         console.log('onEnded')
-        this.setState({ 
-            playing: this.state.loop 
+        this.setState({
+            playing: this.state.loop
         })
     }
-      
+
     _onDuration = (duration) => {
         console.log('onDuration', duration)
-        this.setState({ 
-            duration 
+        this.setState({
+            duration
         })
     }
-      
+
     _onClickFullscreen = () => {
         screenfull.request(findDOMNode(this.player))
     }
 
     _renderPlayer = (url) => {
-        const { 
-            playing, 
-            volume, 
-            muted, 
-            loop, 
-            played, 
-            loaded, 
-            duration, 
-            playbackRate 
+        const {
+            playing,
+            volume,
+            muted,
+            loop,
+            played,
+            loaded,
+            duration,
+            playbackRate
         } = this.state
 
         const {
@@ -175,31 +176,54 @@ class PlayMovie extends React.Component {
             <div className={classes.centerDiv}>
                 <div className={classes.playerWrapper}>
                     <ReactPlayer
-                    ref={this._ref}
-                    className={classes.reactPlayer}
-                    width='100%'
-                    height='100%'
-                    url={url}
-                    playing={playing}
-                    loop={loop}
-                    playbackRate={playbackRate}
-                    volume={volume}
-                    muted={muted}
-                    onReady={() => console.log('onReady')}
-                    onStart={() => console.log('onStart')}
-                    onPlay={this._onPlay}
-                    onPause={this._onPause}
-                    onBuffer={() => console.log('onBuffer')}
-                    onSeek={e => console.log('onSeek', e)}
-                    onEnded={this._onEnded}
-                    onError={e => console.log('onError', e)}
-                    onProgress={this._nProgress}
-                    onDuration={this._onDuration}
-                    controls={true}
+                        ref={this._ref}
+                        className={classes.reactPlayer}
+                        width='100%'
+                        height='100%'
+                        url={url}
+                        playing={playing}
+                        loop={loop}
+                        playbackRate={playbackRate}
+                        volume={volume}
+                        muted={muted}
+                        onReady={() => console.log('onReady')}
+                        onStart={() => console.log('onStart')}
+                        onPlay={this._onPlay}
+                        onPause={this._onPause}
+                        onBuffer={() => console.log('onBuffer')}
+                        onSeek={e => console.log('onSeek', e)}
+                        onEnded={this._onEnded}
+                        onError={e => console.log('onError', e)}
+                        onProgress={this._nProgress}
+                        onDuration={this._onDuration}
+                        controls={true}
                     />
                 </div>
             </div>
         )
+    }
+
+    _renderEpisode = (Episode, Sequence) => {
+        const { classes } = this.props
+        const buttons = []
+
+        for (let i = 0; i < Episode; i++) {
+            if (i > Sequence ) {
+                buttons.push(
+                    <Button size="small" variant="outlined" disabled className={classes.button}>
+                        Tập {i}
+                    </Button>
+                )
+            } else {
+                buttons.push(
+                    <Button size="small" variant="outlined" color="primary" className={classes.button}>
+                        Tập {i}
+                    </Button>
+                )
+            }
+        }
+
+        return buttons
     }
 
     render() {
@@ -233,20 +257,29 @@ class PlayMovie extends React.Component {
         return (
             <Fragment>
                 {
-                    detail && <Typography className={classes.title}>{detail.KnownAs}</Typography>
-                }
-                {
-                    detail && <Typography className={classes.subtitle}>{detail.MovieName}</Typography>
-                }
-                {
                     this.state.trailer && this._renderPlayer(this.state.trailer)
                 }
+                {
+                    detail && (
+                        <Fragment>
+                            <Typography className={classes.title}>{detail.KnownAs}</Typography>
+                            <Typography className={classes.subtitle}>{detail.MovieName || detail.Name}</Typography>
+                        </Fragment>
+                    )
+                }
+
+                {
+                    detail && detail.Episode > 0 && (
+                        this._renderEpisode(detail.Episode, detail.Sequence)
+                    )
+                }
+
                 {
                     this.state.movieID && (
                         <p>Playing movieID ...{this.state.movieID}</p>
                     )
                 }
-                
+
             </Fragment>
         )
     }

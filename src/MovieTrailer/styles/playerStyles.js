@@ -21,13 +21,17 @@ const styles = theme => ({
     playerWrapper: {
         position: 'absolute',
         top: '1%',
-        left: '7%',
-        width: '86%',
-        height: '86%'
+        left: '1%',
+        width: '98%',
+        height: '98%'
     },
 
     reactPlayer: {
         margin: 0,
+    },
+
+    button: {
+        margin: theme.spacing.unit,
     }
 })
 
