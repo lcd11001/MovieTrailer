@@ -65,7 +65,7 @@ class IconLabelTabs extends React.Component {
                                         <img src={value.icon} alt={value.icon} className={classes.tabIcon} />
                                     } 
                                     label={
-                                        <Typography className={index == this.state.value ? classes.tabLabelActive : classes.tabLabel}>{value.label}</Typography>
+                                        <Typography className={index === this.state.value ? classes.tabLabelActive : classes.tabLabel}>{value.label}</Typography>
                                     } 
                                     className={classes.tab}
                                 />
