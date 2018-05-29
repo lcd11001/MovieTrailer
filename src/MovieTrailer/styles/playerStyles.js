@@ -6,7 +6,7 @@ const styles = theme => ({
         ...textStyles(theme, {textColor: theme.palette.primary.main, useTextShadow: false, textSize: 3.0, textDecreaseSize: 0.5}),
     },
     subtitle: {
-        ...textStyles(theme, {textColor: 'black', useTextShadow: false, textSize: 2.0, textDecreaseSize: 0.4}),
+        ...textStyles(theme, {textColor: 'black', useTextShadow: false, textSize: 2.0, textDecreaseSize: 0.3}),
     },
     centerDiv: {
         display: 'flex',
@@ -20,7 +20,7 @@ const styles = theme => ({
     },
     playerWrapper: {
         position: 'absolute',
-        top: '0%',
+        top: '1%',
         left: '7%',
         width: '86%',
         height: '86%'

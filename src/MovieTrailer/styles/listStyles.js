@@ -7,7 +7,7 @@ const styles = theme => ({
     },
 
     subtitle: {
-        ...textStyles(theme, {textColor: 'white', textSize: 1.2, textDecreaseSize: 0.2}),
+        ...textStyles(theme, {textColor: 'white', textSize: 1.2, textDecreaseSize: 0.15}),
     },
 
     root: {

@@ -170,7 +170,7 @@ const MultiLinesGridList = (props) => {
                                 }
                                 subtitle={  
                                     <Typography className={classes.subtitle}>
-                                        {movie.MovieName}
+                                        {movie.MovieName || movie.Name}
                                     </Typography>
                                 }
                                 classes={{

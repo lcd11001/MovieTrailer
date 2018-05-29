@@ -12,7 +12,7 @@ const styles = theme => ({
     },
 
     subtitle: {
-        ...textStyles(theme, {textColor: 'black', useTextShadow: false, textSize: 2.0, textDecreaseSize: 0.4}),
+        ...textStyles(theme, {textColor: 'black', useTextShadow: false, textSize: 2.0, textDecreaseSize: 0.3}),
     },
 
     card: {
