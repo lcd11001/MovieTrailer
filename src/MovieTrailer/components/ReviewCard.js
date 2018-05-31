@@ -112,12 +112,15 @@ class ReviewCard extends React.Component {
         } = this.props
 
         if (detail === null) {
+            // console.log('ReviewCard is loading')
             return (
                 <div className={classes.divLoading}>
                     <CircularLoading />
                 </div>
             )
         }
+
+        // console.log('ReviewCard is loaded')
 
         const _flexDirection = this._calcFlexDirection(width)
         const _flexSize = this._calcFlexSize(width)
@@ -262,6 +265,7 @@ class ReviewCard extends React.Component {
 
 ReviewCard.propTypes = {
     classes: PropTypes.object.isRequired,
+    detail: PropTypes.object.isRequired
 }
 
 export default compose(withStyles(styles), withWidth())(ReviewCard)

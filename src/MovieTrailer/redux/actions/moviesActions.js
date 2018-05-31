@@ -1,6 +1,7 @@
 import {
     HOME_MOVIES_LOAD,
-    MOVIE_DETAIL
+    MOVIE_DETAIL,
+    CLEAR_MOVIE_DETAIL
 } from './actionTypes'
 
 import * as API from '../../api'
@@ -43,7 +44,7 @@ export const loadMovieDetail = (movieID) => (
 
 export const clearMovieDetail = () => (
     {   
-        type: MOVIE_DETAIL,
+        type: CLEAR_MOVIE_DETAIL,
         payload: null
     }
 )

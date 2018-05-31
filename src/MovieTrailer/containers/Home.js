@@ -30,35 +30,28 @@ class Home extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            needRefresh: props.movies.Banner.length === 0,
-            showReview: 0
+            showReview: false,
         }
         // console.log('Home constructor', this.state)
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        // console.log('shouldComponentUpdate', 'nextProps', nextProps, 'nextState', nextState)
-        return nextState.needRefresh
-    }
-
     componentDidMount() {
         // console.log('componentDidMount')
-        if (this.state.needRefresh) {
+        if (this.props.movies.Banner.length === 0) {
             this.props.loadHomeMovies()
         }
     }
 
-    componentWillUnmount() {
-        this.props.clearMovieDetail()
-    }
-
     _onInfoClicked = (movieID) => {
-        console.log("Home on info click ", movieID)
-        this.setState({
-            showReview: movieID
-        })
+        // console.log("Home on info click ", movieID)
+        if (this.props.movies.MovieDetail === null || movieID !== this.props.movies.MovieDetail.MovieID) {
+            this.props.clearMovieDetail()
+            this.props.loadMovieDetail(movieID)
+        }
 
-        this.props.loadMovieDetail(movieID)
+        this.setState({
+            showReview: true
+        })
     }
 
     _onPlayMovie = (movieID, trailer) => {
@@ -81,17 +74,15 @@ class Home extends Component {
             top: `${top}%`,
             left: `${left}%`,
             width: `${width}%`,
-            height: `${height}%`,
+            maxHeight: `${height}%`,
             // backgroundColor: 'rgba(255, 0, 0, 0.5)'
         };
     }
 
     _handleClose = () => {
         this.setState({
-            showReview: 0
+            showReview: false
         })
-
-        this.props.clearMovieDetail()
     }
 
     render() {
@@ -103,6 +94,7 @@ class Home extends Component {
             movies: {
                 Banner,
                 Categories,
+                MovieDetail
             },
             classes
         } = this.props
@@ -148,12 +140,12 @@ class Home extends Component {
                 }
 
                 <Modal 
-                    open={showReview !== 0}
+                    open={showReview}
                     onClose={this._handleClose}
                     disableAutoFocus={true}
                 >
                     <div style={this._getModalStyle()}>
-                        <ReviewCard detail={this.props.detail} onPlay={this._onPlayMovie}/>
+                        <ReviewCard detail={MovieDetail} onPlay={this._onPlayMovie}/>
                     </div>
                 </Modal>
                 
@@ -173,7 +165,6 @@ const mapStateToProps = (state) => (
     {
         fetch: state.fetch,
         movies: state.movies,
-        detail: state.movies.MovieDetail,
     }
 )
 

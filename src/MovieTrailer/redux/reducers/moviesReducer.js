@@ -1,6 +1,7 @@
 import {
     HOME_MOVIES_LOAD,
-    MOVIE_DETAIL
+    MOVIE_DETAIL,
+    CLEAR_MOVIE_DETAIL
 } from '../actions/actionTypes'
 
 const moviesReducer = (state = {
@@ -22,7 +23,14 @@ const moviesReducer = (state = {
                 ...state,
                 MovieDetail: action.payload
             }
-            break
+            break   
+
+        case CLEAR_MOVIE_DETAIL:
+            state = {
+                ...state,
+                MovieDetail: action.payload
+            }
+            break;
 
         default:
             break
