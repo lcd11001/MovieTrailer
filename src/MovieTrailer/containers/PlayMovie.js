@@ -33,7 +33,7 @@ class PlayMovie extends React.Component {
 
         this.state = {
             expanded: false,
-            trailer: props.match.params.url ? decodeURI(atob(props.match.params.url.replace(/-/g, '\/'))) : '',
+            trailer: props.match.params.url ? decodeURI(atob(props.match.params.url.replace(/-/g, '/'))) : '',
             movieID: props.match.params.movieID,
 
             // video player state

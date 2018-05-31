@@ -117,7 +117,8 @@ const MultiLinesGridList = (props) => {
         cellHeight,
         maxCellCols = Math.min((props.maxCellCols || 1), props.cols),
         maxCellRows = props.maxCellRows || 1,
-        width
+        width,
+        onInfoClicked = props.onInfoClicked || _onInfoClicked
     } = props
 
     let remainCellCols = cols
@@ -157,7 +158,7 @@ const MultiLinesGridList = (props) => {
                                         <FavoriteBorderIcon color='secondary'/>
                                     </IconButton>
                                     
-                                    <IconButton onClick={() => _onInfoClicked(movie.MovieID)}>
+                                    <IconButton onClick={() => onInfoClicked(movie.MovieID)}>
                                         <InfoIcon color='primary'/>
                                     </IconButton>
                                 </div>
