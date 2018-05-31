@@ -19,6 +19,9 @@ import PaperSheet from '../components/PaperSheet'
 import Carousel from '../components/Carousel'
 import ReviewCard from '../components/ReviewCard'
 
+import { store } from '../redux/store'
+import { push } from 'react-router-redux'
+
 import * as actions from '../redux/actions'
 
 import { homeStyles as styles } from '../styles'
@@ -56,6 +59,14 @@ class Home extends Component {
         })
 
         this.props.loadMovieDetail(movieID)
+    }
+
+    _onPlayMovie = (movieID, trailer) => {
+        let url = trailer 
+            ? '/trailer/' + btoa(encodeURI(trailer)).replace(/\//g, '-')
+            : '/play/' + movieID
+
+        store.dispatch(push(url))
     }
 
     _getModalStyle = () => {
@@ -139,6 +150,7 @@ class Home extends Component {
                 <Modal 
                     open={showReview !== 0}
                     onClose={this._handleClose}
+                    disableAutoFocus={true}
                 >
                     <div style={this._getModalStyle()}>
                         <ReviewCard detail={this.props.detail} onPlay={this._onPlayMovie}/>
