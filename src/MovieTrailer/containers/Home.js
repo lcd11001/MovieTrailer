@@ -56,7 +56,7 @@ class Home extends Component {
 
     _onPlayMovie = (movieID, trailer) => {
         let url = trailer 
-            ? '/trailer/' + btoa(encodeURI(trailer)).replace(/\//g, '-')
+            ? '/trailer/' + btoa(encodeURI(trailer)).replace(/\//g, '-') + '?movieID=' + movieID
             : '/play/' + movieID
 
         store.dispatch(push(url))

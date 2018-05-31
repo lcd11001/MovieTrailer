@@ -29,7 +29,7 @@ class PlayMovie extends React.Component {
         this.state = {
             expanded: false,
             trailer: props.match.params.url ? decodeURI(atob(props.match.params.url.replace(/-/g, '/'))) : '',
-            movieID: props.match.params.movieID
+            movieID: props.match.params.movieID || props.history.location.search.replace(/[?movieID=]/g, '')
         }
     }
 
@@ -63,7 +63,7 @@ class PlayMovie extends React.Component {
     }
 
     render() {
-        console.log('PlayMovie', this.props)
+        console.log('PlayMovie', this.props, this.state)
         const {
             fetch: {
                 Loading,
@@ -125,13 +125,6 @@ class PlayMovie extends React.Component {
                         </Fragment>
                     )
                 }
-                
-                {
-                    this.state.movieID && (
-                        <p>Playing movieID ...{this.state.movieID}</p>
-                    )
-                }
-
             </Fragment>
         )
     }
