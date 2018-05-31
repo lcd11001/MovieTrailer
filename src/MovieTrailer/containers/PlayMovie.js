@@ -33,6 +33,16 @@ class PlayMovie extends React.Component {
         }
     }
 
+    static getDerivedStateFromProps(props, state) {
+        // console.log('getDerivedStateFromProps', props, state)
+        if (props.detail && state.trailer !== props.detail.Trailer) {
+            return {
+                trailer: props.detail.Trailer
+            }
+        }
+        return null
+    }
+
     componentDidMount() {
         if (this.props.detail === null) {
             this.props.loadMovieDetail(this.state.movieID)
@@ -63,7 +73,7 @@ class PlayMovie extends React.Component {
     }
 
     render() {
-        console.log('PlayMovie', this.props, this.state)
+        // console.log('PlayMovie', this.props, this.state)
         const {
             fetch: {
                 Loading,
