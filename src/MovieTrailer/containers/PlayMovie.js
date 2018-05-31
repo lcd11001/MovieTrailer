@@ -25,7 +25,7 @@ import screenfull from 'screenfull'
 
 import * as actions from '../redux/actions'
 
-import { playerStyles as styles } from '../styles'
+import { playerStyles as styles, homeStyles } from '../styles'
 
 class PlayMovie extends React.Component {
     constructor(props) {
@@ -210,13 +210,13 @@ class PlayMovie extends React.Component {
         for (let i = 0; i < Episode; i++) {
             if (i > Sequence ) {
                 buttons.push(
-                    <Button size="small" variant="outlined" disabled className={classes.button}>
+                    <Button key={i} size="small" variant="outlined" disabled className={classes.button}>
                         Tập {i}
                     </Button>
                 )
             } else {
                 buttons.push(
-                    <Button size="small" variant="outlined" color="primary" className={classes.button}>
+                    <Button key={i} size="small" variant="outlined" color="primary" className={classes.button}>
                         Tập {i}
                     </Button>
                 )
@@ -275,6 +275,22 @@ class PlayMovie extends React.Component {
                 }
 
                 {
+                    detail && (
+                        <Fragment>
+                            <div className={classes.divHeader}>
+                                <IconButton>
+                                    <QueuePlayNextIcon className={classes.moreIcon} />
+                                </IconButton>
+                                <Typography className={classes.header}>
+                                    Phim liên quan:
+                                </Typography>
+                            </div>
+                            <MultiLinesGridList data={detail.Relative} cols={7} cellHeight={300} />
+                        </Fragment>
+                    )
+                }
+                
+                {
                     this.state.movieID && (
                         <p>Playing movieID ...{this.state.movieID}</p>
                     )
@@ -306,4 +322,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default compose(withStyles(styles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(PlayMovie)
+export default compose(withStyles(styles), withStyles(homeStyles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(PlayMovie)

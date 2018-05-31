@@ -75,6 +75,7 @@ function Carousel(props) {
         data,
         cellHeight,
         width,
+        onInfoClicked = props.onInfoClicked || _onInfoClicked
     } = props
 
     return (
@@ -89,7 +90,7 @@ function Carousel(props) {
                                     <FavoriteBorderIcon color='secondary'/>
                                 </IconButton>
                                 
-                                <IconButton onClick={() => _onInfoClicked(movie.MovieID)}>
+                                <IconButton onClick={() => onInfoClicked(movie.MovieID)}>
                                     <InfoIcon color='primary'/>
                                 </IconButton>
                             </div>

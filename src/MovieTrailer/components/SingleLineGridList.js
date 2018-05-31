@@ -95,7 +95,8 @@ function SingleLineGridList(props) {
         data,
         cols,
         cellHeight,
-        width
+        width,
+        onInfoClicked = props.onInfoClicked || _onInfoClicked
     } = props
 
     return (
@@ -111,7 +112,7 @@ function SingleLineGridList(props) {
                                     <FavoriteBorderIcon color='secondary'/>
                                 </IconButton>
                                 
-                                <IconButton onClick={() => _onInfoClicked(movie.MovieID)}>
+                                <IconButton onClick={() => onInfoClicked(movie.MovieID)}>
                                     <InfoIcon color='primary'/>
                                 </IconButton>
                             </div>

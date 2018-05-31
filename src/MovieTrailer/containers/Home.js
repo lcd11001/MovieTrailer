@@ -117,7 +117,7 @@ class Home extends Component {
 
         return (
             <Fragment>
-                <Carousel data={Banner} cellHeight={500}/>
+                <Carousel data={Banner} cellHeight={500} onInfoClicked={this._onInfoClicked}/>
 
                 {
                     Categories.map(({
