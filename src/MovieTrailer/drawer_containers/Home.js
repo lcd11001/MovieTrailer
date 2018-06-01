@@ -81,7 +81,8 @@ class HomeDrawer extends Component {
         super(props)
 
         this.state = {
-            open: false
+            open: false,
+            refreshMenu: false
         }
     }
 
@@ -92,9 +93,18 @@ class HomeDrawer extends Component {
     }
 
     _onDrawerClose = (open) => () => {
-        this.setState({
-            open
-        });
+        if (this.state.refreshMenu)
+        {
+            this.setState({
+                refreshMenu: false
+            })
+        }
+        else
+        {
+            this.setState({
+                open
+            });
+        }
     }
 
     _onMenuItemClicked = (item) => {
@@ -102,6 +112,9 @@ class HomeDrawer extends Component {
         {
             console.log('_onMenuItemClicked ' + item.CategoryName + ' => ' + item.IsExpanded)
             item.IsExpanded = !item.IsExpanded
+            this.setState((prevState, props) => ({
+                refreshMenu: true
+            }))
         }
         else
         {
