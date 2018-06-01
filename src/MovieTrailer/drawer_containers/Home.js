@@ -52,7 +52,7 @@ const mailFolderListItems = (
 
 class HomeDrawer extends Component {
     render() {
-        return <Drawer menuItems={mailFolderListItems} children={<Home />} />
+        return <Drawer menuItems={mailFolderListItems} children={<Home />} title='Movie trailers' />
     }
 }
 

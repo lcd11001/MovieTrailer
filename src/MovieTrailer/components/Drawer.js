@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import classNames from 'classnames'
+import compose from 'recompose/compose'
+import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
 
 import Drawer from '@material-ui/core/Drawer'
@@ -35,7 +37,9 @@ class PersistentDrawer extends React.Component {
     }
 
     render() {
-        const { classes, theme, menuItems, children } = this.props
+        console.log('Drawer props', this.props)
+        
+        const { classes, menuItems, children, title } = this.props
         const { anchor, open } = this.state
 
         const drawer = (
@@ -85,7 +89,7 @@ class PersistentDrawer extends React.Component {
                                 <MenuIcon />
                             </IconButton>
                             <Typography variant="title" color="inherit" noWrap>
-                                Persistent drawer
+                                {title}
                             </Typography>
                         </Toolbar>
                     </AppBar>
@@ -97,7 +101,6 @@ class PersistentDrawer extends React.Component {
                         })}
                     >
                         <div className={classes.drawerHeader} />
-                        <Typography>{'You think water moves fast? You should see ice.'}</Typography>
                         <div>
                             {children}
                         </div>
@@ -111,9 +114,9 @@ class PersistentDrawer extends React.Component {
 
 PersistentDrawer.propTypes = {
     classes: PropTypes.object.isRequired,
-    theme: PropTypes.object.isRequired,
     menuItems: PropTypes.object.isRequired,
-    children: PropTypes.element.isRequired
+    children: PropTypes.element.isRequired,
+    title: PropTypes.string
 }
 
-export default withStyles(styles, { withTheme: true })(PersistentDrawer)
+export default compose ( withStyles(styles), withWidth() ) (PersistentDrawer)
