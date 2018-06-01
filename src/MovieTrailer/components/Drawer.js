@@ -10,14 +10,7 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 
-const styles = {
-    list: {
-        width: 250,
-    },
-    drawerPaper: {
-        top: 30
-    }
-};
+import { drawerStyles as styles } from '../styles'
 
 const TemporaryDrawer = (props) => {
     

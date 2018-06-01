@@ -6,6 +6,7 @@ import tabsStyles from './tabsStyles'
 import textStyles from './textStyles'
 import playerStyles from './playerStyles'
 import drawerStyles from './drawerStyles'
+import appbarStyles from './appbarStyles'
 
 export {
     homeStyles,
@@ -15,5 +16,6 @@ export {
     tabsStyles,
     textStyles,
     playerStyles,
-    drawerStyles
+    drawerStyles,
+    appbarStyles
 }

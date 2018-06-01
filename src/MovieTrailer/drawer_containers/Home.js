@@ -76,11 +76,13 @@ class HomeDrawer extends Component {
     };
 
     render() {
+        const { classes } = this.props
+
         return (
             <Fragment>
                 <AppBar onMenuClicked={this._onMenuClicked}/>
                 <Drawer menuItems={mailFolderListItems} open={this.state.open} onClose={this._onDrawerClose} />
-                <div style={{marginTop: 30}}>
+                <div className={classes.child}>
                     <Home />
                 </div>
             </Fragment>
