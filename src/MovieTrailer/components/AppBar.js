@@ -15,7 +15,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { appbarStyles as styles } from '../styles'
 
 function ButtonAppBar(props) {
-    const { classes, onMenuClicked } = props
+    const { classes, onMenuClicked, title } = props
     return (
         <div className={classes.root}>
             <AppBar position="fixed">
@@ -24,7 +24,7 @@ function ButtonAppBar(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="title" color="inherit" className={classes.flex}>
-                        Title
+                        {title}
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
@@ -35,7 +35,8 @@ function ButtonAppBar(props) {
 
 ButtonAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
-    onMenuClicked: PropTypes.func
+    onMenuClicked: PropTypes.func,
+    title: PropTypes.string
 }
 
 export default compose ( withStyles(styles), withWidth() ) (ButtonAppBar)
