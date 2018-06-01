@@ -95,7 +95,19 @@ class HomeDrawer extends Component {
         this.setState({
             open
         });
-    };
+    }
+
+    _onMenuItemClicked = (item) => {
+        if (item.Children)
+        {
+            console.log('_onMenuItemClicked ' + item.CategoryName + ' => ' + item.IsExpanded)
+            item.IsExpanded = !item.IsExpanded
+        }
+        else
+        {
+            console.log('_onMenuItemClicked ' + item.CategoryName)
+        }
+    }
 
     render() {
         const { classes } = this.props
@@ -103,7 +115,7 @@ class HomeDrawer extends Component {
         return (
             <Fragment>
                 <AppBar onMenuClicked={this._onMenuClicked} title='Movie Trailers' />
-                <Drawer menuItems={mailFolderListItems} open={this.state.open} onClose={this._onDrawerClose} />
+                <Drawer menuItems={mailFolderListItems} open={this.state.open} onClose={this._onDrawerClose} onMenuItemClicked={this._onMenuItemClicked} />
                 <div className={classes.child}>
                     <Home />
                 </div>

@@ -18,24 +18,24 @@ import { drawerStyles as styles } from '../styles'
 
 const TemporaryDrawer = (props) => {
     
-    const { classes, menuItems, open, onClose } = props
+    const { classes, menuItems, open, onClose, onMenuItemClicked } = props
 
-    const item = (item) => (
-        <ListItem button key={item.CategoryID}>
+    const item = (item, onClick) => (
+        <ListItem button key={item.CategoryID} onClick={() => onClick(item)}>
             <ListItemIcon>{item.Icon}</ListItemIcon>
             <ListItemText inset primary={item.CategoryName} />
             {item.IsExpanded ? item.CollapseIcon : item.ExpandIcon}
         </ListItem>
     )
 
-    const subitem = (item) => (
-        <ListItem button style={{paddingLeft: 50}} key={item.CategoryID}>
+    const subitem = (item, onClick) => (
+        <ListItem button style={{paddingLeft: 50}} key={item.CategoryID} onClick={() => onClick(item)}>
             <ListItemIcon>{item.Icon}</ListItemIcon>
             <ListItemText inset primary={item.CategoryName} />
         </ListItem>
     )
 
-    const sideList = (menuItems) => {
+    const sideList = (menuItems, onClick) => {
         return (
             <div className={classes.list}>
                 <List>
@@ -44,15 +44,15 @@ const TemporaryDrawer = (props) => {
                             if (value.Children)
                             {
                                 return (
-                                    <Fragment>
+                                    <Fragment key={value.CategoryID}>
                                         {
-                                            item(value)
+                                            item(value, onClick)
                                         }
                                         <Collapse in={value.IsExpanded} timeout='auto' unmountOnExit>
                                             <List>
                                             {
                                                 value.Children.map((child, i) => (
-                                                    subitem(child)
+                                                    subitem(child, onClick)
                                                 ))
                                             }
                                             </List>
@@ -62,7 +62,7 @@ const TemporaryDrawer = (props) => {
                             }
                             else
                             {
-                                return item(value)
+                                return item(value, onClick)
                             }                            
                         })
                     }
@@ -82,7 +82,7 @@ const TemporaryDrawer = (props) => {
                     onKeyDown={onClose(false)}
                 >
                     {
-                        sideList(menuItems)
+                        sideList(menuItems, onMenuItemClicked)
                     }
                 </div>
             </Drawer>
@@ -93,9 +93,10 @@ const TemporaryDrawer = (props) => {
 
 TemporaryDrawer.propTypes = {
     classes: PropTypes.object.isRequired,
-    menuItems: PropTypes.object.isRequired,
+    menuItems: PropTypes.array.isRequired,
     open: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    onMenuItemClicked: PropTypes.func.isRequired
 }
 
 export default compose ( withStyles(styles), withWidth() ) (TemporaryDrawer)
