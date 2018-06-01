@@ -17,6 +17,8 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import ReportIcon from '@material-ui/icons/Report'
 
 import Drawer from '../components/Drawer'
+import AppBar from '../components/AppBar'
+
 import Home from '../containers/Home'
 
 import { drawerStyles as styles } from '../styles'
@@ -51,8 +53,38 @@ const mailFolderListItems = (
   )
 
 class HomeDrawer extends Component {
+
+    constructor(props)
+    {
+        super(props)
+
+        this.state = {
+            open: false
+        }
+    }
+
+    _onMenuClicked = (event) => {
+        this.setState({
+            open: !this.state.open
+        })
+    }
+
+    _onDrawerClose = (open) => () => {
+        this.setState({
+            open
+        });
+    };
+
     render() {
-        return <Drawer menuItems={mailFolderListItems} children={<Home />} title='Movie trailers' />
+        return (
+            <Fragment>
+                <AppBar onMenuClicked={this._onMenuClicked}/>
+                <Drawer menuItems={mailFolderListItems} open={this.state.open} onClose={this._onDrawerClose} />
+                <div style={{marginTop: 30}}>
+                    <Home />
+                </div>
+            </Fragment>
+        )
     }
 }
 

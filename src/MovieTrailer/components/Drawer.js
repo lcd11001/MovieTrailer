@@ -1,122 +1,56 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import classNames from 'classnames'
 import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
 
-import Drawer from '@material-ui/core/Drawer'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import List from '@material-ui/core/List'
-import MenuItem from '@material-ui/core/MenuItem'
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
-import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
 
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-
-import { drawerStyles as styles } from '../styles'
-
-class PersistentDrawer extends React.Component {
-    state = {
-        open: false,
-        anchor: 'left',
+const styles = {
+    list: {
+        width: 250,
+    },
+    drawerPaper: {
+        top: 30
     }
+};
 
-    handleDrawerOpen = () => {
-        this.setState({ open: true })
-    }
+const TemporaryDrawer = (props) => {
+    
+    const { classes, menuItems, open, onClose } = props;
 
-    handleDrawerClose = () => {
-        this.setState({ open: false })
-    }
+    const sideList = (
+        <div className={classes.list}>
+            <List>{menuItems}</List>
+        </div>
+    );
 
-    render() {
-        console.log('Drawer props', this.props)
-        
-        const { classes, menuItems, children, title } = this.props
-        const { anchor, open } = this.state
-
-        const drawer = (
-            <Drawer
-                variant="persistent"
-                anchor={anchor}
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={this.handleDrawerClose}>
-                        {anchor === 'right' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
+    return (
+        <div>
+            <Drawer anchor="left" open={open} onClose={onClose(false)} classes={{paper: classes.drawerPaper}}>
+                <div
+                    tabIndex={0}
+                    role="button"
+                    onClick={onClose(false)}
+                    onKeyDown={onClose(false)}
+                >
+                    {sideList}
                 </div>
-                <Divider />
-                <List>{menuItems}</List>
             </Drawer>
-        )
+        </div>
+    );
 
-        let before = null
-        let after = null
-
-        if (anchor === 'left') {
-            before = drawer
-        } else {
-            after = drawer
-        }
-
-        return (
-            <div className={classes.root}>
-                <div className={classes.appFrame}>
-                    <AppBar
-                        className={classNames(classes.appBar, {
-                            [classes.appBarShift]: open,
-                            [classes[`appBarShift-${anchor}`]]: open,
-                        })}
-                    >
-                        <Toolbar disableGutters={!open}>
-                            <IconButton
-                                color="inherit"
-                                aria-label="open drawer"
-                                onClick={this.handleDrawerOpen}
-                                className={classNames(classes.menuButton, open && classes.hide)}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Typography variant="title" color="inherit" noWrap>
-                                {title}
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
-                    {before}
-                    <main
-                        className={classNames(classes.content, classes[`content-${anchor}`], {
-                            [classes.contentShift]: open,
-                            [classes[`contentShift-${anchor}`]]: open,
-                        })}
-                    >
-                        <div className={classes.drawerHeader} />
-                        <div>
-                            {children}
-                        </div>
-                    </main>
-                    {after}
-                </div>
-            </div>
-        )
-    }
 }
 
-PersistentDrawer.propTypes = {
+TemporaryDrawer.propTypes = {
     classes: PropTypes.object.isRequired,
     menuItems: PropTypes.object.isRequired,
-    children: PropTypes.element.isRequired,
-    title: PropTypes.string
-}
+    open: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired
+};
 
-export default compose ( withStyles(styles), withWidth() ) (PersistentDrawer)
+export default compose ( withStyles(styles), withWidth() ) (TemporaryDrawer)
