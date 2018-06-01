@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 // import { BrowserRouter as Router } from 'react-router-dom'
 import { Switch, Route } from 'react-router-dom'
-import Home from './containers/Home'
+// import Home from './containers/Home'
 import MovieDetail from './containers/MovieDetail'
 import PlayMovie from './containers/PlayMovie'
+
+import Home from './drawer_containers/Home'
+
 import { NotFound } from './components/errors'
 
 export default class App extends Component {
