@@ -87,19 +87,15 @@ class HomeDrawer extends Component {
     }
 
     _onMenuClicked = (event) => {
+        console.log('_onMenuClicked', event.target)
         this.setState({
             open: !this.state.open
         })
     }
 
-    _onDrawerClose = (open) => () => {
-        if (this.state.refreshMenu)
-        {
-            this.setState({
-                refreshMenu: false
-            })
-        }
-        else
+    _onDrawerClose = (e, open) => {
+        console.log('_onDrawerClose', e.target)
+        if (e.target.id && e.target.id === 'backdrop')
         {
             this.setState({
                 open
@@ -107,7 +103,8 @@ class HomeDrawer extends Component {
         }
     }
 
-    _onMenuItemClicked = (item) => {
+    _onMenuItemClicked = (e, item) => {
+        console.log('_onMenuItemClicked', e.target)
         if (item.Children)
         {
             console.log('_onMenuItemClicked ' + item.CategoryName + ' => ' + item.IsExpanded)
