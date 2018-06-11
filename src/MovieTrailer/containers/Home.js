@@ -16,7 +16,7 @@ import SingleLineGridList from '../components/SingleLineGridList'
 import MultiLinesGridList from '../components/MultiLinesGridList'
 import CircularLoading from '../components/CircularLoading'
 import PaperSheet from '../components/PaperSheet'
-import Carousel from '../components/Carousel'
+import CarouselView from '../components/Carousel'
 import ReviewCard from '../components/ReviewCard'
 
 import { store } from '../redux/store'
@@ -117,7 +117,7 @@ class Home extends Component {
 
         return (
             <Fragment>
-                <Carousel data={Banner} cellHeight={500} onInfoClicked={this._onInfoClicked}/>
+                <CarouselView data={Banner} onInfoClicked={this._onInfoClicked}/>
 
                 {
                     Categories.map(({

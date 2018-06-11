@@ -50,6 +50,32 @@ const styles = theme => ({
         top: 0,
         zIndex: 1
     },
+    divTitle: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'left',
+        alignContent: 'center',
+        // backgroundColor: '#00F',
+        width: '100%',
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        zIndex: 1
+    },
+    divSlider: {
+        // backgroundColor: 'red', 
+        position: 'relative', 
+        ...commonStyle(theme, {key: 'height', value: 500, variant: 80}),
+    },
+    divCarousel: {
+        // backgroundColor: 'black', 
+        position: 'relative', 
+        ...commonStyle(theme, {key: 'height', value: 550, variant: 80}),
+    },
+    carousel: {
+        left: '5%', 
+        top: 25
+    }
 })
 
 export default styles

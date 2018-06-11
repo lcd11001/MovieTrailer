@@ -33,6 +33,9 @@ import InfoIcon from '@material-ui/icons/Info'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 
+import Carousel from 'nuka-carousel'
+import classnames from 'classnames'
+
 import { store } from '../redux/store'
 import { push } from 'react-router-redux'
 
@@ -47,81 +50,70 @@ const _onInfoClicked = (movieID) => {
     store.dispatch(push(url))
 }
 
-const _calcCellHeigh = (cellHeight, width) => {
-    switch (width){
-        case 'xs': // extra small
-            return parseInt(cellHeight * 0.2, 10)
-
-        case 'sm': // small
-            return parseInt(cellHeight * 0.4, 10)
-        
-        case 'md': // medium
-            return parseInt(cellHeight * 0.6, 10)
-        case 'lg': // large
-            return parseInt(cellHeight * 0.8, 10)
-        // case 'xl': // xlarge
-        //     return parseInt(cellHeight, 10)
-        default:
-            break
-    }
-
-    return parseInt(cellHeight, 10)
-}
-
-function Carousel(props) {
-    // console.log('Carousel', props)
+function CarouselView(props) {
+    // console.log('CarouselView', props)
     const { 
         classes, 
         data,
-        cellHeight,
         width,
         onInfoClicked = props.onInfoClicked || _onInfoClicked
     } = props
 
+    if (data === null) {
+        return  null
+    }
+
+    if (data.length === 0) {
+        return null
+    }
+    
     return (
-        <div className={classes.root}>
-            <GridList className={classes.gridList} cols={2.5} cellHeight={_calcCellHeigh(cellHeight, width)}>
-                {data.map(movie => (
-                    <GridListTile key={movie.MovieID}>
-                        <div className={classes.divImage}>
-                            <img className={classes.image} src={movie.Cover} alt={movie.MovieName} onError={_onImageError} />
-                            <div className={classes.divActionIcon}>
-                                <IconButton>
-                                    <FavoriteBorderIcon color='secondary'/>
-                                </IconButton>
-                                
-                                <IconButton onClick={() => onInfoClicked(movie.MovieID)}>
-                                    <InfoIcon color='primary'/>
-                                </IconButton>
+        <div className={classes.divCarousel}>
+            <Carousel 
+                autoplay={false}
+                heightMode={'max'}
+                width={'90%'}
+                className={classes.carousel}
+            >
+            {
+                data.map((movie, index) => {
+                    return (
+                        <div className={classes.divSlider}>
+                            <div className={classes.divImage}>
+                                <img className={classes.image} src={movie.Cover} alt={movie.MovieName} onError={_onImageError} />
+                                <div className={classes.divActionIcon}>
+                                    <IconButton>
+                                        <FavoriteBorderIcon color='secondary'/>
+                                    </IconButton>
+                                    
+                                    <IconButton onClick={() => onInfoClicked(movie.MovieID)}>
+                                        <InfoIcon color='primary'/>
+                                    </IconButton>
+                                </div>
                             </div>
-                        </div>
-                        <GridListTileBar
-                            title={
+                            
+                            <div className={classnames(classes.divTitle, classes.titleBar)}>
                                 <Typography className={classes.title}>
                                     {movie.KnownAs}
                                 </Typography>
-                            }
-                            subtitle={
+                            
                                 <Typography className={classes.subtitle}>
                                     {movie.MovieName}
                                 </Typography>
-                            }
-                            classes={{
-                                root: classes.titleBar,
-                                titleWrap: classes.titleWrap
-                            }}
-                        />
-                    </GridListTile>
-                ))}
-            </GridList>
+                            </div>
+                        </div>
+                    )
+                    
+                })
+            }
+            </Carousel>
         </div>
     )
 }
 
-Carousel.propTypes = {
+CarouselView.propTypes = {
     classes: PropTypes.object.isRequired,
     data: PropTypes.array.isRequired,
-    cellHeight: PropTypes.number.isRequired
 }
 
-export default compose ( withStyles(styles), withWidth() )(Carousel)
+export default compose ( withStyles(styles), withWidth() )(CarouselView)
