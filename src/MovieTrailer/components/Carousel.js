@@ -77,11 +77,12 @@ function CarouselView(props) {
                 className={classes.carousel}
                 renderCenterLeftControls={() => null}
                 renderCenterRightControls={() => null}
+                renderBottomCenterControls={() => null}
             >
             {
                 data.map((movie, index) => {
                     return (
-                        <div className={classes.divSlider}>
+                        <div key={index} className={classes.divSlider}>
                             <div className={classes.divImage}>
                                 <img className={classes.image} src={movie.Cover} alt={movie.MovieName} onError={_onImageError} />
                                 <div className={classes.divActionIcon}>
