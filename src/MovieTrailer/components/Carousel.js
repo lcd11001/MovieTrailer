@@ -70,10 +70,12 @@ function CarouselView(props) {
     return (
         <div className={classes.divCarousel}>
             <Carousel 
-                autoplay={false}
+                autoplay={true}
                 heightMode={'max'}
                 width={'90%'}
                 className={classes.carousel}
+                renderCenterLeftControls={() => null}
+                renderCenterRightControls={() => null}
             >
             {
                 data.map((movie, index) => {
