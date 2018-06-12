@@ -71,6 +71,7 @@ function CarouselView(props) {
         <div className={classes.divCarousel}>
             <Carousel 
                 autoplay={true}
+                wrapAround={true}
                 heightMode={'max'}
                 width={'90%'}
                 className={classes.carousel}
