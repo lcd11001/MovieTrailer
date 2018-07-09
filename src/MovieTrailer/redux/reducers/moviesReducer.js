@@ -1,13 +1,15 @@
 import {
     HOME_MOVIES_LOAD,
     MOVIE_DETAIL,
+    MOVIE_PLAY,
     CLEAR_MOVIE_DETAIL
 } from '../actions/actionTypes'
 
 const moviesReducer = (state = {
     Banner: [],
     Categories: [],
-    MovieDetail: null
+    MovieDetail: null,
+    MoviePlay: null
 }, action) => {
     switch (action.type) {
         case HOME_MOVIES_LOAD:
@@ -23,7 +25,14 @@ const moviesReducer = (state = {
                 ...state,
                 MovieDetail: action.payload
             }
-            break   
+            break
+
+        case MOVIE_PLAY:
+            state = {
+                ...state,
+                MoviePlay: action.payload
+            }
+            break
 
         case CLEAR_MOVIE_DETAIL:
             state = {

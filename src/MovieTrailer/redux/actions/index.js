@@ -1,6 +1,7 @@
 import {
     loadHomeMovies,
     loadMovieDetail,
+    playMovie,
     clearMovieDetail
 } from './moviesActions'
 
@@ -13,6 +14,7 @@ import {
 export {
     loadHomeMovies,
     loadMovieDetail,
+    playMovie,
     clearMovieDetail,
 
     searchMovies

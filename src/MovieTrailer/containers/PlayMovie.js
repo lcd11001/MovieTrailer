@@ -47,6 +47,10 @@ class PlayMovie extends React.Component {
         if (this.props.detail === null) {
             this.props.loadMovieDetail(this.state.movieID)
         }
+
+        if (this.props.play === null) {
+            this.props.playMovie(this.state.movieID)
+        }
     }
 
     _renderEpisode = (Episode, Sequence) => {
@@ -150,6 +154,7 @@ const mapStateToProps = (state) => (
     {
         fetch: state.fetch,
         detail: state.movies.MovieDetail,
+        play: state.movies.MoviePlay
     }
 )
 
@@ -157,6 +162,9 @@ const mapDispatchToProps = (dispatch) => (
     {
         loadMovieDetail: (movieID) => {
             dispatch(actions.loadMovieDetail(movieID))
+        },
+        playMovie: (movieID, sequence) => {
+            dispatch(actions.playMovie(movieID, sequence))
         }
     }
 )
