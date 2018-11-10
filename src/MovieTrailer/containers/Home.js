@@ -24,7 +24,7 @@ import { push } from 'react-router-redux'
 
 import * as actions from '../redux/actions'
 
-import { homeStyles as styles } from '../styles'
+import { homeStyles as styles, loadingStyles } from '../styles'
 
 class Home extends Component {
     constructor (props) {
@@ -145,7 +145,11 @@ class Home extends Component {
                     disableAutoFocus={true}
                 >
                     <div style={this._getModalStyle()}>
-                        <ReviewCard detail={MovieDetail} onPlay={this._onPlayMovie}/>
+                        {
+                            MovieDetail && (
+                                <ReviewCard detail={MovieDetail} onPlay={this._onPlayMovie}/>
+                            )
+                        }
                     </div>
                 </Modal>
                 
@@ -182,4 +186,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default compose ( withStyles(styles), withWidth(), connect(mapStateToProps, mapDispatchToProps) ) (Home)
+export default compose ( withStyles(styles), withStyles(loadingStyles), withWidth(), connect(mapStateToProps, mapDispatchToProps) ) (Home)

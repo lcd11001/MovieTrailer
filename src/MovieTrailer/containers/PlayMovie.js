@@ -164,7 +164,8 @@ const mapDispatchToProps = (dispatch) => (
             dispatch(actions.loadMovieDetail(movieID))
         },
         playMovie: (movieID, sequence) => {
-            dispatch(actions.playMovie(movieID, sequence))
+            // dispatch(actions.playMovie(movieID, sequence))
+            console.warn('playMovie ' + movieID + 'sequence ' + sequence)
         }
     }
 )

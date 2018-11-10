@@ -13,7 +13,7 @@ function CircularLoading(props) {
     const { classes } = props
     return (
         <div>
-            <CircularProgress className={classes.progress} size={50} />
+            <CircularProgress className={classes.progress} color='secondary' size={50} />
         </div>
     )
 }

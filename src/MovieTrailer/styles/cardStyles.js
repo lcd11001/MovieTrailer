@@ -74,14 +74,6 @@ const styles = theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    divLoading: {
-        width: '100%', 
-        height: '100%', 
-        // backgroundColor: 'rgba(0, 255, 0, 0.2)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
     }
 })
 

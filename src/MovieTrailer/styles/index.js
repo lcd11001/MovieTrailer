@@ -7,7 +7,7 @@ import textStyles from './textStyles'
 import playerStyles from './playerStyles'
 import drawerStyles from './drawerStyles'
 import appbarStyles from './appbarStyles'
-
+import loadingStyles from './loadingStyles'
 export {
     homeStyles,
     listStyles,
@@ -17,5 +17,6 @@ export {
     textStyles,
     playerStyles,
     drawerStyles,
-    appbarStyles
+    appbarStyles,
+    loadingStyles
 }

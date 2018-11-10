@@ -22,7 +22,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import PlayIcon from '@material-ui/icons/PlayCircleOutline'
 
 import IconLabelTabs from './IconLabelTabs'
-import CircularLoading from '../components/CircularLoading'
 
 import { cardStyles as styles } from '../styles'
 
@@ -110,15 +109,6 @@ class ReviewCard extends React.Component {
             width,
             onPlay = this.props.onPlay || this._onClick
         } = this.props
-
-        if (detail === null) {
-            // console.log('ReviewCard is loading')
-            return (
-                <div className={classes.divLoading}>
-                    <CircularLoading />
-                </div>
-            )
-        }
 
         // console.log('ReviewCard is loaded')
 

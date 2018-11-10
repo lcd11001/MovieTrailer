@@ -2,13 +2,6 @@ import commonStyle from './commonStyle'
 import textStyles from './textStyles'
 
 const styles = theme => ({
-    loading: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100%'
-    },
     divHeader: {
         display: 'flex',
         flexDirection: 'row',
