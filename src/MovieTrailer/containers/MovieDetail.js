@@ -73,7 +73,6 @@ class MovieDetailCard extends React.Component {
                 Error
             },
             classes,
-            width,
             detail
         } = this.props
 

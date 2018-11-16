@@ -143,9 +143,9 @@ class MoviePlayer extends React.Component {
             volume,
             muted,
             loop,
-            played,
-            loaded,
-            duration,
+            // played,
+            // loaded,
+            // duration,
             playbackRate
         } = this.state
 

@@ -32,7 +32,6 @@ import IconButton from '@material-ui/core/IconButton'
 
 import InfoIcon from '@material-ui/icons/Info'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
-import FavoriteIcon from '@material-ui/icons/Favorite'
 
 import { listStyles as styles } from '../styles'
 

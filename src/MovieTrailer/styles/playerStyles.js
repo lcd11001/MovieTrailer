@@ -1,5 +1,4 @@
 import textStyles from './textStyles'
-import commonStyle from './commonStyle'
 
 const styles = theme => ({
     title: {

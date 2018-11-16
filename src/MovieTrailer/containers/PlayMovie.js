@@ -12,7 +12,6 @@ import Button from '@material-ui/core/Button'
 import CircularLoading from '../components/CircularLoading'
 import PaperSheet from '../components/PaperSheet'
 import MultiLinesGridList from '../components/MultiLinesGridList'
-import ReviewCard from '../components/ReviewCard'
 import MoviePlayer from '../components/MoviePlayer'
 
 import IconButton from '@material-ui/core/IconButton'
@@ -84,7 +83,6 @@ class PlayMovie extends React.Component {
                 Error
             },
             classes,
-            width,
             detail
         } = this.props
 

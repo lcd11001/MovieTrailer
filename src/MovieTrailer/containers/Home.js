@@ -6,13 +6,12 @@ import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
 
 import Typography from '@material-ui/core/Typography'
-import Zoom from '@material-ui/core/Zoom'
 import Modal from '@material-ui/core/Modal'
 
 import IconButton from '@material-ui/core/IconButton'
 import MoreIcon from '@material-ui/icons/More'
 
-import SingleLineGridList from '../components/SingleLineGridList'
+// import SingleLineGridList from '../components/SingleLineGridList'
 import MultiLinesGridList from '../components/MultiLinesGridList'
 import CircularLoading from '../components/CircularLoading'
 import PaperSheet from '../components/PaperSheet'
