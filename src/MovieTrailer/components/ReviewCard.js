@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
@@ -34,7 +34,11 @@ class ReviewCard extends React.Component {
 
     _getCategoryComponents = (categories) => {
         return categories.map((value, index) => {
-                return <a href={`/category/${value.CategoryID}`}>{value.CategoryName}</a>
+                return (
+                    <Fragment key={index}>
+                        <a href={`/category/${value.CategoryID}`}>{value.CategoryName}</a>
+                    </Fragment>
+                )
             })
             .reduce((prev, curr, curIndex) => {
                 if (curIndex > 0) {
@@ -49,7 +53,11 @@ class ReviewCard extends React.Component {
     _getCasterComponents = (casters) => {
         return casters.split('/')
             .map((value, index) => {
-                return <a href={`/caster/${value.trim().replace(/ /g, '%20')}`}>{value.trim()}</a>
+                return (
+                    <Fragment key={index}>
+                        <a href={`/caster/${value.trim().replace(/ /g, '%20')}`}>{value.trim()}</a>
+                    </Fragment>
+                )
             })
             .reduce((prev, curr, curIndex) => {
                 if (curIndex > 0) {
