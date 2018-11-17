@@ -79,7 +79,7 @@ function CarouselView(props) {
                     return (
                         <div key={index} className={classes.divSlider}>
                             <div className={classes.divImage}>
-                                <img className={classes.image} src={movie.Cover} alt={movie.MovieName} onError={_onImageError} />
+                                <img className={classes.image} src={movie.Cover} alt={movie.MovieName} onError={_onImageError} onClick={() => onInfoClicked(movie.MovieID)}/>
                                 <div className={classes.divActionIcon}>
                                     <IconButton>
                                         <FavoriteBorderIcon color='secondary'/>
