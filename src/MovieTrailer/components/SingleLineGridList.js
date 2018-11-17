@@ -45,13 +45,13 @@ const _onInfoClicked = (movieID) => {
 }
 
 const _calcCellHeigh = (cellHeight, width) => {
-    switch (width){
+    switch (width) {
         case 'xs': // extra small
             return parseInt(cellHeight * 0.4, 10)
 
         case 'sm': // small
             return parseInt(cellHeight * 0.55, 10)
-        
+
         case 'md': // medium
             return parseInt(cellHeight * 0.7, 10)
         case 'lg': // large
@@ -66,13 +66,13 @@ const _calcCellHeigh = (cellHeight, width) => {
 }
 
 const _calcCols = (cols, width) => {
-    switch (width){
+    switch (width) {
         case 'xs': // extra small
             return Math.max(cols - 5, 3.5)
 
         case 'sm': // small
             return Math.max(cols - 4, 4.5)
-        
+
         case 'md': // medium
             return Math.max(cols - 3, 5.5)
         case 'lg': // large
@@ -89,30 +89,30 @@ const _calcCols = (cols, width) => {
 function SingleLineGridList(props) {
     // console.log('SingleLineGridList', props)
 
-    const { 
-        classes, 
+    const {
+        classes,
         data,
         cols,
         cellHeight,
         width,
-        onInfoClicked = props.onInfoClicked || _onInfoClicked
+        onInfoClicked = _onInfoClicked
     } = props
 
     return (
         <div className={classes.root}>
             <GridList className={classes.gridListNoWrap} cols={_calcCols(cols, width)} cellHeight={_calcCellHeigh(cellHeight, width)}>
                 {data.map(movie => (
-                    
-                    <GridListTile key={movie.MovieID}>
+
+                    <GridListTile key={movie.MovieID} onClick={() => onInfoClicked(movie.MovieID)} >
                         <div className={classes.divImage}>
-                            <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError}/>
+                            <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError} />
                             <div className={classes.divActionIcon}>
                                 <IconButton>
-                                    <FavoriteBorderIcon color='secondary'/>
+                                    <FavoriteBorderIcon color='secondary' />
                                 </IconButton>
-                                
+
                                 <IconButton onClick={() => onInfoClicked(movie.MovieID)}>
-                                    <InfoIcon color='primary'/>
+                                    <InfoIcon color='primary' />
                                 </IconButton>
                             </div>
                         </div>
@@ -122,7 +122,7 @@ function SingleLineGridList(props) {
                                     {movie.KnownAs}
                                 </Typography>
                             }
-                            subtitle={  
+                            subtitle={
                                 <Typography className={classes.subtitle}>
                                     {movie.MovieName || movie.Name}
                                 </Typography>
@@ -144,6 +144,7 @@ SingleLineGridList.propTypes = {
     data: PropTypes.array.isRequired,
     cols: PropTypes.number.isRequired,
     cellHeight: PropTypes.number.isRequired,
+    onInfoClicked: PropTypes.func
 }
 
-export default compose ( withStyles(styles), withWidth() )(SingleLineGridList)
+export default compose(withStyles(styles), withWidth())(SingleLineGridList)

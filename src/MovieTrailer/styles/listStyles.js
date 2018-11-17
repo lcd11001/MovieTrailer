@@ -36,7 +36,8 @@ const styles = theme => ({
     },
     divImage: {
         height: '100%',
-        width: '100%'
+        width: '100%',
+        pointerEvents: 'none'
     },
     image: {
         height: '100%',

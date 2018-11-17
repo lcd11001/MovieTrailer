@@ -66,13 +66,13 @@ const _getRemainCellCols = (remainCellCols, cols, cellCols) => {
 }
 
 const _calcCellHeigh = (cellHeight, width) => {
-    switch (width){
+    switch (width) {
         case 'xs': // extra small
             return parseInt(cellHeight * 0.4, 10)
 
         case 'sm': // small
             return parseInt(cellHeight * 0.55, 10)
-        
+
         case 'md': // medium
             return parseInt(cellHeight * 0.7, 10)
         case 'lg': // large
@@ -87,13 +87,13 @@ const _calcCellHeigh = (cellHeight, width) => {
 }
 
 const _calcCols = (cols, width) => {
-    switch (width){
+    switch (width) {
         case 'xs': // extra small
             return Math.max(cols - 4, 2)
 
         case 'sm': // small
             return Math.max(cols - 3, 3)
-        
+
         case 'md': // medium
             return Math.max(cols - 2, 4)
         case 'lg': // large
@@ -109,15 +109,15 @@ const _calcCols = (cols, width) => {
 
 const MultiLinesGridList = (props) => {
     // console.log('MultiLinesGridList', props)
-    const { 
-        classes, 
+    const {
+        classes,
         data,
         cols,
         cellHeight,
         maxCellCols = Math.min((props.maxCellCols || 1), props.cols),
         maxCellRows = props.maxCellRows || 1,
         width,
-        onInfoClicked = props.onInfoClicked || _onInfoClicked
+        onInfoClicked = _onInfoClicked
     } = props
 
     let remainCellCols = cols
@@ -147,18 +147,18 @@ const MultiLinesGridList = (props) => {
                         remainCellCols = _getRemainCellCols(remainCellCols, cols, cellCols)
                         // console.log('_getRemainCellCols', remainCellCols)
                     }
-                    
+
                     return (
-                        <GridListTile key={movie.MovieID} cols={cellCols} rows={cellRows}>
+                        <GridListTile key={movie.MovieID} cols={cellCols} rows={cellRows} onClick={() => { onInfoClicked(movie.MovieID) }}>
                             <div className={classes.divImage}>
-                                <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError}/>
+                                <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError} />
                                 <div className={classes.divActionIcon}>
                                     <IconButton>
-                                        <FavoriteBorderIcon color='secondary'/>
+                                        <FavoriteBorderIcon color='secondary' />
                                     </IconButton>
-                                    
+
                                     <IconButton onClick={() => onInfoClicked(movie.MovieID)}>
-                                        <InfoIcon color='primary'/>
+                                        <InfoIcon color='primary' />
                                     </IconButton>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@ const MultiLinesGridList = (props) => {
                                         {movie.KnownAs}
                                     </Typography>
                                 }
-                                subtitle={  
+                                subtitle={
                                     <Typography className={classes.subtitle}>
                                         {movie.MovieName || movie.Name}
                                     </Typography>
@@ -179,13 +179,13 @@ const MultiLinesGridList = (props) => {
                                 }}
                             />
                         </GridListTile>
-                        )
-                    })
+                    )
+                })
                 }
             </GridList>
         </div>
     )
-    
+
 }
 
 MultiLinesGridList.propTypes = {
@@ -194,7 +194,8 @@ MultiLinesGridList.propTypes = {
     cols: PropTypes.number.isRequired,
     cellHeight: PropTypes.number.isRequired,
     maxCellCols: PropTypes.number,
-    maxCellRows: PropTypes.number
+    maxCellRows: PropTypes.number,
+    onInfoClicked: PropTypes.func
 }
 
-export default compose ( withStyles(styles), withWidth() )(MultiLinesGridList)
+export default compose(withStyles(styles), withWidth())(MultiLinesGridList)
