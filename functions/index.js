@@ -1,8 +1,73 @@
-const functions = require('firebase-functions');
+const functions = require('firebase-functions')
+
+// enable CORS
+const cors = require('cors')({ origin: true })
+
+// setup database
+const admin = require('firebase-admin')
+admin.initializeApp()
+const database = admin.database()
+const refItems = database.ref('/items')
+
+const getItemsFromDatabase = (res) => {
+    // This will return the list of data after it has successfully saved.
+    return refItems.on('value',
+        // success
+        (snapshot) => {
+            let items = []
+            snapshot.forEach((child) => {
+                items.push({
+                    id: child.key,
+                    items: child.val()
+                })
+            })
+
+            return res.status(200).json(items)
+        }),
+        // error
+        (error) => {
+            res.status(error.code).json({
+                message: `something went wrong, ${error.message} `
+            })
+        }
+}
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+exports.helloWorld = functions.https.onRequest((request, response) => {
+    response.send("Hello from Movie Trailer Cloud Functions!")
+})
+
+exports.addItem = functions.https.onRequest((req, res) => {
+    return cors(req, res, () => {
+        // This snippet below, specifies only POST method should be used, since we are writing to the database
+        if (req.method !== 'POST') {
+            return res.status(401).json({
+                message: 'addItem function not allowed'
+            })
+        }
+
+        // For debugging purpose, you can see the event logs on logs section of functions
+        console.log(req.body)
+
+        // Firebase method for saving data
+        const item = req.body.item
+        refItems.push(item)
+
+        return getItemsFromDatabase(res)
+    })
+})
+
+exports.getItems = functions.https.onRequest((req, res) => {
+    return cors(req, res, () => {
+        // This snippet below, specifies only POST method should be used, since we are writing to the database
+        if (req.method !== 'GET') {
+            return res.status(401).json({
+                message: 'getItems function not allowed'
+            })
+        }
+
+        return getItemsFromDatabase(res)
+    })
+})
