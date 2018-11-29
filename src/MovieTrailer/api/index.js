@@ -1,5 +1,6 @@
 import '../../utils/utils'
 import { fetchBegin, fetchSuccess, fetchError } from '../redux/actions/fetchActions'
+import { doCORSRequest } from './cors'
 
 const urlApi = 'https://api-v2.hdviet.com'
 const urlHome = urlApi + '/movie/homepage'
@@ -14,12 +15,19 @@ const urlMoviePlay = 'http://netflix.com/get_movie?movieid={0}'
 const urlMoviePlaySequence = urlMoviePlay + '&sequence={1}'
 
 // https://daveceddia.com/where-fetch-data-redux/
-function getDataAsync(url) {
+function getDataAsync(url, otherOptions) {
+    otherOptions = otherOptions || {}
+
     return (dispatch) => {
-        // console.log('getDataAsync ' + url)
+        console.log('getDataAsync ' + url)
         dispatch(fetchBegin())
 
-        return fetch(url)
+        let options = {
+            ...otherOptions,
+            method: otherOptions.method || 'GET',
+        }
+        // console.log('getDataAsync options', options)
+        return fetch(url, options)
             .then(getDataAsyncErrors)
             .then((response) => response.json())
             .then((responseJson) => {
@@ -36,11 +44,12 @@ function getDataAsync(url) {
                 dispatch(fetchError(error.message))
             })
     }
-    
+
 }
 
 // Handle HTTP errors since fetch won't.
 function getDataAsyncErrors(response) {
+    // console.log('getDataAsyncErrors', response)
     if (!response.ok) {
         console.error('getDataAsyncErrors error', response)
         throw Error(response.statusText)
@@ -69,8 +78,49 @@ export function getMovieDetail(movieID) {
 }
 
 export function getMoviePlay(movieID, sequence) {
-    let url = sequence !== undefined 
+    let url = sequence !== undefined
         ? String.format(urlMoviePlaySequence, movieID, sequence)
         : String.format(urlMoviePlay, movieID)
-    return getDataAsync(url)
+
+    return (dispatch) => {
+        console.log('getMoviePlay ' + url)
+        dispatch(fetchBegin())
+
+        return new Promise((resolve, reject) => {
+            doCORSRequest(
+                // options
+                {
+                    method: 'GET',
+                    url: url,
+                    data: null
+                },
+                // resolve
+                (response) => {
+                    try {
+                        let responseJson = JSON.parse(response)
+                        resolve()
+
+                        if (responseJson.error !== 0) {
+                            dispatch(fetchError(responseJson.data))
+                        } else {
+                            dispatch(fetchSuccess())
+                        }
+
+                        return responseJson.data
+                    }
+                    catch (error) {
+                        reject()
+                        dispatch(fetchError(error.message))
+                    }
+
+                    return {}
+                },
+                // reject
+                (err) => {
+                    reject()
+                    dispatch(fetchError(JSON.stringify(err)))
+                }
+            )
+        })
+    }
 }
