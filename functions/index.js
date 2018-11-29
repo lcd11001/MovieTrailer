@@ -1,3 +1,7 @@
+const utils = require('./utils')
+
+const request = require('request')
+
 const functions = require('firebase-functions')
 
 // enable CORS
@@ -8,6 +12,10 @@ const admin = require('firebase-admin')
 admin.initializeApp()
 const database = admin.database()
 const refItems = database.ref('/items')
+
+
+const urlMoviePlay = 'http://netflix.com/get_movie?movieid={0}'
+const urlMoviePlaySequence = urlMoviePlay + '&sequence={1}'
 
 const getItemsFromDatabase = (res) => {
     // This will return the list of data after it has successfully saved.
@@ -85,5 +93,37 @@ exports.delItem = functions.https.onRequest((req, res) => {
         database.ref(`/items/${id}`).remove()
 
         return getItemsFromDatabase(res)
+    })
+})
+
+exports.getMoviePlay = functions.https.onRequest((req, res) => {
+    return cors(req, res, () => {
+        // This snippet below, specifies only POST method should be used, since we are writing to the database
+        if (req.method !== 'GET') {
+            return res.status(401).json({
+                message: 'getMoviePlay function not allowed'
+            })
+        }
+
+        const movieID = req.query.movieID
+        const sequence = req.query.sequence
+
+
+        let url = sequence !== undefined
+            ? String.format(urlMoviePlaySequence, movieID, sequence)
+            : String.format(urlMoviePlay, movieID)
+
+        request(url, (error, response, body) => {
+            console.log('getMoviePlay', error, 'response', response, 'body', body)
+            if (error) {
+                return res.status(500).json({
+                    message: 'abc'
+                })
+            } else {
+                return res.status(200).json({
+                    message: 'xyz'
+                })
+            }
+        })
     })
 })

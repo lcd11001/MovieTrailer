@@ -9,6 +9,10 @@ const urlCategoryDetail = urlApi + '/movie?categoryid={0}&offset={1}&limit={2}'
 
 const urlMovieDetail = urlApi + '/movie?movieid={0}'
 
+
+const urlMoviePlay = 'http://netflix.com/get_movie?movieid={0}'
+const urlMoviePlaySequence = urlMoviePlay + '&sequence={1}'
+
 // https://daveceddia.com/where-fetch-data-redux/
 function getDataAsync(url) {
     return (dispatch) => {
@@ -61,5 +65,12 @@ export function getCategoryDetail(categoryid, offset, limit) {
 
 export function getMovieDetail(movieID) {
     let url = String.format(urlMovieDetail, movieID)
+    return getDataAsync(url)
+}
+
+export function getMoviePlay(movieID, sequence) {
+    let url = sequence !== undefined 
+        ? String.format(urlMoviePlaySequence, movieID, sequence)
+        : String.format(urlMoviePlay, movieID)
     return getDataAsync(url)
 }
