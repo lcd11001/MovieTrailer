@@ -21,7 +21,7 @@ import { push } from 'react-router-redux'
 
 import * as actions from '../redux/actions'
 
-import { homeStyles as styles } from '../styles'
+import { homeStyles as styles, loadingStyles } from '../styles'
 
 class MovieDetailCard extends React.Component {
     constructor(props) {
@@ -130,4 +130,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default compose(withStyles(styles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(MovieDetailCard)
+export default compose(withStyles(styles), withStyles(loadingStyles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(MovieDetailCard)

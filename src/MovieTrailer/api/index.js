@@ -98,7 +98,7 @@ export function getMoviePlay(movieID, sequence) {
                 (response) => {
                     try {
                         let responseJson = JSON.parse(response)
-                        resolve()
+                        
 
                         if (responseJson.error !== 0) {
                             dispatch(fetchError(responseJson.data))
@@ -106,19 +106,17 @@ export function getMoviePlay(movieID, sequence) {
                             dispatch(fetchSuccess())
                         }
 
-                        return responseJson.data
+                        resolve(responseJson.data)
                     }
                     catch (error) {
-                        reject()
                         dispatch(fetchError(error.message))
+                        reject(error.message)
                     }
-
-                    return {}
                 },
                 // reject
                 (err) => {
-                    reject()
                     dispatch(fetchError(JSON.stringify(err)))
+                    reject(err)
                 }
             )
         })

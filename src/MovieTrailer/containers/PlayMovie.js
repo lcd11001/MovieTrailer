@@ -19,7 +19,7 @@ import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext'
 
 import * as actions from '../redux/actions'
 
-import { playerStyles as styles, homeStyles } from '../styles'
+import { playerStyles as styles, homeStyles, loadingStyles } from '../styles'
 
 class PlayMovie extends React.Component {
     constructor(props) {
@@ -83,7 +83,8 @@ class PlayMovie extends React.Component {
                 Error
             },
             classes,
-            detail
+            detail,
+            play
         } = this.props
 
         if (Loading) {
@@ -102,10 +103,14 @@ class PlayMovie extends React.Component {
             )
         }
 
+        let movieUrl = play 
+            ? (play.playList || this.state.trailer)
+            : this.state.trailer
+
         return (
             <Fragment>
                 {
-                    this.state.trailer && <MoviePlayer url={this.state.trailer} />
+                    this.state.trailer && <MoviePlayer url={movieUrl} />
                 }
                 {
                     detail && (
@@ -168,4 +173,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default compose(withStyles(styles), withStyles(homeStyles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(PlayMovie)
+export default compose(withStyles(styles), withStyles(homeStyles), withStyles(loadingStyles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(PlayMovie)
