@@ -71,3 +71,19 @@ exports.getItems = functions.https.onRequest((req, res) => {
         return getItemsFromDatabase(res)
     })
 })
+
+exports.delItem = functions.https.onRequest((req, res) => {
+    return cors(req, res, () => {
+        // This snippet below, specifies only POST method should be used, since we are writing to the database
+        if (req.method !== 'DELETE') {
+            return res.status(401).json({
+                message: 'delItem function not allowed'
+            })
+        }
+
+        const id = req.query.id
+        database.ref(`/items/${id}`).remove()
+
+        return getItemsFromDatabase(res)
+    })
+})
