@@ -111,7 +111,7 @@ class PlayMovie extends React.Component {
         return (
             <Fragment>
                 {
-                    this.state.trailer && <MoviePlayer url={movieUrl} />
+                    <MoviePlayer url={movieUrl} />
                 }
                 {
                     detail && (
