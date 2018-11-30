@@ -57,10 +57,10 @@ class MovieDetailCard extends React.Component {
         this.setState({ expanded: !this.state.expanded })
     }
 
-    _onPlayMovie = (movieID, trailer) => {
+    _onPlayMovie = (movieID) => {
         let url = this.props.user.isLogged 
             ? '/play/' + movieID
-            : '/trailer/' + btoa(encodeURI(trailer)).replace(/\//g, '-') + '/' + movieID
+            : '/trailer/' + movieID
 
         store.dispatch(push(url))
     }

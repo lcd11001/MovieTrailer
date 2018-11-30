@@ -22,35 +22,23 @@ import * as actions from '../redux/actions'
 import { playerStyles as styles, homeStyles, loadingStyles } from '../styles'
 
 class PlayMovie extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            expanded: false,
-            trailer: props.match.params.url ? decodeURI(atob(props.match.params.url.replace(/-/g, '/'))) : '',
-            movieID: props.match.params.movieID ? props.match.params.movieID : ''
-        }
-    }
-    /*
-    static getDerivedStateFromProps(props, state) {
-        // console.log('getDerivedStateFromProps', props, state)
-        if (props.detail && state.trailer !== props.detail.Trailer) {
-            return {
-                trailer: props.detail.Trailer
+    componentWillMount() {
+        console.log('PlayMovie::componentWillMount', this.props)
+        const {
+            user: {
+                isLogged
+            },
+            match: {
+                params: {
+                    movieID
+                }
             }
-        }
-        return null
-    }
-    */
+        } = this.props
 
-    componentDidMount() {
-        if (this.props.detail === null) {
-            this.props.loadMovieDetail(this.state.movieID)
+        if (isLogged) {
+            this.props.playMovie(movieID)
         }
-
-        if (this.state.trailer === '' && this.props.play === null) {
-            this.props.playMovie(this.state.movieID)
-        }
+        this.props.loadMovieDetail(movieID)
     }
 
     _renderEpisode = (Episode, Sequence) => {
@@ -85,10 +73,11 @@ class PlayMovie extends React.Component {
             },
             classes,
             detail,
-            play
+            play,
+            user
         } = this.props
 
-        if (Loading) {
+        if (Loading || detail === null) {
             return (
                 <div className={classes.loading}>
                     <CircularLoading />
@@ -104,9 +93,9 @@ class PlayMovie extends React.Component {
             )
         }
 
-        let movieUrl = play
-            ? (play.playList || this.state.trailer)
-            : this.state.trailer
+        let movieUrl = user.isLogged
+            ? play.playList
+            : detail.Trailer
 
         return (
             <Fragment>
@@ -158,7 +147,8 @@ const mapStateToProps = (state) => (
     {
         fetch: state.fetch,
         detail: state.movies.MovieDetail,
-        play: state.movies.MoviePlay
+        play: state.movies.MoviePlay,
+        user: state.user
     }
 )
 

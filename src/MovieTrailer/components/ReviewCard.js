@@ -116,8 +116,8 @@ class ReviewCard extends React.Component {
         }
     }
 
-    _onClick = (movieID, trailer) => {
-        console.log('_onClick', movieID, trailer)
+    _onClick = (movieID) => {
+        console.log('_onClick', movieID)
     }
 
     render() {
@@ -161,7 +161,7 @@ class ReviewCard extends React.Component {
                         title={detail.KnownAs}
                     >
                         <div className={classes.divPlayButton}>
-                            <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID, detail.Trailer)}>
+                            <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID)}>
                                 <PlayIcon className={classnames(classes.playIcon, classes.playIconHover)} />
                             </IconButton>
                         </div>
