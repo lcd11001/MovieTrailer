@@ -34,20 +34,26 @@ class ReviewCard extends React.Component {
 
     _getCategoryComponents = (categories) => {
         return categories.map((value, index) => {
-                return (
-                    <Fragment key={index}>
-                        <a href={`/category/${value.CategoryID}`}>{value.CategoryName}</a>
-                    </Fragment>
-                )
-            })
-            .reduce((prev, curr, curIndex) => {
-                if (curIndex > 0) {
-                    return [...prev, ' - ', curr]
-                } else {
-                    return [...prev, curr]
-                }
-                
-            }, 0)
+            return (
+                <Fragment key={index}>
+                    <a href={`/category/${value.CategoryID}`}>
+                        {
+                            index > 0 ? ' - ' + value.CategoryName : value.CategoryName
+                        }
+                    </a>
+                </Fragment>
+            )
+        })
+        /*
+        .reduce((prev, curr, curIndex) => {
+            if (curIndex > 0) {
+                return [...prev, ' - ', curr]
+            } else {
+                return [...prev, curr]
+            }
+            
+        }, 0)
+        */
     }
 
     _getCasterComponents = (casters) => {
@@ -55,18 +61,24 @@ class ReviewCard extends React.Component {
             .map((value, index) => {
                 return (
                     <Fragment key={index}>
-                        <a href={`/caster/${value.trim().replace(/ /g, '%20')}`}>{value.trim()}</a>
+                        <a href={`/caster/${value.trim().replace(/ /g, '%20')}`}>
+                            {
+                                index > 0 ? ' - ' + value.trim() : value.trim()
+                            }
+                        </a>
                     </Fragment>
                 )
             })
-            .reduce((prev, curr, curIndex) => {
-                if (curIndex > 0) {
-                    return [...prev, ' - ', curr]
-                } else {
-                    return [...prev, curr]
-                }
-                
-            }, 0)
+        /*
+        .reduce((prev, curr, curIndex) => {
+            if (curIndex > 0) {
+                return [...prev, ' - ', curr]
+            } else {
+                return [...prev, curr]
+            }
+            
+        }, 0)
+        */
     }
 
     _getDirectorComponents = (director) => {
@@ -75,8 +87,7 @@ class ReviewCard extends React.Component {
     }
 
     _calcFlexDirection = (width) => {
-        switch (width)
-        {
+        switch (width) {
             case 'xs':
                 return 'column'
 
@@ -88,8 +99,7 @@ class ReviewCard extends React.Component {
     }
 
     _calcFlexSize = (width) => {
-        switch (width)
-        {
+        switch (width) {
             case 'xs':
                 return {
                     leftOrTop: 1,
@@ -111,8 +121,8 @@ class ReviewCard extends React.Component {
     }
 
     render() {
-        const { 
-            classes, 
+        const {
+            classes,
             detail,
             width,
             onPlay = this.props.onPlay || this._onClick
@@ -122,7 +132,7 @@ class ReviewCard extends React.Component {
 
         const _flexDirection = this._calcFlexDirection(width)
         const _flexSize = this._calcFlexSize(width)
-        
+
         return (
             <div>
                 <Card className={classes.card}>
@@ -145,20 +155,20 @@ class ReviewCard extends React.Component {
                         }
                     />
 
-                        <CardMedia
-                            className={classes.media}
-                            image={detail.NewBackdrop}
-                            title={detail.KnownAs}
-                        >
-                            <div className={classes.divPlayButton}>
-                                <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID, detail.Trailer)}>
-                                    <PlayIcon className={classnames(classes.playIcon, classes.playIconHover)}/>
-                                </IconButton>
-                            </div>
-                        </CardMedia>
+                    <CardMedia
+                        className={classes.media}
+                        image={detail.NewBackdrop}
+                        title={detail.KnownAs}
+                    >
+                        <div className={classes.divPlayButton}>
+                            <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID, detail.Trailer)}>
+                                <PlayIcon className={classnames(classes.playIcon, classes.playIconHover)} />
+                            </IconButton>
+                        </div>
+                    </CardMedia>
 
                     <CardContent>
-                        <IconLabelTabs 
+                        <IconLabelTabs
                             data={[
                                 {
                                     icon: '/icons/vn_icon_64.png',
