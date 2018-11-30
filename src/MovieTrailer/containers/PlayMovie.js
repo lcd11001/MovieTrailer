@@ -31,11 +31,12 @@ class PlayMovie extends React.Component {
             match: {
                 params: {
                     movieID
-                }
+                },
+                path
             }
         } = this.props
 
-        if (isLogged) {
+        if (isLogged && path === '/play/:movieID') {
             this.props.playMovie(movieID)
         }
         this.props.loadMovieDetail(movieID)
@@ -74,16 +75,11 @@ class PlayMovie extends React.Component {
             classes,
             detail,
             play,
-            user
+            user,
+            match: {
+                path
+            }
         } = this.props
-
-        if (Loading || detail === null) {
-            return (
-                <div className={classes.loading}>
-                    <CircularLoading />
-                </div>
-            )
-        }
 
         if (Error) {
             return (
@@ -93,7 +89,20 @@ class PlayMovie extends React.Component {
             )
         }
 
-        let movieUrl = user.isLogged
+        let isLoading = Loading || detail === null
+        if (user.isLogged && path === '/play/:movieID') {
+            isLoading |= (play === null)
+        }
+
+        if (isLoading) {
+            return (
+                <div className={classes.loading}>
+                    <CircularLoading />
+                </div>
+            )
+        }
+
+        let movieUrl = user.isLogged && path === '/play/:movieID'
             ? play.playList
             : detail.Trailer
 
