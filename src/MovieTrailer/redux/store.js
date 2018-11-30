@@ -24,7 +24,7 @@ export const store = createStore(
     }),
     {},
     applyMiddleware(
-        createLogger(), 
+        // createLogger(), 
         thunk, 
         promise(),
         routerMiddleware(history)
