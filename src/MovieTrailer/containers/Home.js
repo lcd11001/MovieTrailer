@@ -31,18 +31,15 @@ class Home extends Component {
         this.state = {
             showReview: false,
         }
-        // console.log('Home constructor', this.state)
     }
 
     componentDidMount() {
-        // console.log('componentDidMount')
         if (this.props.movies.Banner.length === 0) {
             this.props.loadHomeMovies()
         }
     }
 
     _onInfoClicked = (movieID) => {
-        // console.log("Home on info click ", movieID)
         if (this.props.movies.MovieDetail === null || movieID !== this.props.movies.MovieDetail.MovieID) {
             this.props.clearMovieDetail()
             this.props.loadMovieDetail(movieID)
@@ -101,10 +98,6 @@ class Home extends Component {
         const {
             showReview
         } = this.state
-
-        // console.log('Home', this.props)
-
-        
 
         if (Error) {
             return (

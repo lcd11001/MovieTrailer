@@ -47,7 +47,6 @@ const _onInfoClicked = (movieID) => {
 }
 
 function CarouselView(props) {
-    // console.log('CarouselView', props)
     const { 
         classes, 
         data,

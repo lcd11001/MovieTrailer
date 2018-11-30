@@ -87,7 +87,6 @@ const _calcCols = (cols, width) => {
 }
 
 function SingleLineGridList(props) {
-    // console.log('SingleLineGridList', props)
 
     const {
         classes,

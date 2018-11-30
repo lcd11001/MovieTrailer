@@ -15,7 +15,6 @@ import Collapse from '@material-ui/core/Collapse'
 import { drawerStyles as styles } from '../styles'
 
 const TemporaryDrawer = (props) => {
-    console.log('TemporaryDrawer', props)
 
     const { classes, menuItems, open, onClose, onMenuItemClicked, width } = props
 

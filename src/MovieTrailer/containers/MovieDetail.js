@@ -66,7 +66,6 @@ class MovieDetailCard extends React.Component {
     }
 
     render() {
-        // console.log('MovieDetail', this.props)
         const {
             fetch: {
                 Loading,

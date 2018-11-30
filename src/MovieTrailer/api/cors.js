@@ -7,7 +7,6 @@ export function doCORSRequest(options, resolve, reject) {
     x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     x.setRequestHeader("Content-type", 'application/json')
     x.onload = function () {
-        console.log('doCORSRequest', x)
         if (x.status === 200) {
             resolve && resolve(x.responseText)
         } else {

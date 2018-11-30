@@ -23,7 +23,6 @@ import { playerStyles as styles, homeStyles, loadingStyles } from '../styles'
 
 class PlayMovie extends React.Component {
     componentWillMount() {
-        console.log('PlayMovie::componentWillMount', this.props)
         const {
             user: {
                 isLogged
@@ -66,7 +65,6 @@ class PlayMovie extends React.Component {
     }
 
     render() {
-        // console.log('PlayMovie', this.props, this.state)
         const {
             fetch: {
                 Loading,

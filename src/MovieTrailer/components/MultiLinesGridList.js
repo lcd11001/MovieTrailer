@@ -108,7 +108,6 @@ const _calcCols = (cols, width) => {
 }
 
 const MultiLinesGridList = (props) => {
-    // console.log('MultiLinesGridList', props)
     const {
         classes,
         data,
@@ -131,21 +130,16 @@ const MultiLinesGridList = (props) => {
                 {data.map(movie => {
                     if (maxCellCols !== 1) {
                         let availableCellsPerRow = _getAvailableCells(maxCellCols, remainCellCols)
-                        // console.log('availableCellsPerRow', availableCellsPerRow)
 
                         if (remainCellCols === cols) {
                             cellRows = _randomInRange(1, maxCellRows)
-                            // console.log('==cellRows==', cellRows)
                         }
 
                         cellCols = _randomInRange(1, availableCellsPerRow)
-                        // console.log('cellCols', cellCols)
 
                         index = _getNextIndex(index, cellCols)
-                        // console.log('_getNextIndex', index)
 
                         remainCellCols = _getRemainCellCols(remainCellCols, cols, cellCols)
-                        // console.log('_getRemainCellCols', remainCellCols)
                     }
 
                     return (

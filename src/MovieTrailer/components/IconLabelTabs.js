@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography'
 import { tabsStyles as styles } from '../styles'
 
 function TabContainer(props) {
-    // console.log('TabContainer', props)
     return (
         <Typography component="p" className={props.classes.content}>
             <span className={`${props.classes.firstLetter}  ${props.classes.firstLetterPadding}`}>

@@ -117,7 +117,7 @@ class ReviewCard extends React.Component {
     }
 
     _onClick = (movieID) => {
-        console.log('_onClick', movieID)
+        // console.log('_onClick', movieID)
     }
 
     render() {
@@ -127,8 +127,6 @@ class ReviewCard extends React.Component {
             width,
             onPlay = this.props.onPlay || this._onClick
         } = this.props
-
-        // console.log('ReviewCard is loaded')
 
         const _flexDirection = this._calcFlexDirection(width)
         const _flexSize = this._calcFlexSize(width)
