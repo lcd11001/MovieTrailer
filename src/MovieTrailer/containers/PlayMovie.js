@@ -28,10 +28,10 @@ class PlayMovie extends React.Component {
         this.state = {
             expanded: false,
             trailer: props.match.params.url ? decodeURI(atob(props.match.params.url.replace(/-/g, '/'))) : '',
-            movieID: props.match.params.movieID || props.history.location.search.replace(/[?movieID=]/g, '')
+            movieID: props.match.params.movieID ? props.match.params.movieID : ''
         }
     }
-
+    /*
     static getDerivedStateFromProps(props, state) {
         // console.log('getDerivedStateFromProps', props, state)
         if (props.detail && state.trailer !== props.detail.Trailer) {
@@ -41,13 +41,14 @@ class PlayMovie extends React.Component {
         }
         return null
     }
+    */
 
     componentDidMount() {
         if (this.props.detail === null) {
             this.props.loadMovieDetail(this.state.movieID)
         }
 
-        if (this.props.play === null) {
+        if (this.state.trailer === '' && this.props.play === null) {
             this.props.playMovie(this.state.movieID)
         }
     }
@@ -57,7 +58,7 @@ class PlayMovie extends React.Component {
         const buttons = []
 
         for (let i = 0; i < Episode; i++) {
-            if (i > Sequence ) {
+            if (i > Sequence) {
                 buttons.push(
                     <Button key={i} size="small" variant="outlined" disabled className={classes.button}>
                         Tập {i}
@@ -103,7 +104,7 @@ class PlayMovie extends React.Component {
             )
         }
 
-        let movieUrl = play 
+        let movieUrl = play
             ? (play.playList || this.state.trailer)
             : this.state.trailer
 

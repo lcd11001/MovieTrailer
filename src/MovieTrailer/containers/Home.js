@@ -54,9 +54,9 @@ class Home extends Component {
     }
 
     _onPlayMovie = (movieID, trailer) => {
-        let url = trailer 
-            ? '/trailer/' + btoa(encodeURI(trailer)).replace(/\//g, '-') + '?movieID=' + movieID
-            : '/play/' + movieID
+        let url = this.props.user.isLogged 
+            ? '/play/' + movieID
+            : '/trailer/' + btoa(encodeURI(trailer)).replace(/\//g, '-') + '/' + movieID
 
         store.dispatch(push(url))
     }
@@ -168,6 +168,7 @@ const mapStateToProps = (state) => (
     {
         fetch: state.fetch,
         movies: state.movies,
+        user: state.user
     }
 )
 

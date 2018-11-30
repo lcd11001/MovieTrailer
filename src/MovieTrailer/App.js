@@ -28,7 +28,7 @@ export default class App extends Component {
                 <Route exact path='/' render={this._renderHome} />
                 <Route exact path={`/movie/:movieID`} render={this._renderMovieDetail} />
                 <Route exact path={`/play/:movieID`} render={this._renderPlayMovie} />
-                <Route exact path={`/trailer/:url`} render={this._renderPlayMovie} />
+                <Route exact path={`/trailer/:url/:movieID`} render={this._renderPlayMovie} />
 
                 <Route component={NotFound} />
             </Switch>

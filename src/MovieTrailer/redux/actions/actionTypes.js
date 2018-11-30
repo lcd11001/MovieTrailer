@@ -11,3 +11,6 @@ export const MOVIE_DETAIL = 'MOVIE_DETAIL'
 export const MOVIE_PLAY = 'MOVIE_PLAY'
 
 export const CLEAR_MOVIE_DETAIL = 'CLEAR_MOVIE_DETAIL'
+
+export const USER_LOGIN = 'USER_LOGIN'
+export const USER_LOGGED = 'USER_LOGGED'

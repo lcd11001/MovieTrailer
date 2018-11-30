@@ -263,7 +263,8 @@ class ReviewCard extends React.Component {
 
 ReviewCard.propTypes = {
     classes: PropTypes.object.isRequired,
-    detail: PropTypes.object.isRequired
+    detail: PropTypes.object.isRequired,
+    onPlay: PropTypes.func
 }
 
 export default compose(withStyles(styles), withWidth())(ReviewCard)

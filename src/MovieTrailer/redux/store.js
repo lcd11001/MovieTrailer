@@ -19,7 +19,8 @@ export const store = createStore(
         fetch: reducers.fetchReducer,
         movies: reducers.moviesReducer,
         search: reducers.searchReducer,
-        router: routerReducer
+        user: reducers.userReducer,
+        router: routerReducer,
     }),
     {},
     applyMiddleware(

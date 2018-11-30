@@ -10,6 +10,7 @@ const defaultState = {
 
 const fetchReducer = (state = defaultState, action) => {
     let currentCount = state.Count
+    let nextCount = Math.max(0, currentCount - 1)
 
     switch (action.type) {
         case FETCH_BEGIN:
@@ -23,16 +24,16 @@ const fetchReducer = (state = defaultState, action) => {
         case FETCH_END_SUCCESS:
             state = {
                 ...state,
-                Count: currentCount - 1,
-                Loading: currentCount === 1 ? false : true
+                Count: nextCount,
+                Loading: nextCount === 0 ? false : true
             }
             break
 
         case FETCH_END_FAILURE:
             state = {
                 ...state,
-                Count: currentCount - 1,
-                Loading: currentCount === 1 ? false : true,
+                Count: nextCount,
+                Loading: nextCount === 0 ? false : true,
                 Error: action.payload.error
             }
             break
