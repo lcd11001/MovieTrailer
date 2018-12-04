@@ -19,7 +19,7 @@ import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext'
 
 import * as actions from '../redux/actions'
 
-import { playerStyles as styles, homeStyles, loadingStyles } from '../styles'
+import { playerStyles as styles, homeStyles, loadingStyles, withMultipleStyles } from '../styles'
 
 class PlayMovie extends React.Component {
     componentWillMount() {
@@ -171,4 +171,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default compose(withStyles(styles), withStyles(homeStyles), withStyles(loadingStyles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(PlayMovie)
+export default compose(withMultipleStyles(styles, homeStyles, loadingStyles), withWidth(), connect(mapStateToProps, mapDispatchToProps))(PlayMovie)
