@@ -23,7 +23,7 @@ import { push } from 'react-router-redux'
 
 import * as actions from '../redux/actions'
 
-import { homeStyles as styles, loadingStyles } from '../styles'
+import { homeStyles as styles, loadingStyles, withMultipleStyles } from '../styles'
 
 class Home extends Component {
     constructor (props) {
@@ -179,4 +179,4 @@ const mapDispatchToProps = (dispatch) => (
     }
 )
 
-export default compose ( withStyles(styles), withStyles(loadingStyles), withWidth(), connect(mapStateToProps, mapDispatchToProps) ) (Home)
+export default compose ( withMultipleStyles(styles, loadingStyles), withWidth(), connect(mapStateToProps, mapDispatchToProps) ) (Home)
