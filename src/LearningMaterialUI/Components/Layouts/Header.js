@@ -12,7 +12,7 @@ const headerStyle = {
 export default ({ muscles, onExerciseCreate }) => (
     <AppBar position='static'>
         <Toolbar>
-            <Typography variant='headline' color='inherit' align='center' style={headerStyle}>
+            <Typography variant='h5' color='inherit' align='center' style={headerStyle}>
                 Exercies Database
             </Typography>
 

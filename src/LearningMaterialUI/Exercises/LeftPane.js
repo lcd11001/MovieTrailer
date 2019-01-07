@@ -30,7 +30,7 @@ export default ({
                 return (
                     <Fragment key={id}>
                         <Typography
-                            variant='headline'
+                            variant='h5'
                             style={{ textTransform: 'capitalize' }}
                         >
                             {id}

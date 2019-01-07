@@ -22,7 +22,7 @@ export default withWidth()(
                     indicatorColor='primary'
                     textColor='primary'
                     centered={width !== 'xs'}
-                    scrollable={width === 'xs'}
+                    variant={width === 'xs' ? 'scrollable' : 'fullWidth'}
                 >
                     <Tab label='all' key={0} />
                     {

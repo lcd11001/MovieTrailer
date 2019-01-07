@@ -7,12 +7,13 @@ import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 import promise from 'redux-promise-middleware'
 
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
+import { connectRouter } from 'connected-react-router'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 
 import * as reducers from './reducers'
 
-export const history = createHistory()
+export const history = createBrowserHistory()
 
 export const store = createStore(
     combineReducers({
@@ -20,11 +21,11 @@ export const store = createStore(
         movies: reducers.moviesReducer,
         search: reducers.searchReducer,
         user: reducers.userReducer,
-        router: routerReducer,
+        router: connectRouter(history),
     }),
     {},
     applyMiddleware(
-        // createLogger(), 
+        createLogger(), 
         thunk, 
         promise(),
         routerMiddleware(history)

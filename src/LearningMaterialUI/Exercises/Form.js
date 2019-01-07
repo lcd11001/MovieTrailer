@@ -138,7 +138,7 @@ export default compose (withStyles(styles), withWidth())(class extends Component
                 <br />
                 <Button 
                     color='primary' 
-                    variant='raised'
+                    variant='contained'
                     onClick={this._handleSubmit}
                 >
                     {

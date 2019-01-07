@@ -21,10 +21,10 @@ export default ({
                         />
                     ) : (
                         <Fragment>
-                            <Typography variant='display1'>
+                            <Typography variant='h4'>
                                 {exercise.title}
                             </Typography>
-                            <Typography variant='subheading' style={{ marginTop: 20 }}>
+                            <Typography variant='subtitle1' style={{ marginTop: 20 }}>
                                 {exercise.description}
                             </Typography>
                         </Fragment>
