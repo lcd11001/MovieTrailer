@@ -11,23 +11,25 @@ export default ({
     muscles
 }) => (
         <Paper className={className}>
+            <Typography variant='h4' gutterBottom>
+                {exercise.title}
+            </Typography>
             {
                 editMode
                     ? (
                         <Form
+                            key={exercise.id}
                             muscles={muscles}
                             onSubmit={onEdit}
                             exercise={exercise}
                         />
                     ) : (
-                        <Fragment>
-                            <Typography variant='h4'>
-                                {exercise.title}
-                            </Typography>
-                            <Typography variant='subtitle1' style={{ marginTop: 20 }}>
-                                {exercise.description}
-                            </Typography>
-                        </Fragment>
+
+
+                        <Typography variant='subtitle1'>
+                            {exercise.description}
+                        </Typography>
+
                     )
             }
 

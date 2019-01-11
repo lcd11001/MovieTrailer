@@ -21,7 +21,7 @@ export default class App extends Component {
             exercise: {
                 id: '',
                 title: 'Welcome!',
-                description: 'Plase select an exercise from the list on the left',
+                description: 'Please select an exercise from the list on the left',
                 muscles: ''
             }
         }
@@ -58,7 +58,8 @@ export default class App extends Component {
         this.setState((prevState, props) => {
             return {
                 exercise: prevState.exercises.find((ex) => ex.id === id),
-                editMode: false
+                editMode: false,
+                id: id
             }
         })
     }
@@ -88,7 +89,8 @@ export default class App extends Component {
         this.setState((prevState, props) => {
             return {
                 exercise: prevState.exercises.find((ex) => ex.id === id),
-                editMode: true
+                editMode: true,
+                id: id
             }
         })
     }

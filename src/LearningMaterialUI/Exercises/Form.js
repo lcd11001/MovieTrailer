@@ -12,40 +12,7 @@ import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
 import { withStyles } from '@material-ui/core/styles'
 
-// https://material-ui-next.com/layout/css-in-js/
-const styles = theme => ({
-    // xl - extra large
-    FormControl: {
-        width: 900
-    },
-    // extra small
-    [theme.breakpoints.only('xs')]: {
-        FormControl: {
-            width: 275
-        }
-    },
-    // small
-    [theme.breakpoints.only('sm')]: {
-        FormControl: {
-            width: 300
-        }
-    },
-    // medium
-    [theme.breakpoints.only('md')]: {
-        FormControl: {
-            width: 475
-        }
-    },
-    // large
-    [theme.breakpoints.only('lg')]: {
-        FormControl: {
-            width: 650
-        }
-    }
-})
-
-
-export default compose (withStyles(styles), withWidth())(class extends Component {
+export default class extends Component {
     state = this.getInitState()
 
     getInitState() {
@@ -56,15 +23,6 @@ export default compose (withStyles(styles), withWidth())(class extends Component
             description: '',
             muscles: ''
         }
-    }
-
-    // componentWillReceiveProps(nextProps) {
-    //     this.setState({
-    //         ...nextProps.exercise
-    //     })
-    // }
-    static getDerivedStateFromProps(nextProps, prevState) {
-        return nextProps.exercise || null
     }
 
     _handleTextChange = name => event => {
@@ -84,14 +42,10 @@ export default compose (withStyles(styles), withWidth())(class extends Component
             id: this.state.title.toLocaleLowerCase().replace(/ /g, '-'),
             ...this.state,
         })
-
-        this.setState(this.getInitState())
     }
 
     render() {
-        const {classes, width, muscles, exercise} = this.props
-        console.log('Form width', width, classes)
-
+        const {muscles, exercise} = this.props
         return (
             <form>
                 <TextField
@@ -100,10 +54,10 @@ export default compose (withStyles(styles), withWidth())(class extends Component
                     value={this.state.title}
                     onChange={this._handleTextChange('title')}
                     margin='normal'
-                    className={classes.FormControl}
+                    fullWidth
                 />
                 <br />
-                <FormControl className={classes.FormControl}>
+                <FormControl fullWidth>
                     <InputLabel htmlFor='muscles'>Muscles</InputLabel>
                     <Select
                         name='muscles'
@@ -133,13 +87,14 @@ export default compose (withStyles(styles), withWidth())(class extends Component
                     margin='normal'
                     multiline
                     rows='4'
-                    className={classes.FormControl}
+                    fullWidth
                 />
                 <br />
                 <Button 
                     color='primary' 
                     variant='contained'
                     onClick={this._handleSubmit}
+                    disabled={!this.state.title || !this.state.muscles}
                 >
                     {
                         exercise ? 'Edit':'Create'
@@ -148,4 +103,4 @@ export default compose (withStyles(styles), withWidth())(class extends Component
             </form>
         )
     }
-})
+}
