@@ -19,7 +19,7 @@ export default withWidth()(
                 <Tabs
                     value={index}
                     onChange={onIndexChange}
-                    indicatorColor='primary'
+                    indicatorColor='secondary'
                     textColor='primary'
                     centered={width !== 'xs'}
                     variant={width === 'xs' ? 'scrollable' : 'fullWidth'}

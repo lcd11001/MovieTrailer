@@ -32,6 +32,7 @@ export default ({
                         <Typography
                             variant='h5'
                             style={{ textTransform: 'capitalize' }}
+                            color='secondary'
                         >
                             {id}
                         </Typography>

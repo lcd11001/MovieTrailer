@@ -28,7 +28,7 @@ const RenderApp = () => (
             <ConnectedRouter history={history}>
                 <App />
             </ConnectedRouter>
-        </Provider>,
+        </Provider>
     </MuiThemeProvider>
 )
 

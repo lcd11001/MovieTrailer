@@ -11,7 +11,7 @@ export default ({
     muscles
 }) => (
         <Paper className={className}>
-            <Typography variant='h4' gutterBottom>
+            <Typography variant='h4' gutterBottom color='secondary'>
                 {exercise.title}
             </Typography>
             {
