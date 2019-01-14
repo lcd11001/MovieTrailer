@@ -8,10 +8,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
-import compose from 'recompose/compose'
-import withWidth from '@material-ui/core/withWidth'
-import { withStyles } from '@material-ui/core/styles'
-
 export default class extends Component {
     state = this.getInitState()
 

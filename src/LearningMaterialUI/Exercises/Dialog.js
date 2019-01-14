@@ -4,12 +4,13 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
-import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import Form from './Form'
 import { Fab } from '@material-ui/core';
 
-export default class extends Component {
+import { withContext } from '../Context'
+
+class CreateDialog extends Component {
     state = {
         open: false
     }
@@ -28,11 +29,15 @@ export default class extends Component {
 
 
     render() {
-        const {categories, onCreate} = this.props
+        const {
+            muscles
+        } = this.props
+
         return (
+
             <Fragment>
-                <Fab 
-                    color='secondary' 
+                <Fab
+                    color='secondary'
                     size={'small'}
                     onClick={this._handleToggle}
                 >
@@ -46,13 +51,13 @@ export default class extends Component {
                 >
                     <DialogTitle id='form-dialog-title'>
                         Create a new exercise
-                    </DialogTitle>
+                                    </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
                             Please fill out the form below
-                        </DialogContentText>
-                        <Form 
-                            muscles={categories}
+                                        </DialogContentText>
+                        <Form
+                            muscles={muscles}
                             onSubmit={this._handleFormSubmit}
                         />
                     </DialogContent>
@@ -61,4 +66,5 @@ export default class extends Component {
         )
     }
 }
-    
+
+export default withContext(CreateDialog)

@@ -9,17 +9,14 @@ const headerStyle = {
 }
 
 // https://material.io/icons/
-export default ({ muscles, onExerciseCreate }) => (
+export default ({ onExerciseCreate }) => (
     <AppBar position='static'>
         <Toolbar>
             <Typography variant='h5' color='inherit' align='center' style={headerStyle}>
                 Exercies Database
             </Typography>
 
-            <CreateDialog
-                categories={muscles}
-                onCreate={onExerciseCreate}
-            />
+            <CreateDialog />
         </Toolbar>
     </AppBar>
 )

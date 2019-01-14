@@ -1,12 +1,13 @@
 // https://www.youtube.com/watch?v=xm4LX5fJKZ8
 
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import { Header, Footer } from './Components/Layouts'
 import Exercises from './Exercises'
 import { muscles, exercises } from './Store'
+import { Provider } from './Context'
 
 export default class App extends Component {
     state = {
@@ -64,7 +65,7 @@ export default class App extends Component {
         })
     }
 
-    _handleExerciseCreate = (exercise) => {
+    _handleExerciseCreated = (exercise) => {
         this.setState((prevState, props) => {
             return {
                 exercises: [
@@ -107,38 +108,30 @@ export default class App extends Component {
         })
     }
 
+    getProvider = () => ({
+        muscles,
+        ...this.state,
+        onCreate: this._handleExerciseCreated,
+        onCategorySelect: this._handleCategorySelected,
+        onExcersiseSelect: this._handleExerciseSelected,
+        onEdit: this._handleExerciseEdited,
+        onEditMode: this._handleEditMode,
+        onDelete: this._handleExerciseDeleted
+    })
+
     render() {
         // console.log(this.getExercisesByMuscles())
         const exercises = this.getExercisesByMuscles()
 
         return (
-
-            <Fragment>
+            <Provider value={this.getProvider()}>
                 <CssBaseline />
-                <Header
-                    muscles={muscles}
-                    onExerciseCreate={this._handleExerciseCreate}
-                />
-
+                <Header />
                 <Exercises
-                    category={this.state.category}
-                    muscles={muscles}
                     exercises={exercises}
-                    exercise={this.state.exercise}
-                    onSelect={this._handleExerciseSelected}
-                    onDelete={this._handleExerciseDeleted}
-                    onEditMode={this._handleEditMode}
-                    editMode={this.state.editMode}
-                    onEdit={this._handleExerciseEdited}
                 />
-
-                <Footer
-                    category={this.state.category}
-                    muscles={muscles}
-                    onSelect={this._handleCategorySelected}
-                />
-            </Fragment>
-
+                <Footer />
+            </Provider>
         );
     }
 }

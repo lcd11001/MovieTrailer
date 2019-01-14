@@ -3,22 +3,41 @@ import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import withWidth from '@material-ui/core/withWidth'
+import { compose } from 'recompose'
+import { withContext } from '../../Context'
 
-export default withWidth()(
-    ({ muscles, category, onSelect, width }) => {
-        const index = category
+class Footer extends React.Component {
+    onIndexChange = (event, value) => {
+        const {
+            onCategorySelect,
+            muscles
+        } = this.props
+
+        onCategorySelect(value === 0 ? '' : muscles[value - 1])
+    }
+
+    getIndex = () => {
+        const {
+            muscles,
+            category
+        } = this.props
+
+        return category
             ? muscles.findIndex(group => group === category) + 1
             : 0
+    }
 
-        const onIndexChange = (event, value) => {
-            onSelect(value === 0 ? '' : muscles[value - 1])
-        }
+    render() {
+        const {
+            width,
+            muscles
+        } = this.props
 
         return (
             <Paper>
                 <Tabs
-                    value={index}
-                    onChange={onIndexChange}
+                    value={this.getIndex()}
+                    onChange={this.onIndexChange}
                     indicatorColor='secondary'
                     textColor='primary'
                     centered={width !== 'xs'}
@@ -34,4 +53,6 @@ export default withWidth()(
             </Paper>
         )
     }
-)
+}
+
+export default compose(withContext, withWidth())(Footer)
