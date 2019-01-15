@@ -7,8 +7,8 @@ import { ConnectedRouter } from 'connected-react-router'
 import { store, history } from './MovieTrailer/redux/store'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-import App from './LearningMaterialUI/App'
-// import App from './MovieTrailer/App'
+// import App from './LearningMaterialUI/App'
+import App from './MovieTrailer/App'
 
 // https://material-ui.com/customization/default-theme/
 const theme = createMuiTheme({
