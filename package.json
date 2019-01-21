@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^3.8.3",
+    "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "^3.0.2",
-    "connected-react-router": "^6.2.1",
+    "connected-react-router": "^6.2.2",
     "history": "^4.7.2",
     "nuka-carousel": "^4.4.6",
     "react": "^16.7.0",
@@ -19,8 +19,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.3.0",
-    "screenfull": "^4.0.0",
-    "source-map-explorer": "^1.6.0"
+    "screenfull": "^4.0.0"
   },
   "repository": {
     "type": "git",
@@ -39,14 +38,15 @@
   },
   "homepage": "https://github.com/lcd11001/MovieTrailer#readme",
   "scripts": {
-    "analyze": "source-map-explorer build/static/js/main.*", // set GENERATE_SOURCEMAP=true in .env file
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "convert-es5": "babel src -d src-es5"
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "source-map-explorer": "^1.6.0"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
