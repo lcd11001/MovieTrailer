@@ -9,8 +9,8 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import theme from './theme'
 
-import App from './LearningMaterialUI/App'
-// import App from './MovieTrailer/App'
+// import App from './LearningMaterialUI/App'
+import App from './MovieTrailer/App'
 
 const RenderApp = () => (
     <MuiThemeProvider theme={theme}>

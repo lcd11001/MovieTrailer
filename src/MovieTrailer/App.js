@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router'
 // import Home from './containers/Home'
 import MovieDetail from './containers/MovieDetail'
 import PlayMovie from './containers/PlayMovie'
