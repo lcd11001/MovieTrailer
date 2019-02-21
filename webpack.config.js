@@ -45,6 +45,7 @@ module.exports = {
         open: true,
         port: 4000,
         compress: true,
+        historyApiFallback: true,
         contentBase: PUBLIC_DIR
     }
 }
