@@ -6,3 +6,4 @@ node_modules/
 *.properties
 *.log
 /package-lock.json
+/stats.json

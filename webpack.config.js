@@ -33,6 +33,11 @@ module.exports = (env, args) => {
                 }
             ]
         },
+        resolve: {
+            alias: {
+                '@material-ui/core': '@material-ui/core/es'
+            }
+        },
         plugins: [
             new CleanWebpackPlugin(BUILD_DIR),
             new HtmlWebpackPlugin({

@@ -39,7 +39,9 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "dev": "webpack --mode development --progress",
-    "build": "webpack --mode production --progress"
+    "build": "webpack --mode production --progress",
+    "stats": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json dist",
+    "serve": "serve dist"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
