@@ -12,6 +12,7 @@ module.exports = (env, args) => {
     return {
         entry: './src/client.js',
         output: {
+            filename: '[name].[contenthash].js',
             path: BUILD_DIR,
             publicPath: '/'
         },
