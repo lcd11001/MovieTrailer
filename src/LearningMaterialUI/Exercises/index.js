@@ -3,10 +3,10 @@ import Grid from '@material-ui/core/Grid'
 import LeftPane from './LeftPane'
 import RightPane from './RightPane'
 
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 import { withContext } from '../Context'
-import { compose } from 'recompose';
+import { compose } from 'recompose'
 
 const styles = theme => ({
     paper: {

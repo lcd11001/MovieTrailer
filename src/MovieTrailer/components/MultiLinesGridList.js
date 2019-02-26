@@ -22,7 +22,7 @@ import { push } from 'react-router-redux'
 
 import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'

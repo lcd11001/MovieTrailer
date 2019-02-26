@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'

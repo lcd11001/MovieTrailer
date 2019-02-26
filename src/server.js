@@ -5,10 +5,8 @@ import { renderToString } from 'react-dom/server'
 import { SheetsRegistry } from 'jss'
 import JssProvider from 'react-jss/lib/JssProvider'
 
-import {
-    MuiThemeProvider,
-    createGenerateClassName
-} from '@material-ui/core/styles'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import createGenerateClassName from '@material-ui/core/styles/createGenerateClassName'
 
 import theme from './theme'
 

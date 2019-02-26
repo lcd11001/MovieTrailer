@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 
 import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import DraftsIcon from '@material-ui/icons/Drafts'

@@ -6,7 +6,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 
 import AddIcon from '@material-ui/icons/Add'
 import Form from './Form'
-import { Fab } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab'
 
 import { withContext } from '../Context'
 

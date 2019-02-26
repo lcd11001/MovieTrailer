@@ -3,7 +3,7 @@
         [
             "@babel/env",
             {
-                "useBuiltIns": "entry",
+                "useBuiltIns": "usage",
                 "targets": {
                     "browsers": [
                         ">1%",
@@ -16,7 +16,6 @@
         "@babel/react"
     ],
     "plugins": [
-        "@babel/proposal-class-properties",
-        "@babel/syntax-dynamic-import"
+        "@babel/proposal-class-properties"
     ]
 }

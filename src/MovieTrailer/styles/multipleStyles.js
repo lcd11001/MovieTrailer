@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 // Fixed: material-ui "The key provided to the classes property is not implemented"
 const withMultipleStyles = (...params) => {

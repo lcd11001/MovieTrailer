@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import compose from 'recompose/compose'
 import withWidth from '@material-ui/core/withWidth'
-import { withStyles } from '@material-ui/core/styles'
 
 import Typography from '@material-ui/core/Typography'
 
