@@ -3,6 +3,8 @@ node_modules/
 /.cache
 /build
 /dist
+/dist_client
+/dist_server
 *.properties
 *.log
 /package-lock.json
