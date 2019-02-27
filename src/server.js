@@ -4,6 +4,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { SheetsRegistry } from 'jss'
 import JssProvider from 'react-jss/lib/JssProvider'
+import reload from 'reload'
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import createGenerateClassName from '@material-ui/core/styles/createGenerateClassName'
@@ -16,8 +17,16 @@ import App from './LearningMaterialUI/App'
 const app = express()
 
 const port = 5000
+const IS_DEV = process.env.NODE_ENV === 'development'
+
+console.log('IS_DEV', IS_DEV)
 
 app.use(express.static('public'))
+
+// MUST here
+if (IS_DEV) {
+    reload(app)
+}
 
 app.use((req, res) => {
     const sheetsRegistry = new SheetsRegistry()
@@ -42,8 +51,7 @@ app.use((req, res) => {
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
         <meta name='theme-color' content='#000000'>
     
-        <link rel='manifest' href='%PUBLIC_URL%/manifest.json'>
-        <link rel='shortcut icon' href='%PUBLIC_URL%/favicon.ico'>
+        <link rel='shortcut icon' href='/favicon.ico'>
 
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500'>
         <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
@@ -57,7 +65,8 @@ app.use((req, res) => {
     </head>
     <body>
         <div id='root'>${html}</div>
-        <script src='main.js'></script>
+        <script type='text/javascript' src='main.js' async></script>
+        ${IS_DEV ? `<script type='text/javascript' src='/reload/reload.js' async></script>` : ''}
     </body>
     </html>
     `)
