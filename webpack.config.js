@@ -3,8 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const NodeExternals = require('webpack-node-externals')
+const webpack = require('webpack')
 
 const PUBLIC_DIR = path.resolve(__dirname, 'public')
+const PUBLIC_URL = '/ssr'
+
 const BUILD_CLIENT_DIR = path.resolve(__dirname, 'dist_client')
 const BUILD_SERVER_DIR = path.resolve(__dirname, 'dist_server')
 
@@ -33,14 +36,27 @@ const CommonConfig = (env, args) => {
             alias: {
                 '@material-ui/core': '@material-ui/core/es'
             }
-        }
+        },
+        plugins: [
+            new webpack.EnvironmentPlugin({
+                NODE_ENV: args.mode,
+
+                PUBLIC_DIR: PUBLIC_DIR,
+                PUBLIC_URL: PUBLIC_URL,
+                
+                BUILD_CLIENT_DIR: BUILD_CLIENT_DIR,
+                BUILD_SERVER_DIR: BUILD_SERVER_DIR
+            })
+        ]
     }
 }
 
 const ClientConfig = (env, args) => {
+    const common = CommonConfig(env, args)
     return {
-        ...CommonConfig(env, args),
+        ...common,
         plugins: [
+            ...common.plugins,
             new CleanWebpackPlugin(BUILD_CLIENT_DIR),
             new CopyPlugin([
                 {
@@ -57,21 +73,25 @@ const ClientConfig = (env, args) => {
         ],
         entry: './src/client',
         output: {
-            path: BUILD_CLIENT_DIR
+            path: BUILD_CLIENT_DIR,
+            publicPath: PUBLIC_URL
         }
     }
 }
 
 const ServerConfig = (env, args) => {
+    const common = CommonConfig(env, args)
     return {
-        ...CommonConfig(env, args),
+        ...common,
         plugins: [
+            ...common.plugins,
             new CleanWebpackPlugin(BUILD_SERVER_DIR),
         ],
         target: 'node',
         entry: './src/server',
         output: {
-            path: BUILD_SERVER_DIR
+            path: BUILD_SERVER_DIR,
+            publicPath: PUBLIC_URL
         },
         externals: [NodeExternals()]
     }
