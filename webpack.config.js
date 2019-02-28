@@ -42,22 +42,22 @@ const ClientConfig = (env, args) => {
         ...CommonConfig(env, args),
         plugins: [
             new CleanWebpackPlugin(BUILD_CLIENT_DIR),
-            new HtmlWebpackPlugin({
-                title: 'Movies Trailer',
-                favicon: path.join(PUBLIC_DIR, './favicon.ico'),
-                template: 'index.template.html',
-                filename: path.join(BUILD_CLIENT_DIR, '/index.html')
-            }),
             new CopyPlugin([
                 {
                     from: PUBLIC_DIR,
                     to: BUILD_CLIENT_DIR
                 }
-            ])
+            ]),
+            new HtmlWebpackPlugin({
+                title: 'Movies Trailer',
+                favicon: path.join(PUBLIC_DIR, './favicon.ico'),
+                template: 'index.template.html',
+                filename: path.join(BUILD_CLIENT_DIR, '/index.html')
+            })
         ],
         entry: './src/client',
         output: {
-            path: PUBLIC_DIR
+            path: BUILD_CLIENT_DIR
         }
     }
 }
