@@ -40,7 +40,9 @@
   "main": "dist_server/main.js",
   "scripts": {
     "start": "node dist_server/main.js",
-    "watch": "webpack --mode development --watch && nodemon dist_server/main.js",
+    "nodemon": "nodemon dist_server/main.js",
+    "watch": "webpack --mode development --watch",
+    "reload": "npm run watch && npm run nodemon",
     "dev": "webpack --mode development --progress",
     "build": "webpack --mode production --progress",
     "stats": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json dist",

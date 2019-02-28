@@ -19,8 +19,6 @@ const app = express()
 const port = 5000
 const IS_DEV = process.env.NODE_ENV === 'development'
 
-console.log('IS_DEV', IS_DEV)
-
 app.use(express.static('public'))
 
 // MUST here

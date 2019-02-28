@@ -3,7 +3,6 @@ import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import withWidth from '@material-ui/core/withWidth'
-import { compose } from 'recompose'
 import { withContext } from '../../Context'
 
 class Footer extends React.Component {
@@ -55,4 +54,4 @@ class Footer extends React.Component {
     }
 }
 
-export default compose(withContext, withWidth())(Footer)
+export default withContext(withWidth()(Footer))

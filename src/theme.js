@@ -9,6 +9,11 @@ const theme = createMuiTheme({
     },
     typography: {
         useNextVariants: true,
+    },
+    props: {
+        MuiWithWidth: {
+            initialWidth: 'lg'
+        }
     }
 })
 

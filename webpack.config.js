@@ -57,7 +57,7 @@ const ClientConfig = (env, args) => {
         ],
         entry: './src/client',
         output: {
-            path: BUILD_CLIENT_DIR
+            path: PUBLIC_DIR
         }
     }
 }
