@@ -93,7 +93,11 @@ const ServerConfig = (env, args) => {
             path: BUILD_SERVER_DIR,
             publicPath: PUBLIC_URL
         },
-        externals: [NodeExternals()]
+        externals: [NodeExternals({
+            whitelist: [
+                /@material-ui\/core\/*./
+            ]
+        })]
     }
 }
 
