@@ -57,7 +57,7 @@ const ClientConfig = (env, args) => {
         ...common,
         plugins: [
             ...common.plugins,
-            new CleanWebpackPlugin(BUILD_CLIENT_DIR),
+            new CleanWebpackPlugin(),
             new CopyPlugin([
                 {
                     from: PUBLIC_DIR,
@@ -85,7 +85,7 @@ const ServerConfig = (env, args) => {
         ...common,
         plugins: [
             ...common.plugins,
-            new CleanWebpackPlugin(BUILD_SERVER_DIR),
+            new CleanWebpackPlugin(),
         ],
         target: 'node',
         entry: './src/server',
