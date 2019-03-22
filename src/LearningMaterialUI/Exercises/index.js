@@ -17,7 +17,7 @@ const styles = theme => ({
             height: 'calc(100% - 10px)', // margin top-bottom
         },
         [theme.breakpoints.down('xs')]: {
-            height: '100%',
+            height: '100%'
         }
     },
     '@global': {
@@ -34,6 +34,9 @@ const styles = theme => ({
         }
     },
     item: {
+        [theme.breakpoints.up('sm')]: {
+            height: '100%'
+        },
         [theme.breakpoints.down('xs')]: {
             height: '50%'
         }
