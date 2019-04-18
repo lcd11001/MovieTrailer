@@ -6,3 +6,4 @@
 [server render 2](https://www.youtube.com/watch?v=mn9XipISLzo&list=PLzrVYRai0riRTQ-w233MaRwcbxkNeciQY) <br />
 [next.js](https://www.youtube.com/watch?v=IkOVe40Sy0U) <br />
 [Firebase Cloud function](https://blog.usejournal.com/build-a-serverless-full-stack-app-using-firebase-cloud-functions-81afe34a64fc) <br />
+[React Router Server Rendering](https://www.youtube.com/watch?v=mZEv4mHsU5E) <br />

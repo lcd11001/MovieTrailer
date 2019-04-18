@@ -15,12 +15,14 @@ import ReviewCard from '../components/ReviewCard'
 import IconButton from '@material-ui/core/IconButton'
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext'
 
-import { store } from '../redux/store'
+import createStore from '../redux/store'
 import { push } from 'react-router-redux'
 
 import * as actions from '../redux/actions'
 
 import { homeStyles as styles, loadingStyles, withMultipleStyles } from '../styles'
+
+const { store } = createStore()
 
 class MovieDetailCard extends React.Component {
     constructor(props) {

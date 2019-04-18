@@ -35,6 +35,7 @@ export default class App extends Component {
             <Fragment>
                 <Switch>
                     <Route exact path='/' render={() => <Redirect to='/home' />} />
+                    <Route exact path='/ssr' render={() => <Redirect to='/home' />} />
                     <Route exact path='/home' render={this._renderHome} />
                     <Route exact path={`/movie/:movieID`} render={this._renderMovieDetail} />
                     <Route exact path={`/play/:movieID`} render={this._renderPlayMovie} />

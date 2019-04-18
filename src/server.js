@@ -6,13 +6,17 @@ import { SheetsRegistry } from 'jss'
 import JssProvider from 'react-jss/lib/JssProvider'
 import reload from 'reload'
 
+import { Provider } from 'react-redux'
+import { StaticRouter } from 'react-router'
+
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import createGenerateClassName from '@material-ui/core/styles/createGenerateClassName'
 
 import theme from './theme'
 
-import App from './LearningMaterialUI/App'
-// import App from './MovieTrailer/App'
+// import App from './LearningMaterialUI/App'
+import App from './MovieTrailer/App'
+import createStore from './MovieTrailer/redux/store'
 
 const app = express()
 
@@ -28,6 +32,9 @@ if (IS_DEV) {
 }
 
 app.use((req, res) => {
+    const { store } = createStore(req.url)
+    const context = {}
+
     const sheetsRegistry = new SheetsRegistry()
     const sheetsManager = new Map()
     const generateClassName = createGenerateClassName()
@@ -35,7 +42,11 @@ app.use((req, res) => {
     const html = renderToString(
         <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
             <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-                <App />
+                <Provider store={store}>
+                    <StaticRouter location={req.url} context={context}>
+                        <App />
+                    </StaticRouter>
+                </Provider>
             </MuiThemeProvider>
         </JssProvider>
     )

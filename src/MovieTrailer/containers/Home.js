@@ -17,12 +17,14 @@ import PaperSheet from '../components/PaperSheet'
 import CarouselView from '../components/Carousel'
 import ReviewCard from '../components/ReviewCard'
 
-import { store } from '../redux/store'
+import createStore from '../redux/store'
 import { push } from 'react-router-redux'
 
 import * as actions from '../redux/actions'
 
 import { homeStyles as styles, loadingStyles, withMultipleStyles } from '../styles'
+
+const { store } = createStore()
 
 class Home extends Component {
     constructor (props) {

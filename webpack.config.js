@@ -43,7 +43,7 @@ const CommonConfig = (env, args) => {
 
                 PUBLIC_DIR: PUBLIC_DIR,
                 PUBLIC_URL: PUBLIC_URL,
-                
+
                 BUILD_CLIENT_DIR: BUILD_CLIENT_DIR,
                 BUILD_SERVER_DIR: BUILD_SERVER_DIR
             })
@@ -69,6 +69,9 @@ const ClientConfig = (env, args) => {
                 favicon: path.join(PUBLIC_DIR, './favicon.ico'),
                 template: 'index.template.html',
                 filename: path.join(BUILD_CLIENT_DIR, '/index.html')
+            }),
+            new webpack.DefinePlugin({
+                __isBrowser__: "true"
             })
         ],
         entry: './src/client',
@@ -86,6 +89,9 @@ const ServerConfig = (env, args) => {
         plugins: [
             ...common.plugins,
             new CleanWebpackPlugin(),
+            new webpack.DefinePlugin({
+                __isBrowser__: "false"
+            })
         ],
         target: 'node',
         entry: './src/server',

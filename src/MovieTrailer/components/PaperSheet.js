@@ -17,10 +17,10 @@ function PaperSheet(props) {
     return (
         <div>
             <Paper className={classes.root} elevation={4}>
-                <Typography variant="headline" component="h3">
+                <Typography variant="subtitle1">
                     {title}
                 </Typography>
-                <Typography component="p">
+                <Typography variant="body1">
                     {description}
                 </Typography>
             </Paper>

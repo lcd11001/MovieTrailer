@@ -32,10 +32,12 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import Carousel from 'nuka-carousel'
 import classnames from 'classnames'
 
-import { store } from '../redux/store'
+import createStore from '../redux/store'
 import { push } from 'react-router-redux'
 
 import { carouselStyles as styles } from '../styles'
+
+const { store } = createStore()
 
 const _onImageError = (error) => {
     error.target.src = '/defaultImage/unavailable.png'

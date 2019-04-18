@@ -17,7 +17,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { store } from '../redux/store'
+import createStore from '../redux/store'
 import { push } from 'react-router-redux'
 
 import compose from 'recompose/compose'
@@ -34,6 +34,8 @@ import InfoIcon from '@material-ui/icons/Info'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 
 import { listStyles as styles } from '../styles'
+
+const { store } = createStore()
 
 const _onImageError = (error) => {
     error.target.src = '/defaultImage/unavailable.png'
