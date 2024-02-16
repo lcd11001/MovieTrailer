@@ -35,6 +35,8 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 
 import { listStyles as styles } from '../styles'
 
+import { getImage } from '../api'
+
 const { store } = createStore()
 
 const _onImageError = (error) => {
@@ -145,15 +147,15 @@ const MultiLinesGridList = (props) => {
                     }
 
                     return (
-                        <GridListTile key={movie.MovieID} cols={cellCols} rows={cellRows} onClick={() => { onInfoClicked(movie.MovieID) }}>
+                        <GridListTile key={movie.id /*movie.MovieID*/} cols={cellCols} rows={cellRows} onClick={() => { onInfoClicked(movie.id /*movie.MovieID*/) }}>
                             <div className={classes.divImage}>
-                                <img className={classes.image} src={movie.Poster100x149} alt={movie.MovieName} onError={_onImageError} />
+                                <img className={classes.image} src={getImage(movie.backdrop_path)/*getImage(movie.Poster100x149)*/} alt={movie.title /*movie.MovieName*/} onError={_onImageError} />
                                 <div className={classes.divActionIcon}>
                                     <IconButton>
                                         <FavoriteBorderIcon color='secondary' />
                                     </IconButton>
 
-                                    <IconButton onClick={() => onInfoClicked(movie.MovieID)}>
+                                    <IconButton onClick={() => onInfoClicked(movie.id /*movie.MovieID*/)}>
                                         <InfoIcon color='primary' />
                                     </IconButton>
                                 </div>
@@ -161,12 +163,14 @@ const MultiLinesGridList = (props) => {
                             <GridListTileBar
                                 title={
                                     <Typography className={classes.title}>
-                                        {movie.KnownAs}
+                                        {/* {movie.KnownAs} */}
+                                        { movie.title }
                                     </Typography>
                                 }
                                 subtitle={
                                     <Typography className={classes.subtitle}>
-                                        {movie.MovieName || movie.Name}
+                                        {/* {movie.MovieName || movie.Name} */}
+                                        { movie.original_title }
                                     </Typography>
                                 }
                                 classes={{

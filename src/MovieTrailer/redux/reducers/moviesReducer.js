@@ -1,4 +1,7 @@
-import {
+import _ from 'lodash'
+
+import
+    {
     HOME_MOVIES_LOAD,
     MOVIE_DETAIL,
     MOVIE_PLAY,
@@ -21,7 +24,7 @@ const moviesReducer = (state = {
                 //Categories: action.payload.MoviesByCates
 
                 // TMDB format
-                Categories: action.payload.genres
+                Categories: _.groupBy(action.payload.results, item => item.media_type)
             }
             break
 

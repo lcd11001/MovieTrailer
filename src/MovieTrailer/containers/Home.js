@@ -113,18 +113,18 @@ class Home extends Component {
                 <CarouselView data={Banner} onInfoClicked={this._onInfoClicked}/>
 
                 {
-                    Categories.map(item => (
-                        <Fragment key={item.id}>
+                    Object.keys(Categories).map(key => (
+                        <Fragment key={key}>
                             <div className={classes.divHeader}>
                                 <IconButton>
                                     <MoreIcon className={classes.moreIcon}/>
                                 </IconButton>
                                 <Typography className={classes.header}>
-                                    {item.name}
+                                    {key}
                                 </Typography>
                             </div>
                             {/* <SingleLineGridList data={Movies} cols={8.5} cellHeight={300}/> */}
-                            {/* <MultiLinesGridList data={item} cols={7} cellHeight={300} onInfoClicked={this._onInfoClicked}/> */}
+                            <MultiLinesGridList data={Categories[key]} cols={7} cellHeight={300} onInfoClicked={this._onInfoClicked}/>
                         </Fragment>
                     ))
                 }
