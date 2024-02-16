@@ -43,8 +43,8 @@ const _onImageError = (error) => {
     error.target.src = '/defaultImage/unavailable.png'
 }
 
-const _onInfoClicked = (movieID) => {
-    let url = '/movie/' + movieID
+const _onInfoClicked = (movieID, mediaType = 'movie') => {
+    let url = `/${mediaType}/` + movieID
     store.dispatch(push(url))
 }
 
@@ -150,7 +150,7 @@ const MultiLinesGridList = (props) => {
                     }
 
                     return (
-                        <GridListTile key={movie.id /*movie.MovieID*/} cols={cellCols} rows={cellRows} onClick={() => { onInfoClicked(movie.id /*movie.MovieID*/) }}>
+                        <GridListTile key={movie.id /*movie.MovieID*/} cols={cellCols} rows={cellRows} onClick={() => { onInfoClicked(movie.id /*movie.MovieID*/, movie.media_type) }}>
                             <div className={classes.divImage}>
                                 <img className={classes.image} src={getImage(movie.poster_path)/*getImage(movie.Poster100x149)*/} alt={movie.title /*movie.MovieName*/} onError={_onImageError} />
                                 <div className={classes.divActionIcon}>
@@ -158,7 +158,7 @@ const MultiLinesGridList = (props) => {
                                         <FavoriteBorderIcon color='secondary' />
                                     </IconButton>
 
-                                    <IconButton onClick={() => onInfoClicked(movie.id /*movie.MovieID*/)}>
+                                    <IconButton onClick={() => onInfoClicked(movie.id /*movie.MovieID*/, movie.media_type)}>
                                         <InfoIcon color='primary' />
                                     </IconButton>
                                 </div>

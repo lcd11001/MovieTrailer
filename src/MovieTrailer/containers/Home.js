@@ -40,10 +40,10 @@ class Home extends Component {
         }
     }
 
-    _onInfoClicked = (movieID) => {
+    _onInfoClicked = (movieID, mediaType = 'movie') => {
         if (this.props.movies.MovieDetail === null || movieID !== this.props.movies.MovieDetail.MovieID) {
             this.props.clearMovieDetail()
-            this.props.loadMovieDetail(movieID)
+            this.props.loadMovieDetail(movieID, mediaType)
         }
 
         this.setState({
@@ -171,8 +171,8 @@ const mapDispatchToProps = (dispatch) => (
         clearMovieDetail: () => {
             dispatch(actions.clearMovieDetail())
         },
-        loadMovieDetail: (movieID) => {
-            dispatch(actions.loadMovieDetail(movieID))
+        loadMovieDetail: (movieID, mediaType = 'movie') => {
+            dispatch(actions.loadMovieDetail(movieID, mediaType))
         }
     }
 )

@@ -26,13 +26,13 @@ export const loadHomeMovies = () => (
     }
 )
 
-export const loadMovieDetail = (movieID) => (
+export const loadMovieDetail = (movieID, mediaType = 'movie') => (
     (dispatch) => {
         if (movieID === undefined || movieID === '') {
             dispatch(fetchError('loadMovieDetail error when movieID is invalid'))
             return
         }
-        dispatch(API.getMovieDetail(movieID))
+        dispatch(API.getMovieDetail(movieID, mediaType))
             .then(json => {
                 if (typeof (json) === 'object') {
                     dispatch({
