@@ -27,12 +27,23 @@ import IconLabelTabs from './IconLabelTabs'
 import { cardStyles as styles } from '../styles'
 
 import { getImage } from '../api'
+import YouTube from 'react-youtube'
 
 class ReviewCard extends React.Component {
-    state = { expanded: false }
+    state = { expanded: false, isPlayingTrailer: false }
 
     _handleExpandClick = () => {
         this.setState({ expanded: !this.state.expanded })
+    }
+
+    _handlePlayTrailer = () =>
+    {
+        this.setState({ isPlayingTrailer: true })
+    }
+
+    _handleStopTrailer = () =>
+    {
+        this.setState({ isPlayingTrailer: false })
     }
 
     _getCategoryComponents = (categories) => {
@@ -167,6 +178,7 @@ class ReviewCard extends React.Component {
 
     _onClick = (id) => {
         console.log(`https://www.youtube.com/watch?v=${id}`)
+        this._handlePlayTrailer();
     }
 
     _getTrailerId = (data) =>
@@ -182,6 +194,26 @@ class ReviewCard extends React.Component {
         }
 
         return null
+    }
+
+    renderTrailer = (id) =>
+    {
+        const { classes } = this.props
+
+        return (
+            <YouTube
+                videoId={id}
+                onEnd={this._handleStopTrailer}
+                className={classes.youtubePlayerContainer}
+                opts={{
+                    width: '100%',
+                    height: '100%',
+                    playerVars: {
+                        autoplay: 1
+                    }
+                }}
+            />
+        )
     }
 
     render() {
@@ -236,6 +268,9 @@ class ReviewCard extends React.Component {
                                 </IconButton>
                             }
                         </div>
+                        {
+                            this.state.isPlayingTrailer && this.renderTrailer(_trailerId)
+                        }
                     </CardMedia>
 
                     <CardContent>

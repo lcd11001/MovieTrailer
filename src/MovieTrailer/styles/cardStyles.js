@@ -74,6 +74,14 @@ const styles = theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    youtubePlayerContainer: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'black',
     }
 })
 

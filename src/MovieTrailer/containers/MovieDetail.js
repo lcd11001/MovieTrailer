@@ -94,7 +94,7 @@ class MovieDetailCard extends React.Component {
 
         return (
             <Fragment>
-                <ReviewCard detail={detail} onPlay={this._onPlayMovie}/>
+                <ReviewCard detail={detail} /*onPlay={this._onPlayMovie}*//>
                 <div className={classes.divHeader}>
                     <IconButton>
                         <QueuePlayNextIcon className={classes.moreIcon} />
