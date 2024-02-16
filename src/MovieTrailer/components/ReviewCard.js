@@ -14,6 +14,7 @@ import Collapse from '@material-ui/core/Collapse'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
+import Link from '@material-ui/core/Link'
 
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
@@ -24,6 +25,8 @@ import PlayIcon from '@material-ui/icons/PlayCircleOutline'
 import IconLabelTabs from './IconLabelTabs'
 
 import { cardStyles as styles } from '../styles'
+
+import { getImage } from '../api'
 
 class ReviewCard extends React.Component {
     state = { expanded: false }
@@ -36,9 +39,15 @@ class ReviewCard extends React.Component {
         return categories.map((value, index) => {
             return (
                 <Fragment key={index}>
-                    <a href={`/category/${value.CategoryID}`}>
+                    <span>
                         {
-                            index > 0 ? ' - ' + value.CategoryName : value.CategoryName
+                            index > 0 ? ' - ' : ''
+                        }
+                    </span>
+                    <a href={`/category/${value.id/*value.CategoryID*/}`}>
+                        {
+                            // value.CategoryName
+                            value.name
                         }
                     </a>
                 </Fragment>
@@ -61,9 +70,14 @@ class ReviewCard extends React.Component {
             .map((value, index) => {
                 return (
                     <Fragment key={index}>
+                        <span>
+                            {
+                                index > 0 ? ' - ' : ''
+                            }
+                        </span>
                         <a href={`/caster/${value.trim().replace(/ /g, '%20')}`}>
                             {
-                                index > 0 ? ' - ' + value.trim() : value.trim()
+                                value.trim()
                             }
                         </a>
                     </Fragment>
@@ -84,6 +98,41 @@ class ReviewCard extends React.Component {
     _getDirectorComponents = (director) => {
         director = director || 'unknown'
         return <a href={`/director/${director.trim().replace(/ /g, '%20')}`}>{director.trim()}</a>
+    }
+
+    _getCompanies = (companies) =>
+    {
+        return companies.map((value, index) => {
+            return (
+                <Fragment key={index}>
+                    <span>
+                    {
+                        index > 0 ? ' - ' : ''
+                    }
+                    </span>
+                    <a href={`/company/${value.id}`}>
+                        {
+                            value.name
+                        }
+                    </a>
+                </Fragment>
+            )
+        })
+    }
+
+    _getLanguages = (languages) =>
+    {
+        return languages.map((value, index) => {
+            return (
+                <Fragment key={index}>
+                    <span key={`/language/${value.iso_639_1}`}>
+                        {
+                            index > 0 ? ' - ' + value.name : value.name
+                        }
+                    </span>
+                </Fragment>
+            )
+        })
     }
 
     _calcFlexDirection = (width) => {
@@ -137,7 +186,7 @@ class ReviewCard extends React.Component {
                     <CardHeader
                         avatar={
                             <Avatar aria-label='IMDB rating' className={classes.avatar}>
-                                <Typography className={classes.avatarText}>{detail.ImdbRating}</Typography>
+                                <Typography className={classes.avatarText}>{detail.vote_average /*detail.ImdbRating*/}</Typography>
                             </Avatar>
                         }
                         action={
@@ -146,17 +195,21 @@ class ReviewCard extends React.Component {
                             </IconButton>
                         }
                         title={
-                            <Typography className={classes.title}>{detail.KnownAs}</Typography>
+                            <Typography className={classes.title}>{detail.original_title /*detail.KnownAs*/}</Typography>
                         }
                         subheader={
-                            <Typography className={classes.subtitle}>{detail.MovieName}</Typography>
+                            <Typography className={classes.subtitle}>
+                                <Link href={detail.homepage} color='secondary' target='_blank' rel='noopener'>
+                                    {detail.homepage /*detail.MovieName*/}
+                                </Link>
+                            </Typography>
                         }
                     />
 
                     <CardMedia
                         className={classes.media}
-                        image={detail.NewBackdrop}
-                        title={detail.KnownAs}
+                        image={getImage(detail.backdrop_path /*detail.NewBackdrop*/)}
+                        title={detail.original_title /*detail.KnownAs*/}
                     >
                         <div className={classes.divPlayButton}>
                             <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID)}>
@@ -166,7 +219,7 @@ class ReviewCard extends React.Component {
                     </CardMedia>
 
                     <CardContent>
-                        <IconLabelTabs
+                        {/* <IconLabelTabs
                             data={[
                                 {
                                     icon: '/icons/vn_icon_64.png',
@@ -179,7 +232,10 @@ class ReviewCard extends React.Component {
                                     content: `${detail.PlotEN}` || 'Updating ...'
                                 }
                             ]}
-                        />
+                        /> */}
+                        <Typography component='p'>
+                            {detail.overview /*detail.Plot*/}
+                        </Typography>
                     </CardContent>
 
                     <CardActions className={classes.actions} disableActionSpacing>
@@ -206,56 +262,58 @@ class ReviewCard extends React.Component {
                             <div style={{ display: 'flex', flexDirection: `${_flexDirection}` }}>
                                 <div style={{ flex: `${_flexSize.leftOrTop}` }}>
                                     <Typography paragraph className={classes.paragraphHeader}>
-                                        Năm sản xuất:
+                                        Release Date:
                                     </Typography>
                                     <Typography paragraph className={classes.paragraph}>
                                         {
-                                            detail.ReleaseDate
+                                            detail.release_date /*detail.ReleaseDate*/
                                         }
                                     </Typography>
 
                                     <Typography paragraph className={classes.paragraphHeader}>
-                                        Quốc gia:
+                                        Original Language:
                                     </Typography>
                                     <Typography paragraph className={classes.paragraph}>
                                         {
-                                            detail.Country
+                                            detail.original_language /*detail.Country*/
                                         }
                                     </Typography>
 
                                     <Typography paragraph className={classes.paragraphHeader}>
-                                        Chấm điểm:
+                                        Vote Average:
                                     </Typography>
                                     <Typography paragraph className={classes.paragraph}>
                                         {
-                                            detail.ImdbRating
-                                        }
+                                            detail.vote_average /*detail.ImdbRating*/
+                                        } / 10
                                     </Typography>
                                 </div>
                                 <div style={{ flex: `${this._calcFlexSize(width).rightOrBottom}` }}>
                                     <Typography paragraph className={classes.paragraphHeader}>
-                                        Thể loại:
+                                        Genres:
                                     </Typography>
                                     <Typography paragraph className={classes.paragraph}>
                                         {
-                                            this._getCategoryComponents(detail.Category)
+                                            this._getCategoryComponents(detail.genres/*detail.Category*/)
                                         }
                                     </Typography>
 
                                     <Typography paragraph className={classes.paragraphHeader}>
-                                        Đạo diễn:
+                                        Production Companies:
                                     </Typography>
                                     <Typography paragraph className={classes.paragraph}>
                                         {
-                                            this._getDirectorComponents(detail.Director)
+                                            this._getCompanies(detail.production_companies) /*this._getDirectorComponents(detail.Director)*/
                                         }
                                     </Typography>
 
                                     <Typography paragraph className={classes.paragraphHeader}>
-                                        Diễn viên:
+                                        Spoken Languages:
                                     </Typography>
                                     <Typography paragraph className={classes.paragraph}>
-                                        {this._getCasterComponents(detail.Cast)}
+                                        {
+                                            this._getLanguages(detail.spoken_languages) /*this._getCasterComponents(detail.Cast)*/
+                                        }
                                     </Typography>
                                 </div>
 

@@ -12,7 +12,6 @@ const urlCategoryDetail = urlApi + '/movie?categoryid={0}&offset={1}&limit={2}'
 
 const urlMovieDetail = urlApi + '/movie?movieid={0}'
 
-
 const urlMoviePlay = 'http://netflix.com/get_movie?movieid={0}'
 const urlMoviePlaySequence = urlMoviePlay + '&sequence={1}'
 */
@@ -32,6 +31,10 @@ const urlHome = `${urlApi}/trending/all/${time_windows}?api_key=${api_key}&langu
 const urlCategory = `${urlApi}/genre/{0}/list?api_key=${api_key}&language=${language}`
 const urlCategoryDetail = `${urlApi}/discover/movie/?api_key=${api_key}&with_genres={0}&language=${language}&sort_by=popularity.desc&include_adult=false&include_video=false&page={1}`
 
+const urlMovieDetail = `${urlApi}/movie/{0}?api_key=${api_key}&language=${language}`
+
+const urlMoviePlay = `${urlApi}/movie/{0}/videos?api_key=${api_key}&language=${language}`
+const urlMoviePlaySequence = `${urlApi}/movie/{0}/videos?api_key=${api_key}&language=${language}&append_to_response=videos`
 
 // https://daveceddia.com/where-fetch-data-redux/
 function getDataAsync(url, otherOptions) {
