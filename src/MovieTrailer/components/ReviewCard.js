@@ -26,7 +26,7 @@ import IconLabelTabs from './IconLabelTabs'
 
 import { cardStyles as styles } from '../styles'
 
-import { getImage } from '../api'
+import { backdropSizes, getImage } from '../api'
 import YouTube from 'react-youtube'
 
 class ReviewCard extends React.Component {
@@ -257,7 +257,7 @@ class ReviewCard extends React.Component {
 
                     <CardMedia
                         className={classes.media}
-                        image={getImage(detail.backdrop_path /*detail.NewBackdrop*/)}
+                        image={getImage(detail.backdrop_path /*detail.NewBackdrop*/, backdropSizes.w1280)}
                         title={detail.original_title /*detail.KnownAs*/}
                     >
                         <div className={classes.divPlayButton}>

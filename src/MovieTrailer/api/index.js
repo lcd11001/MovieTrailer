@@ -172,10 +172,27 @@ export function getMoviePlay(movieID, sequence) {
     }
 }
 
-export function getImage(url) {
+export const posterSizes = {
+    w92: 'w92',
+    w154: 'w154',
+    w185: 'w185',
+    w342: 'w342',
+    w500: 'w500',
+    w780: 'w780',
+    original: 'original'
+}
+
+export const backdropSizes = {
+    w300: 'w300',
+    w780: 'w780',
+    w1280: 'w1280',
+    original: 'original'
+}
+
+export function getImage(url, size = 'w500') {
     // HDViet API
     // return url
 
     // TheMovieDB API
-    return `https://image.tmdb.org/t/p/w500${url}`
+    return `https://image.tmdb.org/t/p/${size}${url}`
 }

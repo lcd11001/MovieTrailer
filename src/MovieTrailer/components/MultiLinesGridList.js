@@ -35,7 +35,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 
 import { listStyles as styles } from '../styles'
 
-import { getImage } from '../api'
+import { getImage, posterSizes } from '../api'
 
 const { store } = createStore()
 
@@ -152,7 +152,7 @@ const MultiLinesGridList = (props) => {
                     return (
                         <GridListTile key={movie.id /*movie.MovieID*/} cols={cellCols} rows={cellRows} onClick={() => { onInfoClicked(movie.id /*movie.MovieID*/, movie.media_type) }}>
                             <div className={classes.divImage}>
-                                <img className={classes.image} src={getImage(movie.poster_path)/*getImage(movie.Poster100x149)*/} alt={movie.title /*movie.MovieName*/} onError={_onImageError} />
+                                <img className={classes.image} src={getImage(movie.poster_path, posterSizes.w500)/*getImage(movie.Poster100x149)*/} alt={movie.title /*movie.MovieName*/} onError={_onImageError} />
                                 <div className={classes.divActionIcon}>
                                     <IconButton>
                                         <FavoriteBorderIcon color='secondary' />
