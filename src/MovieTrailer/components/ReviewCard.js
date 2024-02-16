@@ -185,8 +185,10 @@ class ReviewCard extends React.Component {
     {
         if (Array.isArray(data))
         {
-            const trailer = data.find((value) => value.type === 'Trailer' && value.official === true && value.site === 'YouTube')
-            //const trailer = data.find((value) => value.name === 'Official Trailer')
+            const trailer = data.length > 1
+                // ? data.find((value) => value.type === 'Trailer' && value.official === true && value.site === 'YouTube')
+                ? data.find((value) => value.name === 'Official Trailer' || value.name === 'Official Teaser')
+                : data[0]
             if (trailer)
             {
                 return trailer.key
@@ -235,7 +237,7 @@ class ReviewCard extends React.Component {
                     <CardHeader
                         avatar={
                             <Avatar aria-label='IMDB rating' className={classes.avatar}>
-                                <Typography className={classes.avatarText}>{detail.vote_average /*detail.ImdbRating*/}</Typography>
+                                <Typography className={classes.avatarText}>{detail.vote_average.toFixed(1) /*detail.ImdbRating*/}</Typography>
                             </Avatar>
                         }
                         action={
@@ -339,7 +341,7 @@ class ReviewCard extends React.Component {
                                     </Typography>
                                     <Typography paragraph className={classes.paragraph}>
                                         {
-                                            detail.vote_average /*detail.ImdbRating*/
+                                            detail.vote_average.toFixed(1) /*detail.ImdbRating*/
                                         } / 10
                                     </Typography>
                                 </div>
