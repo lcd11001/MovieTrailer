@@ -187,7 +187,7 @@ class ReviewCard extends React.Component {
         {
             const trailer = data.length > 1
                 // ? data.find((value) => value.type === 'Trailer' && value.official === true && value.site === 'YouTube')
-                ? data.find((value) => value.name === 'Official Trailer' || value.name === 'Official Teaser')
+                ? data.find((value) => value.name.includes('Official Trailer') || value.name.includes('Official Teaser'))
                 : data[0]
             if (trailer)
             {
