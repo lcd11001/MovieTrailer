@@ -15,8 +15,13 @@ const moviesReducer = (state = {
         case HOME_MOVIES_LOAD:
             state = {
                 ...state,
-                Banner: action.payload.Movies_Banners,
-                Categories: action.payload.MoviesByCates
+                
+                // HDViet format
+                //Banner: action.payload.Movies_Banners,
+                //Categories: action.payload.MoviesByCates
+
+                // TMDB format
+                Categories: action.payload.genres
             }
             break
 
