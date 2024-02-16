@@ -25,6 +25,7 @@ const IS_DEV = process.env.NODE_ENV === 'development'
 const BUILD_CLIENT_DIR = process.env.BUILD_CLIENT_DIR
 
 app.use(express.static(BUILD_CLIENT_DIR))
+app.use(express.static(BUILD_CLIENT_DIR + '/public'))
 
 // MUST here
 if (IS_DEV) {

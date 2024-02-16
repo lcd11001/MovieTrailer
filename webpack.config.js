@@ -25,7 +25,10 @@ const CommonConfig = (env, args) => {
                 },
                 {
                     test: /\.(png|svg|jpg|gif|ico)$/,
-                    include: /public/,
+                    include: [
+                        path.resolve(__dirname, 'public'),
+                        BUILD_CLIENT_DIR
+                    ],
                     loader: [
                         'file-loader'
                     ]
@@ -47,7 +50,10 @@ const CommonConfig = (env, args) => {
                 BUILD_CLIENT_DIR: BUILD_CLIENT_DIR,
                 BUILD_SERVER_DIR: BUILD_SERVER_DIR
             })
-        ]
+        ],
+        devServer: {
+            contentBase: BUILD_CLIENT_DIR
+        }
     }
 }
 
@@ -61,7 +67,17 @@ const ClientConfig = (env, args) => {
             new CopyPlugin([
                 {
                     from: PUBLIC_DIR,
-                    to: BUILD_CLIENT_DIR
+                    to: BUILD_CLIENT_DIR,
+                    globOptions: {
+                        ignore: ['**/index.html'],
+                        dot: true,
+                        gitignore: true,
+                        ignore: ['**/.*'],
+                    },
+                    // Add the recursive option to copy all resources in the child folder
+                    options: {
+                        recursive: true
+                    }
                 }
             ]),
             new HtmlWebpackPlugin({
