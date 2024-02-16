@@ -137,7 +137,7 @@ class Home extends Component {
                     <div style={this._getModalStyle()}>
                         {
                             MovieDetail && (
-                                <ReviewCard detail={MovieDetail} onPlay={this._onPlayMovie}/>
+                                <ReviewCard detail={MovieDetail} /*onPlay={this._onPlayMovie}*/ />
                             )
                         }
                     </div>

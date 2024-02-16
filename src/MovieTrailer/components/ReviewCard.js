@@ -165,8 +165,23 @@ class ReviewCard extends React.Component {
         }
     }
 
-    _onClick = (movieID) => {
-        // console.log('_onClick', movieID)
+    _onClick = (id) => {
+        console.log(`https://www.youtube.com/watch?v=${id}`)
+    }
+
+    _getTrailerId = (data) =>
+    {
+        if (Array.isArray(data))
+        {
+            const trailer = data.find((value) => value.type === 'Trailer' && value.official === true && value.site === 'YouTube')
+            //const trailer = data.find((value) => value.name === 'Official Trailer')
+            if (trailer)
+            {
+                return trailer.key
+            }
+        }
+
+        return null
     }
 
     render() {
@@ -179,6 +194,8 @@ class ReviewCard extends React.Component {
 
         const _flexDirection = this._calcFlexDirection(width)
         const _flexSize = this._calcFlexSize(width)
+
+        const _trailerId = this._getTrailerId(detail.videos.results) /*detail.MovieID*/
 
         return (
             <div>
@@ -212,9 +229,12 @@ class ReviewCard extends React.Component {
                         title={detail.original_title /*detail.KnownAs*/}
                     >
                         <div className={classes.divPlayButton}>
-                            <IconButton className={classes.playButton} onClick={() => onPlay(detail.MovieID)}>
-                                <PlayIcon className={classnames(classes.playIcon, classes.playIconHover)} />
-                            </IconButton>
+                            {
+                                _trailerId &&
+                                <IconButton className={classes.playButton} onClick={() => onPlay(_trailerId)}>
+                                    <PlayIcon className={classnames(classes.playIcon, classes.playIconHover)} />
+                                </IconButton>
+                            }
                         </div>
                     </CardMedia>
 
