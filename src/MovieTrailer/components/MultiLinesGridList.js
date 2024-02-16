@@ -69,7 +69,9 @@ const _getRemainCellCols = (remainCellCols, cols, cellCols) => {
     return remainCellCols
 }
 
-const _calcCellHeigh = (cellHeight, width) => {
+const _calcCellHeigh = (cellHeight, width) =>
+{
+    /*
     switch (width) {
         case 'xs': // extra small
             return parseInt(cellHeight * 0.4, 10)
@@ -86,8 +88,9 @@ const _calcCellHeigh = (cellHeight, width) => {
         default:
             break
     }
-
-    return parseInt(cellHeight, 10)
+    */
+    // TheMovieDB API, default poster ratio is 2:3
+    return parseInt(cellHeight * 3 / 2, 10)
 }
 
 const _calcCols = (cols, width) => {
@@ -149,7 +152,7 @@ const MultiLinesGridList = (props) => {
                     return (
                         <GridListTile key={movie.id /*movie.MovieID*/} cols={cellCols} rows={cellRows} onClick={() => { onInfoClicked(movie.id /*movie.MovieID*/) }}>
                             <div className={classes.divImage}>
-                                <img className={classes.image} src={getImage(movie.backdrop_path)/*getImage(movie.Poster100x149)*/} alt={movie.title /*movie.MovieName*/} onError={_onImageError} />
+                                <img className={classes.image} src={getImage(movie.poster_path)/*getImage(movie.Poster100x149)*/} alt={movie.title /*movie.MovieName*/} onError={_onImageError} />
                                 <div className={classes.divActionIcon}>
                                     <IconButton>
                                         <FavoriteBorderIcon color='secondary' />
