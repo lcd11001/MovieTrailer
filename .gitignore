@@ -9,3 +9,4 @@ node_modules/
 *.log
 /package-lock.json
 /stats.json
+.firebase/
