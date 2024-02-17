@@ -92,6 +92,11 @@ const mailFolderListItems = [
                 CategoryName: '(+84) 902.711.388',
                 Subcate: 0
             },
+            {
+                CategoryID: '11',
+                CategoryName: '2024-02-17',
+                Subcate: 0
+            },
         ]
     },
 ]
