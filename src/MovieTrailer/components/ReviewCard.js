@@ -246,7 +246,7 @@ class ReviewCard extends React.Component {
                             </IconButton>
                         }
                         title={
-                            <Typography className={classes.title}>{detail.original_title /*detail.KnownAs*/}</Typography>
+                            <Typography className={classes.title}>{detail.original_title || detail.original_name /*detail.KnownAs*/}</Typography>
                         }
                         subheader={
                             <Typography className={classes.subtitle}>
@@ -260,7 +260,7 @@ class ReviewCard extends React.Component {
                     <CardMedia
                         className={classes.media}
                         image={getImage(detail.backdrop_path /*detail.NewBackdrop*/, backdropSizes.w1280)}
-                        title={detail.original_title /*detail.KnownAs*/}
+                        title={detail.original_title || detail.original_name /*detail.KnownAs*/}
                     >
                         <div className={classes.divPlayButton}>
                             {
