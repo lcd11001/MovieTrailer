@@ -6,7 +6,8 @@ const NodeExternals = require('webpack-node-externals')
 const webpack = require('webpack')
 
 const PUBLIC_DIR = path.resolve(__dirname, 'public')
-const PUBLIC_URL = '/ssr'
+// const PUBLIC_URL = '/ssr'
+const PUBLIC_URL = '/'
 
 const BUILD_CLIENT_DIR = path.resolve(__dirname, 'dist_client')
 const BUILD_SERVER_DIR = path.resolve(__dirname, 'dist_server')

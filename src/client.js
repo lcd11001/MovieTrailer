@@ -30,7 +30,7 @@ hydrate(
     </JssProvider>,
     document.getElementById('root'),
     () => {
-        document.getElementById('jss-styles').remove()
+        document.getElementById('jss-styles')?.remove()
     }
 )
 
