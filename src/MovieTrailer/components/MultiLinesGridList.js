@@ -71,26 +71,34 @@ const _getRemainCellCols = (remainCellCols, cols, cellCols) => {
 
 const _calcCellHeigh = (cellHeight, width) =>
 {
-    /*
+    let height = cellHeight
     switch (width) {
         case 'xs': // extra small
-            return parseInt(cellHeight * 0.4, 10)
-
+            height = parseInt(cellHeight * 0.4, 10)
+            break
+        
         case 'sm': // small
-            return parseInt(cellHeight * 0.55, 10)
+            height = parseInt(cellHeight * 0.55, 10)
+            break
 
         case 'md': // medium
-            return parseInt(cellHeight * 0.7, 10)
+            height = parseInt(cellHeight * 0.7, 10)
+            break
+        
         case 'lg': // large
-            return parseInt(cellHeight * 0.85, 10)
+            height = parseInt(cellHeight * 0.85, 10)
+            break
+        
         // case 'xl': // xlarge
-        //     return parseInt(cellHeight, 10)
+        //     height = parseInt(cellHeight, 10)
+        //     break
+
         default:
             break
     }
-    */
+    
     // TheMovieDB API, default poster ratio is 2:3
-    return parseInt(cellHeight * 3 / 2, 10)
+    return parseInt(height * 3 / 2, 10)
 }
 
 const _calcCols = (cols, width) => {
