@@ -12,6 +12,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import ReportIcon from '@material-ui/icons/Report'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
+import InfoIcon from '@material-ui/icons/AccountCircle';
 
 import Drawer from '../components/Drawer'
 import AppBar from '../components/AppBar'
@@ -64,6 +65,32 @@ const mailFolderListItems = [
                 CategoryName: 'Delete',
                 Subcate: 0,
                 Icon: (<DeleteIcon />)
+            },
+        ]
+    },
+    {
+        CategoryID: '07',
+        CategoryName: 'About Me',
+        Subcate: 0,
+        Icon: (<InfoIcon />),
+        ExpandIcon: (<ExpandMore />),
+        CollapseIcon: (<ExpandLess />),
+        IsExpanded: false,
+        Children: [
+            {
+                CategoryID: '08',
+                CategoryName: 'Lương Công Dân',
+                Subcate: 0
+            },
+            {
+                CategoryID: '09',
+                CategoryName: 'lcd11001@gmail.com',
+                Subcate: 0
+            },
+            {
+                CategoryID: '10',
+                CategoryName: '(+84) 902.711.388',
+                Subcate: 0
             },
         ]
     },
